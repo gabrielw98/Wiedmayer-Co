@@ -1,0 +1,855 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49A7C4A2FE7F27B5A7FB6E79 /* Pods_Wiedmayer___CoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B052023F5DE01F575A8D1E7 /* Pods_Wiedmayer___CoUITests.framework */; };
+		810D59CD0484F64EC18720DC /* Pods_Wiedmayer___Co.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C652C8AA6636DD1A47FFEA8F /* Pods_Wiedmayer___Co.framework */; };
+		8C442F9A235253530054E6AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442F99235253530054E6AD /* AppDelegate.swift */; };
+		8C442FA0235253550054E6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C442F9F235253550054E6AD /* Assets.xcassets */; };
+		8C442FA3235253550054E6AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C442FA2235253550054E6AD /* Preview Assets.xcassets */; };
+		8C442FA6235253550054E6AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C442FA4235253550054E6AD /* LaunchScreen.storyboard */; };
+		8C442FB1235253550054E6AD /* Wiedmayer___CoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FB0235253550054E6AD /* Wiedmayer___CoTests.swift */; };
+		8C442FBC235253550054E6AD /* Wiedmayer___CoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FBB235253550054E6AD /* Wiedmayer___CoUITests.swift */; };
+		8C442FCB235256310054E6AD /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FCA235256310054E6AD /* RegistrationVC.swift */; };
+		8C442FD223526EAA0054E6AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C442FD423526EAA0054E6AD /* Main.storyboard */; };
+		8C442FD62352717A0054E6AD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD52352717A0054E6AD /* Utilities.swift */; };
+		8C442FD823528C940054E6AD /* PropertiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD723528C940054E6AD /* PropertiesVC.swift */; };
+		8C442FDA235291A50054E6AD /* PropertyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD9235291A50054E6AD /* PropertyDetailsVC.swift */; };
+		8C442FDD235293160054E6AD /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FDC235293160054E6AD /* Property.swift */; };
+		8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FDF2352AE410054E6AD /* PropertyTableViewCell.swift */; };
+		8C442FE22352B7050054E6AD /* EditPropertyAttributeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FE12352B7050054E6AD /* EditPropertyAttributeVC.swift */; };
+		8C442FE42352BCFC0054E6AD /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FE32352BCFC0054E6AD /* ProfileVC.swift */; };
+		8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FE92352CC830054E6AD /* CreatePropertyVC.swift */; };
+		8C442FEC2353AF770054E6AD /* NewAttributesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FEB2353AF770054E6AD /* NewAttributesVC.swift */; };
+		8C442FEE2353B1210054E6AD /* CreateAttributesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FED2353B1210054E6AD /* CreateAttributesVC.swift */; };
+		8C442FF0235401680054E6AD /* AddImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FEF235401670054E6AD /* AddImageVC.swift */; };
+		8C442FF223540E2D0054E6AD /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF123540E2D0054E6AD /* DataModel.swift */; };
+		8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF423540FBB0054E6AD /* NameVC.swift */; };
+		8C442FF7235411950054E6AD /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF6235411950054E6AD /* AddressVC.swift */; };
+		8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF8235411BA0054E6AD /* PriceVC.swift */; };
+		8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */; };
+		8C442FFD235411DE0054E6AD /* SquareFootageTotal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */; };
+		C6D68FEB4A41F91E26351715 /* Pods_Wiedmayer___CoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C442FAD235253550054E6AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C442F8E235253530054E6AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C442F95235253530054E6AD;
+			remoteInfo = "Wiedmayer & Co";
+		};
+		8C442FB8235253550054E6AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C442F8E235253530054E6AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C442F95235253530054E6AD;
+			remoteInfo = "Wiedmayer & Co";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06A167970EC3CCCDA92363B8 /* Pods-Wiedmayer & CoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoUITests.release.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoUITests/Pods-Wiedmayer & CoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4735EB6F901A6EAC5EF19765 /* Pods-Wiedmayer & CoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoTests.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoTests/Pods-Wiedmayer & CoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___CoTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B052023F5DE01F575A8D1E7 /* Pods_Wiedmayer___CoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___CoUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C442F96235253530054E6AD /* Wiedmayer & Co.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wiedmayer & Co.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C442F99235253530054E6AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8C442F9F235253550054E6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C442FA2235253550054E6AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8C442FA5235253550054E6AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C442FA7235253550054E6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C442FAC235253550054E6AD /* Wiedmayer & CoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wiedmayer & CoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C442FB0235253550054E6AD /* Wiedmayer___CoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wiedmayer___CoTests.swift"; sourceTree = "<group>"; };
+		8C442FB2235253550054E6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C442FB7235253550054E6AD /* Wiedmayer & CoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wiedmayer & CoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C442FBB235253550054E6AD /* Wiedmayer___CoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wiedmayer___CoUITests.swift"; sourceTree = "<group>"; };
+		8C442FBD235253550054E6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C442FCA235256310054E6AD /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		8C442FD323526EAA0054E6AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C442FD52352717A0054E6AD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8C442FD723528C940054E6AD /* PropertiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesVC.swift; sourceTree = "<group>"; };
+		8C442FD9235291A50054E6AD /* PropertyDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsVC.swift; sourceTree = "<group>"; };
+		8C442FDC235293160054E6AD /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		8C442FDF2352AE410054E6AD /* PropertyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTableViewCell.swift; sourceTree = "<group>"; };
+		8C442FE12352B7050054E6AD /* EditPropertyAttributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyAttributeVC.swift; sourceTree = "<group>"; };
+		8C442FE32352BCFC0054E6AD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		8C442FE92352CC830054E6AD /* CreatePropertyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePropertyVC.swift; sourceTree = "<group>"; };
+		8C442FEB2353AF770054E6AD /* NewAttributesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAttributesVC.swift; sourceTree = "<group>"; };
+		8C442FED2353B1210054E6AD /* CreateAttributesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAttributesVC.swift; sourceTree = "<group>"; };
+		8C442FEF235401670054E6AD /* AddImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageVC.swift; sourceTree = "<group>"; };
+		8C442FF123540E2D0054E6AD /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		8C442FF423540FBB0054E6AD /* NameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameVC.swift; sourceTree = "<group>"; };
+		8C442FF6235411950054E6AD /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
+		8C442FF8235411BA0054E6AD /* PriceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceVC.swift; sourceTree = "<group>"; };
+		8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageLiveable.swift; sourceTree = "<group>"; };
+		8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageTotal.swift; sourceTree = "<group>"; };
+		A188A6944C345E5EEAAFBE59 /* Pods-Wiedmayer & Co.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & Co.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co.debug.xcconfig"; sourceTree = "<group>"; };
+		C4733660094205CED5D74647 /* Pods-Wiedmayer & CoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoTests.release.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoTests/Pods-Wiedmayer & CoTests.release.xcconfig"; sourceTree = "<group>"; };
+		C652C8AA6636DD1A47FFEA8F /* Pods_Wiedmayer___Co.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___Co.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1D6D98D8F6B066E48E7B8A6 /* Pods-Wiedmayer & CoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoUITests/Pods-Wiedmayer & CoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB914462888C174846D322AA /* Pods-Wiedmayer & Co.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & Co.release.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C442F93235253530054E6AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				810D59CD0484F64EC18720DC /* Pods_Wiedmayer___Co.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FA9235253550054E6AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6D68FEB4A41F91E26351715 /* Pods_Wiedmayer___CoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FB4235253550054E6AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A7C4A2FE7F27B5A7FB6E79 /* Pods_Wiedmayer___CoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1BD5F8B11904621C605FCEDD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A188A6944C345E5EEAAFBE59 /* Pods-Wiedmayer & Co.debug.xcconfig */,
+				FB914462888C174846D322AA /* Pods-Wiedmayer & Co.release.xcconfig */,
+				4735EB6F901A6EAC5EF19765 /* Pods-Wiedmayer & CoTests.debug.xcconfig */,
+				C4733660094205CED5D74647 /* Pods-Wiedmayer & CoTests.release.xcconfig */,
+				E1D6D98D8F6B066E48E7B8A6 /* Pods-Wiedmayer & CoUITests.debug.xcconfig */,
+				06A167970EC3CCCDA92363B8 /* Pods-Wiedmayer & CoUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5A4D0FB35BDE2B7D5632F73A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C652C8AA6636DD1A47FFEA8F /* Pods_Wiedmayer___Co.framework */,
+				5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */,
+				8B052023F5DE01F575A8D1E7 /* Pods_Wiedmayer___CoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C442F8D235253530054E6AD = {
+			isa = PBXGroup;
+			children = (
+				8C442F98235253530054E6AD /* Wiedmayer & Co */,
+				8C442FAF235253550054E6AD /* Wiedmayer & CoTests */,
+				8C442FBA235253550054E6AD /* Wiedmayer & CoUITests */,
+				8C442F97235253530054E6AD /* Products */,
+				1BD5F8B11904621C605FCEDD /* Pods */,
+				5A4D0FB35BDE2B7D5632F73A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8C442F97235253530054E6AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C442F96235253530054E6AD /* Wiedmayer & Co.app */,
+				8C442FAC235253550054E6AD /* Wiedmayer & CoTests.xctest */,
+				8C442FB7235253550054E6AD /* Wiedmayer & CoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C442F98235253530054E6AD /* Wiedmayer & Co */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FDE2352AE2F0054E6AD /* UI Classes */,
+				8C442FDB235292FC0054E6AD /* Data Classes */,
+				8C442F99235253530054E6AD /* AppDelegate.swift */,
+				8C442FD423526EAA0054E6AD /* Main.storyboard */,
+				8C442FE82352BEFD0054E6AD /* Registration */,
+				8C442FE72352BEE40054E6AD /* Properties */,
+				8C442FE52352BECE0054E6AD /* Profile */,
+				8C442F9F235253550054E6AD /* Assets.xcassets */,
+				8C442FA7235253550054E6AD /* Info.plist */,
+				8C442FA1235253550054E6AD /* Preview Content */,
+			);
+			path = "Wiedmayer & Co";
+			sourceTree = "<group>";
+		};
+		8C442FA1235253550054E6AD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FA2235253550054E6AD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8C442FAF235253550054E6AD /* Wiedmayer & CoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FB0235253550054E6AD /* Wiedmayer___CoTests.swift */,
+				8C442FB2235253550054E6AD /* Info.plist */,
+			);
+			path = "Wiedmayer & CoTests";
+			sourceTree = "<group>";
+		};
+		8C442FBA235253550054E6AD /* Wiedmayer & CoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FBB235253550054E6AD /* Wiedmayer___CoUITests.swift */,
+				8C442FBD235253550054E6AD /* Info.plist */,
+			);
+			path = "Wiedmayer & CoUITests";
+			sourceTree = "<group>";
+		};
+		8C442FDB235292FC0054E6AD /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FD52352717A0054E6AD /* Utilities.swift */,
+				8C442FF123540E2D0054E6AD /* DataModel.swift */,
+				8C442FDC235293160054E6AD /* Property.swift */,
+			);
+			path = "Data Classes";
+			sourceTree = "<group>";
+		};
+		8C442FDE2352AE2F0054E6AD /* UI Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FDF2352AE410054E6AD /* PropertyTableViewCell.swift */,
+			);
+			path = "UI Classes";
+			sourceTree = "<group>";
+		};
+		8C442FE52352BECE0054E6AD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FE32352BCFC0054E6AD /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8C442FE72352BEE40054E6AD /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FF323540FA70054E6AD /* New Attributes */,
+				8C442FD723528C940054E6AD /* PropertiesVC.swift */,
+				8C442FD9235291A50054E6AD /* PropertyDetailsVC.swift */,
+				8C442FE92352CC830054E6AD /* CreatePropertyVC.swift */,
+				8C442FE12352B7050054E6AD /* EditPropertyAttributeVC.swift */,
+				8C442FEB2353AF770054E6AD /* NewAttributesVC.swift */,
+				8C442FED2353B1210054E6AD /* CreateAttributesVC.swift */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		8C442FE82352BEFD0054E6AD /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FA4235253550054E6AD /* LaunchScreen.storyboard */,
+				8C442FCA235256310054E6AD /* RegistrationVC.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		8C442FF323540FA70054E6AD /* New Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				8C442FF423540FBB0054E6AD /* NameVC.swift */,
+				8C442FF6235411950054E6AD /* AddressVC.swift */,
+				8C442FF8235411BA0054E6AD /* PriceVC.swift */,
+				8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */,
+				8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */,
+				8C442FEF235401670054E6AD /* AddImageVC.swift */,
+			);
+			path = "New Attributes";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C442F95235253530054E6AD /* Wiedmayer & Co */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C442FC0235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & Co" */;
+			buildPhases = (
+				44D6D6004920BE71AD25B6C5 /* [CP] Check Pods Manifest.lock */,
+				8C442F92235253530054E6AD /* Sources */,
+				8C442F93235253530054E6AD /* Frameworks */,
+				8C442F94235253530054E6AD /* Resources */,
+				E5D0B2CE914790B0394325B5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wiedmayer & Co";
+			productName = "Wiedmayer & Co";
+			productReference = 8C442F96235253530054E6AD /* Wiedmayer & Co.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C442FAB235253550054E6AD /* Wiedmayer & CoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C442FC3235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & CoTests" */;
+			buildPhases = (
+				36D24750C4984CFF1ADD4D39 /* [CP] Check Pods Manifest.lock */,
+				8C442FA8235253550054E6AD /* Sources */,
+				8C442FA9235253550054E6AD /* Frameworks */,
+				8C442FAA235253550054E6AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C442FAE235253550054E6AD /* PBXTargetDependency */,
+			);
+			name = "Wiedmayer & CoTests";
+			productName = "Wiedmayer & CoTests";
+			productReference = 8C442FAC235253550054E6AD /* Wiedmayer & CoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8C442FB6235253550054E6AD /* Wiedmayer & CoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C442FC6235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & CoUITests" */;
+			buildPhases = (
+				DF7556887BAFDA7F9BE59D49 /* [CP] Check Pods Manifest.lock */,
+				8C442FB3235253550054E6AD /* Sources */,
+				8C442FB4235253550054E6AD /* Frameworks */,
+				8C442FB5235253550054E6AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C442FB9235253550054E6AD /* PBXTargetDependency */,
+			);
+			name = "Wiedmayer & CoUITests";
+			productName = "Wiedmayer & CoUITests";
+			productReference = 8C442FB7235253550054E6AD /* Wiedmayer & CoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C442F8E235253530054E6AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Gabe Wilson";
+				TargetAttributes = {
+					8C442F95235253530054E6AD = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8C442FAB235253550054E6AD = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 8C442F95235253530054E6AD;
+					};
+					8C442FB6235253550054E6AD = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 8C442F95235253530054E6AD;
+					};
+				};
+			};
+			buildConfigurationList = 8C442F91235253530054E6AD /* Build configuration list for PBXProject "Wiedmayer & Co" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C442F8D235253530054E6AD;
+			productRefGroup = 8C442F97235253530054E6AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C442F95235253530054E6AD /* Wiedmayer & Co */,
+				8C442FAB235253550054E6AD /* Wiedmayer & CoTests */,
+				8C442FB6235253550054E6AD /* Wiedmayer & CoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C442F94235253530054E6AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C442FA6235253550054E6AD /* LaunchScreen.storyboard in Resources */,
+				8C442FA3235253550054E6AD /* Preview Assets.xcassets in Resources */,
+				8C442FA0235253550054E6AD /* Assets.xcassets in Resources */,
+				8C442FD223526EAA0054E6AD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FAA235253550054E6AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FB5235253550054E6AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36D24750C4984CFF1ADD4D39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wiedmayer & CoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44D6D6004920BE71AD25B6C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wiedmayer & Co-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF7556887BAFDA7F9BE59D49 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wiedmayer & CoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D0B2CE914790B0394325B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C442F92235253530054E6AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C442FE22352B7050054E6AD /* EditPropertyAttributeVC.swift in Sources */,
+				8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */,
+				8C442FFD235411DE0054E6AD /* SquareFootageTotal.swift in Sources */,
+				8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */,
+				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
+				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,
+				8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */,
+				8C442FF0235401680054E6AD /* AddImageVC.swift in Sources */,
+				8C442FEE2353B1210054E6AD /* CreateAttributesVC.swift in Sources */,
+				8C442FDD235293160054E6AD /* Property.swift in Sources */,
+				8C442FE42352BCFC0054E6AD /* ProfileVC.swift in Sources */,
+				8C442FF223540E2D0054E6AD /* DataModel.swift in Sources */,
+				8C442FF7235411950054E6AD /* AddressVC.swift in Sources */,
+				8C442FDA235291A50054E6AD /* PropertyDetailsVC.swift in Sources */,
+				8C442FEC2353AF770054E6AD /* NewAttributesVC.swift in Sources */,
+				8C442FD823528C940054E6AD /* PropertiesVC.swift in Sources */,
+				8C442FD62352717A0054E6AD /* Utilities.swift in Sources */,
+				8C442F9A235253530054E6AD /* AppDelegate.swift in Sources */,
+				8C442FCB235256310054E6AD /* RegistrationVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FA8235253550054E6AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C442FB1235253550054E6AD /* Wiedmayer___CoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C442FB3235253550054E6AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C442FBC235253550054E6AD /* Wiedmayer___CoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C442FAE235253550054E6AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C442F95235253530054E6AD /* Wiedmayer & Co */;
+			targetProxy = 8C442FAD235253550054E6AD /* PBXContainerItemProxy */;
+		};
+		8C442FB9235253550054E6AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C442F95235253530054E6AD /* Wiedmayer & Co */;
+			targetProxy = 8C442FB8235253550054E6AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C442FA4235253550054E6AD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C442FA5235253550054E6AD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8C442FD423526EAA0054E6AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C442FD323526EAA0054E6AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C442FBE235253550054E6AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8C442FBF235253550054E6AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C442FC1235253550054E6AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A188A6944C345E5EEAAFBE59 /* Pods-Wiedmayer & Co.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Wiedmayer & Co/Preview Content\"";
+				DEVELOPMENT_TEAM = PEB6PV8M5G;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Wiedmayer & Co/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---Co";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C442FC2235253550054E6AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB914462888C174846D322AA /* Pods-Wiedmayer & Co.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Wiedmayer & Co/Preview Content\"";
+				DEVELOPMENT_TEAM = PEB6PV8M5G;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Wiedmayer & Co/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---Co";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8C442FC4235253550054E6AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4735EB6F901A6EAC5EF19765 /* Pods-Wiedmayer & CoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Wiedmayer & CoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---CoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wiedmayer & Co.app/Wiedmayer & Co";
+			};
+			name = Debug;
+		};
+		8C442FC5235253550054E6AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4733660094205CED5D74647 /* Pods-Wiedmayer & CoTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Wiedmayer & CoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---CoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wiedmayer & Co.app/Wiedmayer & Co";
+			};
+			name = Release;
+		};
+		8C442FC7235253550054E6AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1D6D98D8F6B066E48E7B8A6 /* Pods-Wiedmayer & CoUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Wiedmayer & CoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---CoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Wiedmayer & Co";
+			};
+			name = Debug;
+		};
+		8C442FC8235253550054E6AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06A167970EC3CCCDA92363B8 /* Pods-Wiedmayer & CoUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Wiedmayer & CoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Wiedmayer.Wiedmayer---CoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Wiedmayer & Co";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C442F91235253530054E6AD /* Build configuration list for PBXProject "Wiedmayer & Co" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C442FBE235253550054E6AD /* Debug */,
+				8C442FBF235253550054E6AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C442FC0235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & Co" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C442FC1235253550054E6AD /* Debug */,
+				8C442FC2235253550054E6AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C442FC3235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & CoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C442FC4235253550054E6AD /* Debug */,
+				8C442FC5235253550054E6AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C442FC6235253550054E6AD /* Build configuration list for PBXNativeTarget "Wiedmayer & CoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C442FC7235253550054E6AD /* Debug */,
+				8C442FC8235253550054E6AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C442F8E235253530054E6AD /* Project object */;
+}

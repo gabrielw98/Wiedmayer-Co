@@ -1,0 +1,6 @@
+framework module Pods_Wiedmayer___CoTests {
+  umbrella header "Pods-Wiedmayer & CoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
