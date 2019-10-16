@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="adD-eP-ff7">
-                                <rect key="frame" x="0.0" y="-43" width="375" height="710"/>
+                                <rect key="frame" x="0.0" y="-43" width="375.00000000000023" height="710.00000000000023"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JW-MM-DFu">
                                 <rect key="frame" x="51" y="290" width="273" height="50"/>
@@ -355,15 +355,15 @@
             <objects>
                 <viewController id="bYC-4e-66K" customClass="PropertyDetailsVC" customModule="Wiedmayer___Co" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hg4-OD-yc9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="orv-Rq-JCl">
-                                <rect key="frame" x="0.0" y="209" width="375" height="373"/>
+                                <rect key="frame" x="0.0" y="197" width="375" height="356"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cki-Tj-4GK">
-                                <rect key="frame" x="0.0" y="582" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="553" width="375" height="65"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.77647058820000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="0qa-Yx-NP4"/>
@@ -374,6 +374,7 @@
                                 </state>
                                 <connections>
                                     <action selector="confirmAction:" destination="wqZ-BL-RZG" eventType="touchUpInside" id="mor-M3-OZU"/>
+                                    <action selector="doneAction:" destination="bYC-4e-66K" eventType="touchUpInside" id="5Ic-WI-aKz"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORG-Oc-TwT">
@@ -404,9 +405,11 @@
                         <outlet property="propertyImageView" destination="ORG-Oc-TwT" id="3gh-34-ImZ"/>
                         <outlet property="tableView" destination="orv-Rq-JCl" id="1Kd-d9-9BE"/>
                         <segue destination="wqZ-BL-RZG" kind="presentation" identifier="showEditAttribute" id="zvE-a9-R0C"/>
+                        <segue destination="hHj-d5-mUg" kind="unwind" identifier="propertiesUnwind" unwindAction="propertiesUnwindWithSegue:" id="gnD-E6-Vpo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QU5-zU-c0f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hHj-d5-mUg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4629.6000000000004" y="30.134932533733135"/>
         </scene>
@@ -419,7 +422,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6O-ZY-KIz">
-                                <rect key="frame" x="16" y="250" width="343" height="1"/>
+                                <rect key="frame" x="16" y="205" width="343" height="1"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="qpr-ek-Rdq"/>
@@ -429,7 +432,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Updating attribute..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCa-5m-9ws">
-                                <rect key="frame" x="16" y="205" width="343" height="54"/>
+                                <rect key="frame" x="16" y="160" width="343" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="bLA-ay-3CI"/>
                                 </constraints>
@@ -455,22 +458,24 @@
                         <constraints>
                             <constraint firstItem="gzt-PM-gky" firstAttribute="leading" secondItem="7t4-dp-zi0" secondAttribute="leading" id="06u-wg-I7X"/>
                             <constraint firstItem="wCa-5m-9ws" firstAttribute="trailing" secondItem="I6O-ZY-KIz" secondAttribute="trailing" id="58v-0I-Y7A"/>
-                            <constraint firstItem="I6O-ZY-KIz" firstAttribute="top" secondItem="7t4-dp-zi0" secondAttribute="top" constant="250" id="JOl-MQ-8FL"/>
+                            <constraint firstItem="I6O-ZY-KIz" firstAttribute="top" secondItem="7t4-dp-zi0" secondAttribute="top" constant="205" id="JOl-MQ-8FL"/>
                             <constraint firstItem="wCa-5m-9ws" firstAttribute="trailing" secondItem="abB-n4-J7n" secondAttribute="trailingMargin" id="KBX-WP-R9h"/>
                             <constraint firstItem="gzt-PM-gky" firstAttribute="bottom" secondItem="7t4-dp-zi0" secondAttribute="bottom" id="NAv-oy-2xv"/>
                             <constraint firstItem="wCa-5m-9ws" firstAttribute="leading" secondItem="abB-n4-J7n" secondAttribute="leadingMargin" id="Na2-yv-0Xx"/>
                             <constraint firstItem="I6O-ZY-KIz" firstAttribute="centerX" secondItem="gzt-PM-gky" secondAttribute="centerX" id="RCh-N4-PsO"/>
                             <constraint firstItem="wCa-5m-9ws" firstAttribute="leading" secondItem="I6O-ZY-KIz" secondAttribute="leading" id="kMp-au-QdA"/>
-                            <constraint firstItem="wCa-5m-9ws" firstAttribute="top" secondItem="7t4-dp-zi0" secondAttribute="top" constant="205" id="kXM-oC-lXl"/>
+                            <constraint firstItem="wCa-5m-9ws" firstAttribute="top" secondItem="7t4-dp-zi0" secondAttribute="top" constant="160" id="kXM-oC-lXl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7t4-dp-zi0"/>
                     </view>
                     <navigationItem key="navigationItem" id="QXR-tm-3go"/>
                     <connections>
                         <outlet property="textField" destination="wCa-5m-9ws" id="CTk-kh-ww6"/>
+                        <segue destination="y0e-Qu-IEZ" kind="unwind" identifier="propertyDetailsUnwind" unwindAction="propertyDetailsUnwindWithSegue:" id="6Ir-Uh-i4S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkZ-57-2Jb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="y0e-Qu-IEZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5456.8000000000002" y="30.134932533733135"/>
         </scene>
@@ -607,11 +612,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Nx-CKL" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-Nx-CKL" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-w4-0KI">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -705,11 +710,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B94-Oz-D3P" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B94-Oz-D3P" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-CZ-6jJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -802,11 +807,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6w-x5-p1e" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6w-x5-p1e" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-A2-ov3">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -819,7 +824,7 @@
                                             <constraint firstAttribute="height" constant="54" id="Jf9-Lt-a1R"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHi-jr-5aS">
                                         <rect key="frame" x="10" y="185" width="343" height="1"/>
@@ -900,11 +905,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DM-af-Fgr" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DM-af-Fgr" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-sO-BwT">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1022,11 +1027,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-ca-k4T" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-ca-k4T" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Rc9-Ya-lpp">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1138,11 +1143,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05N-Gg-tpY" customClass="CardView" customModule="testPageView" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05N-Gg-tpY" customClass="CardView" customModule="Wiedmayer___Co" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-ik-TDV">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1256,6 +1261,6 @@
         <image name="woodBackground" width="1250" height="833.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dUF-UH-6P1"/>
+        <segue reference="Wwb-Tl-MB2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,8 +20,11 @@ class SquareFootageLiveableVC: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            DataModel.newProperty.squareFootageLiveable = Int(text)!
+            if text.isEmpty {
+                DataModel.newProperty.squareFootageLiveable = 0
+            } else {
+                DataModel.newProperty.squareFootageLiveable = Int(text)!
+            }
         }
     }
-    
 }

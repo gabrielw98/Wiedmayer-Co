@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Parse
 
 class PropertiesVC: UITableViewController {
     
@@ -16,6 +17,29 @@ class PropertiesVC: UITableViewController {
 
     @IBAction func createPropertyAction(_ sender: Any) {
         self.performSegue(withIdentifier: "showCreateAttributes", sender: nil)
+    }
+    
+    @IBAction func propertiesUnwind(segue: UIStoryboardSegue) {
+        if segue.identifier == "propertiesUnwind" {
+            print("Success: Done Unwind")
+            let NewProperty = PFObject(className: "Property")
+            NewProperty["title"] = DataModel.newProperty.title
+            NewProperty["address"] = DataModel.newProperty.address
+            NewProperty["price"] = DataModel.newProperty.price
+            NewProperty["squareFootageLiveable"] = DataModel.newProperty.squareFootageLiveable
+            NewProperty["squareFootageTotal"] = DataModel.newProperty.squareFootageTotal
+            if let imageData = DataModel.newProperty.image.jpegData(compressionQuality: 0.25) {
+                let file = PFFileObject(name: "img.png", data: imageData)
+                NewProperty["image"] = file
+            }
+            NewProperty.saveInBackground { (success, error) in
+                if success {
+                    print("Property Saved")
+                }
+            }
+            // Reset the newProperty to empty
+            DataModel.newProperty = Property()
+        }
     }
     
     override func viewDidLoad() {

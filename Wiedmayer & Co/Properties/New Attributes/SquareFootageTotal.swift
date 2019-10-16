@@ -20,7 +20,11 @@ class SquareFootageTotalVC: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            DataModel.newProperty.squareFootageTotal = Int(text)!
+            if text.isEmpty {
+                DataModel.newProperty.squareFootageTotal = 0
+            } else {
+                DataModel.newProperty.squareFootageTotal = Int(text)!
+            }
         }
     }
     

@@ -12,7 +12,6 @@ import UIKit
 class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var addActionOutlet: UIButton!
     @IBAction func addImageAction(_ sender: Any) {
         imageViewSelected(fromAction: true)
@@ -26,7 +25,6 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             imagePicker.allowsEditing = true
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alert.view.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-            
             
             let messageAttrString = NSMutableAttributedString(string: "Choose Image", attributes: nil)
             
@@ -46,7 +44,22 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
         } else if self.addActionOutlet.titleLabel?.text == "REVIEW" {
             print("Reviewing...")
-            self.performSegue(withIdentifier: "showReview", sender: nil)
+            if DataModel.newProperty.isValid() {
+                self.performSegue(withIdentifier: "showReview", sender: nil)
+            } else {
+                
+                let alert = UIAlertController(title: "Notice", message: "Whoops! Your new property is missing: \(DataModel.newProperty.getMissingAttributes())", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                      switch action.style{
+                      case .default:
+                            print("default")
+                      case .cancel:
+                            print("cancel")
+                      case .destructive:
+                            print("destructive")
+                }}))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
@@ -77,7 +90,6 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showReview" {
-            
             print("Segue: AddImageVC -> PropertyDetailsVC")
             if let navigationVC = segue.destination as? UINavigationController, let targetVC = navigationVC.topViewController as? PropertyDetailsVC {
                 targetVC.fromCreate = true

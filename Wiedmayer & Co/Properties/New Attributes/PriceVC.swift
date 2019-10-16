@@ -20,9 +20,11 @@ class PriceVC: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
-            //TODO - app crashes when user types decimal point twice
-            //Fix just make it take Int
-            DataModel.newProperty.price = Double(text)!
+            if text.isEmpty {
+                DataModel.newProperty.price = 0
+            } else {
+                DataModel.newProperty.price = Int(text)!
+            }
         }
     }
     

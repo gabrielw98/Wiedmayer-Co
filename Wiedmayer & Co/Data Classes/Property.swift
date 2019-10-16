@@ -11,7 +11,7 @@ import UIKit
 
 class Property {
     var title: String
-    var price: Double
+    var price: Int
     var squareFootageLiveable: Int
     var squareFootageTotal: Int
     var address: String
@@ -19,16 +19,40 @@ class Property {
     
     //Empty constructor
     init() {
-        self.title = "Default Title"
-        self.price = 0.0
+        self.title = ""
+        self.price = 0
         self.squareFootageLiveable = 0
         self.squareFootageTotal = 0
-        self.address = "532 8th St NW, Atlanta, GA 30318"
+        self.address = ""
         self.image = UIImage()
     }
     
+    func getMissingAttributes() -> [String] {
+        var missingAttributes = [String]()
+        if title == "" {
+            missingAttributes.append("Title")
+        }
+        if price == 0 {
+            missingAttributes.append("Price")
+        }
+        if squareFootageLiveable == 0 {
+            missingAttributes.append("Square Footage Liveable")
+        }
+        if squareFootageTotal == 0 {
+            missingAttributes.append("Square Footage Total")
+        }
+        if address == "" {
+            missingAttributes.append("Address")
+        }
+        return missingAttributes
+    }
+    
+    func isValid() -> Bool {
+        return self.title != "" && self.price != 0 && self.squareFootageLiveable != 0 && self.squareFootageTotal != 0 && self.address != ""
+    }
+    
     //Constructor with all params provided
-    init(title: String, price: Double, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage) {
+    init(title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage) {
         self.title = title
         self.price = price
         self.squareFootageLiveable = squareFootageLiveable
@@ -47,7 +71,7 @@ class Property {
         
         var properties = [Property]()
         for i in 0...2 {
-            let newProperty = Property(title: "Title", price: Double(prices[i]), squareFootageLiveable: squareFootageLiveableValues[i], squareFootageTotal: squareFootageTotalValues[i],  address: addresses[i], image: defaultPropertyImage)
+            let newProperty = Property(title: "Title", price: prices[i], squareFootageLiveable: squareFootageLiveableValues[i], squareFootageTotal: squareFootageTotalValues[i],  address: addresses[i], image: defaultPropertyImage)
             properties.append(newProperty)
         }
         return properties

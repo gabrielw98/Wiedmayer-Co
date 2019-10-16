@@ -11,28 +11,36 @@ import UIKit
 
 class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     @IBOutlet weak var propertyImageView: UIImageView!
     @IBOutlet weak var doneOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
     var selectedProperty = Property()
     var attributeToEdit = ""
+    var attributeType = ""
     var fromCreate = false
     
     var tableViewFields = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
+    var attributeNames = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
     
     override func viewDidLoad() {
         print("In PropertiesDetailsVC")
         setupUI()
     }
     
+    @IBAction func doneAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
+        
+    }
+    
+    
+    @IBAction func propertyDetailsUnwind(segue: UIStoryboardSegue) {
+        print("Updated", DataModel.newProperty.title)
+        setupUI()
+    }
+    
     func setupUI() {
-        
         self.propertyImageView.image = selectedProperty.image
-        
         tableView.tableFooterView = UIView()
         if !fromCreate {
             self.title = String(selectedProperty.title)
@@ -63,6 +71,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
+        self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
         self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
     }
     
@@ -92,6 +101,10 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         if segue.identifier == "showEditAttribute" {
             let targetVC = segue.destination as! EditPropertyAttributeVC
             targetVC.attributeToEdit = self.attributeToEdit
+            targetVC.fromCreate = self.fromCreate
+            print(self.attributeToEdit)
+            targetVC.originalValue = self.attributeToEdit
+            targetVC.attributeType = self.attributeType
             print("Segue: PropertiesVC -> PropertyDetailsVC")
         }
     }
