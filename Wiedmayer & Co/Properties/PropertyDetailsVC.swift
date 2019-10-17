@@ -30,7 +30,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func doneAction(_ sender: Any) {
         self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
-        
     }
     
     
@@ -45,6 +44,13 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         if !fromCreate {
             self.title = String(selectedProperty.title)
             doneOutlet.isHidden = true
+            self.tableViewFields[0][0] = selectedProperty.title
+            
+            self.tableViewFields[1][0] = selectedProperty.address
+            self.tableViewFields[1][1] = String(selectedProperty.price)
+            
+            self.tableViewFields[2][0] = String(selectedProperty.squareFootageLiveable)
+            self.tableViewFields[2][1] = String(selectedProperty.squareFootageTotal)
         } else {
             self.title = DataModel.newProperty.title
             print("New Property Attributes:")
@@ -105,6 +111,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             print(self.attributeToEdit)
             targetVC.originalValue = self.attributeToEdit
             targetVC.attributeType = self.attributeType
+            targetVC.selectedProperty = self.selectedProperty
             print("Segue: PropertiesVC -> PropertyDetailsVC")
         }
     }

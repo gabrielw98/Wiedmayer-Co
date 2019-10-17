@@ -15,6 +15,7 @@ class SquareFootageTotalVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
+        textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
@@ -26,6 +27,11 @@ class SquareFootageTotalVC: UIViewController, UITextFieldDelegate {
                 DataModel.newProperty.squareFootageTotal = Int(text)!
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

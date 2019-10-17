@@ -13,21 +13,32 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBAction func confirmAction(_ sender: Any) {
+        
         if textField.text != nil {
             let alert = UIAlertController(title: "Notice", message: "Are you sure you want to change (" + self.originalValue + ") to (" + self.textField.text! + ")", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                var propertyToEdit = Property()
+                if self.fromCreate {
+                    propertyToEdit = DataModel.newProperty
+                } else {
+                    propertyToEdit = self.selectedProperty
+                }
                 if self.attributeType == "Title" {
-                    DataModel.newProperty.title = self.textField.text!
+                    propertyToEdit.title = self.textField.text!
                 } else if self.attributeType == "Address" {
-                    DataModel.newProperty.address = self.textField.text!
+                    propertyToEdit.address = self.textField.text!
                 } else if self.attributeType == "Price" {
                     //TODO change keyboard types
-                    DataModel.newProperty.price = Int(self.textField.text!)!
+                    propertyToEdit.price = Int(self.textField.text!)!
                 } else if self.attributeType == "Square footage liveable" {
-                    DataModel.newProperty.squareFootageLiveable = Int(self.textField.text!)!
+                    propertyToEdit.squareFootageLiveable = Int(self.textField.text!)!
                 } else if self.attributeType == "Square footage total" {
-                    DataModel.newProperty.squareFootageTotal = Int(self.textField.text!)!
+                    propertyToEdit.squareFootageTotal = Int(self.textField.text!)!
                 }
+                
+                // TODO Update property field in backend
+                // use the property class to handle this backend code
+                
                 self.performSegue(withIdentifier: "propertyDetailsUnwind", sender: nil)
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -40,6 +51,7 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
     var attributeToEdit = ""
     var attributeType = ""
     var fromCreate = false
+    var selectedProperty = Property()
     
     override func viewDidLoad() {
         print("In EditPropertyAttributeVC")
@@ -51,8 +63,5 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         self.textField.placeholder = self.attributeToEdit + "..."
     }
-    
-    
-    
-    
+
 }

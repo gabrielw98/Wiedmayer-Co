@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="adD-eP-ff7">
-                                <rect key="frame" x="0.0" y="-43" width="375.00000000000023" height="710.00000000000023"/>
+                                <rect key="frame" x="0.0" y="-43" width="375" height="710"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JW-MM-DFu">
                                 <rect key="frame" x="51" y="290" width="273" height="50"/>
@@ -616,7 +616,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-w4-0KI">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -714,7 +714,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-CZ-6jJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -811,7 +811,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-A2-ov3">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -909,7 +909,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-sO-BwT">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1031,7 +1031,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Rc9-Ya-lpp">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1147,7 +1147,7 @@
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-ik-TDV">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Parse
 
 class Property {
     var title: String
@@ -16,6 +17,10 @@ class Property {
     var squareFootageTotal: Int
     var address: String
     var image: UIImage
+    var createdAt: Date
+    
+    // array of properties returned from the query
+    var properties = [Property]()
     
     //Empty constructor
     init() {
@@ -25,6 +30,7 @@ class Property {
         self.squareFootageTotal = 0
         self.address = ""
         self.image = UIImage()
+        self.createdAt = Date()
     }
     
     func getMissingAttributes() -> [String] {
@@ -52,16 +58,17 @@ class Property {
     }
     
     //Constructor with all params provided
-    init(title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage) {
+    init(title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage, createdAt: Date) {
         self.title = title
         self.price = price
         self.squareFootageLiveable = squareFootageLiveable
         self.squareFootageTotal = squareFootageTotal
         self.address = address
         self.image = image
+        self.createdAt = createdAt
     }
     
-    func getProperties() -> [Property] {
+    /*func getProperties() -> [Property] {
         let addresses = ["708 Spring St NW, Atlanta, GA 30308", "532 8th St NW, Atlanta, GA 30318", "930 Spring St NW, Atlanta, GA 30309"]
         let prices = [4500000, 6000000, 100000]
         let squareFootageLiveableValues = [8000, 12000, 9000]
@@ -75,5 +82,48 @@ class Property {
             properties.append(newProperty)
         }
         return properties
+    }*/
+    
+    func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
+        return properties.sorted(by: { $0.createdAt.compare($1.createdAt as Date) == ComparisonResult.orderedDescending })
+    }
+    
+    func getProperties(query: PFQuery<PFObject>, completion: @escaping (_ result: [Property])->()) {
+        query.findObjectsInBackground {
+            (objects:[PFObject]?, error:Error?) -> Void in
+            if let error = error {
+                print("Error: " + error.localizedDescription)
+            } else {
+                if objects?.count == 0 || objects?.count == nil {
+                    return
+                }
+                for object in objects! {
+                    if let image = object["image"] as? PFFileObject {
+                        image.getDataInBackground {
+                            (imageData:Data?, error:Error?) -> Void in
+                            if error == nil  {
+                                if let finalimage = UIImage(data: imageData!) {
+                                    let title = object["title"] as! String
+                                    print(title)
+                                    let price = object["price"] as! Int
+                                    let squareFootageLiveable = object["squareFootageLiveable"] as! Int
+                                    let squareFootageTotal = object["squareFootageTotal"] as! Int
+                                    let address = object["address"] as! String
+                                    let createdAt = object.createdAt!
+                                    let property = Property(title: title, price: price, squareFootageLiveable: squareFootageLiveable, squareFootageTotal: squareFootageTotal, address: address, image: UIImage(), createdAt: createdAt)
+                                    property.image = finalimage
+                                    self.properties.append(property)
+                                    if self.properties.count == objects?.count {
+                                        print(self.properties.count)
+                                        completion(self.properties)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
     }
 }

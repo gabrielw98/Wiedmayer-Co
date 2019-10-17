@@ -15,6 +15,7 @@ class PriceVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
+        textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
@@ -26,6 +27,11 @@ class PriceVC: UIViewController, UITextFieldDelegate {
                 DataModel.newProperty.price = Int(text)!
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

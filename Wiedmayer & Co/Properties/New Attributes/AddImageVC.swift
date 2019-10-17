@@ -36,6 +36,7 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             }))
             
             alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { _ in
+                self.addActionOutlet.setTitle("REVIEW", for: .normal)
                 self.imageView.image = UIImage(named: "cityBackground")
             }))
             

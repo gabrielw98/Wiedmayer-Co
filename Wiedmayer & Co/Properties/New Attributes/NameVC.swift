@@ -16,6 +16,7 @@ class NameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         print("NameVC")
+        textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
@@ -23,6 +24,11 @@ class NameVC: UIViewController, UITextFieldDelegate {
         if let text = textField.text {
             DataModel.newProperty.title = text
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

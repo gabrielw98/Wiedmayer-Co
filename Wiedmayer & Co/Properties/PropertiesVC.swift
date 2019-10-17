@@ -38,19 +38,36 @@ class PropertiesVC: UITableViewController {
                 }
             }
             // Reset the newProperty to empty
+            if self.properties.count == 0 {
+                self.properties.append(DataModel.newProperty)
+            } else if self.properties.count > 0 {
+                self.properties.insert(DataModel.newProperty, at: 0)
+            }
+            self.tableView.reloadData()
             DataModel.newProperty = Property()
         }
     }
     
     override func viewDidLoad() {
         print("In PropertiesVC")
-        self.properties = Property().getProperties()
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadData()
+        queryProperties()
+        
+    }
+    
+    func queryProperties() {
+        let query = PFQuery(className: "Property")
+        query.addDescendingOrder("createdAt")
+        query.limit = 100
+        let propertyRef = Property()
+        propertyRef.getProperties(query: query, completion: { (propertyObjects) in
+            self.properties = propertyRef.orderByCreatedAtAscending(properties: propertyObjects)
+            self.tableView.tableFooterView = UIView()
+            self.tableView.reloadData()
+        })
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return properties.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
