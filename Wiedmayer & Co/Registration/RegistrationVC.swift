@@ -101,10 +101,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
                 if success {
                     
                     self.performSegue(withIdentifier: "showProperties", sender: nil)
-                    print("successfully signed up the user")
-                    //self.createInstallationOnParse(deviceTokenData: DataModel.deviceToken)
                 } else {
-                    print("should be alerting user")
                     let signUpErrorAlertView = UIAlertController(title: "Notice", message: error!.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     signUpErrorAlertView.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action: UIAlertAction!) in
                     }))

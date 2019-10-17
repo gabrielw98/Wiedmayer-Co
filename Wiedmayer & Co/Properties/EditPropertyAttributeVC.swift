@@ -11,10 +11,20 @@ import UIKit
 
 class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textField: UITextField!
     @IBAction func confirmAction(_ sender: Any) {
-        
         if textField.text != nil {
+            if textField.text!.isEmpty {
+                let emptyTextFieldAlert = UIAlertController(title: "Notice", message: "You must enter a new " + self.attributeType, preferredStyle: UIAlertController.Style.alert)
+                emptyTextFieldAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action: UIAlertAction!) in
+                    print("should not see this")
+                    return
+                }))
+                self.present(emptyTextFieldAlert, animated: true)
+                emptyTextFieldAlert.view.tintColor = UIColor.darkGray
+            }
+            
             let alert = UIAlertController(title: "Notice", message: "Are you sure you want to change (" + self.originalValue + ") to (" + self.textField.text! + ")", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 var propertyToEdit = Property()
@@ -60,8 +70,35 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
     }
     
     func setupUI() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.hideKeyboardWhenTappedAround()
         self.textField.placeholder = self.attributeToEdit + "..."
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        
+        let keyboardSize = (notification.userInfo?  [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+       let keyboardHeight = keyboardSize?.height
+       if #available(iOS 11.0, *) {
+            self.bottomConstraint.constant = -(keyboardHeight!)
+       } else {
+            
+             self.bottomConstraint.constant = -keyboardHeight!
+           }
+        self.bottomConstraint.constant = keyboardHeight!
+
+        
+        UIView.animate(withDuration: 1.5) {
+            self.bottomConstraint.constant = -keyboardHeight!
+         }
+     }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        self.bottomConstraint.constant = 0 // or change according to your logic
+         UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+         }
     }
 
 }
