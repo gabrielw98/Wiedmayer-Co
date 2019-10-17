@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import Parse
 
-class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var propertyImageView: UIImageView!
     @IBOutlet weak var doneOutlet: UIButton!
@@ -40,6 +41,10 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func setupUI() {
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        propertyImageView.isUserInteractionEnabled = true
+        propertyImageView.addGestureRecognizer(tapGestureRecognizer)
         self.propertyImageView.image = selectedProperty.image
         propertyImageView.backgroundColor = UIColor.white
         
@@ -50,38 +55,84 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         propertyImageView.clipsToBounds = true
         
         tableView.tableFooterView = UIView()
-        if !fromCreate {
-            self.title = String(selectedProperty.title)
-            doneOutlet.isHidden = true
-            self.tableViewFields[0][0] = selectedProperty.title
-            
-            self.tableViewFields[1][0] = selectedProperty.address
-            self.tableViewFields[1][1] = String(selectedProperty.price)
-            
-            self.tableViewFields[2][0] = String(selectedProperty.squareFootageLiveable)
-            self.tableViewFields[2][1] = String(selectedProperty.squareFootageTotal)
+        var property = Property()
+        if fromCreate {
+            property = DataModel.newProperty
         } else {
-            self.title = DataModel.newProperty.title
-            print("New Property Attributes:")
-            print(DataModel.newProperty.title)
-            print(DataModel.newProperty.address)
-            print(DataModel.newProperty.price)
-            print(DataModel.newProperty.squareFootageLiveable)
-            print(DataModel.newProperty.squareFootageTotal)
-            
-            self.tableViewFields[0][0] = DataModel.newProperty.title
-            
-            self.tableViewFields[1][0] = DataModel.newProperty.address
-            self.tableViewFields[1][1] = String(DataModel.newProperty.price)
-            
-            self.tableViewFields[2][0] = String(DataModel.newProperty.squareFootageLiveable)
-            self.tableViewFields[2][1] = String(DataModel.newProperty.squareFootageTotal)
-            
-            self.propertyImageView.image = DataModel.newProperty.image
+            property = selectedProperty
+            doneOutlet.isHidden = true
         }
+        
+        self.tableViewFields[0][0] = property.title
+        
+        self.tableViewFields[1][0] = property.address
+        self.tableViewFields[1][1] = "$" + property.price.withCommas()
+        
+        self.tableViewFields[2][0] = "Liveable: " + String(property.squareFootageLiveable)
+        self.tableViewFields[2][1] = "Total: " + String(property.squareFootageTotal)
+        
+        self.propertyImageView.image = property.image
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        imageViewSelected()
+    }
+    
+    func imageViewSelected() {
+        print("trying to add image")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        
+        let messageAttrString = NSMutableAttributedString(string: "Choose Image", attributes: nil)
+        
+        alert.setValue(messageAttrString, forKey: "attributedMessage")
+
+        alert.addAction(UIAlertAction(title: "Library", style: .default, handler: { _ in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { _ in
+            self.propertyImageView.image = UIImage(named: "cityBackground")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            if fromCreate {
+                DataModel.newProperty.image = img
+            } else {
+                self.selectedProperty.image = img
+                if let imageData = img.jpegData(compressionQuality: 0.25) {
+                    let file = PFFileObject(name: "img.png", data: imageData)
+                    selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                }
+            }
+            propertyImageView.image = img
+        } else if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if fromCreate {
+                DataModel.newProperty.image = img
+            } else {
+                self.selectedProperty.image = img
+                if let imageData = img.jpegData(compressionQuality: 0.25) {
+                    let file = PFFileObject(name: "img.png", data: imageData)
+                    selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                }
+            }
+            propertyImageView.image = img
+        }
+        dismiss(animated:true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

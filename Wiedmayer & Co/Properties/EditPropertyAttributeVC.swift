@@ -83,6 +83,12 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
     }
     
     func setupUI() {
+        if self.attributeType == "Square footage total" || self.attributeType == "Square footage liveable"
+            || self.attributeType == "Price" {
+            self.textField.keyboardType = .numberPad
+        } else if self.attributeType == "Title" {
+            self.textField.autocapitalizationType = .words
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.hideKeyboardWhenTappedAround()

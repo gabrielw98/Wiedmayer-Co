@@ -65,7 +65,6 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        var image : UIImage!
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             imageView.image = img
             DataModel.newProperty.image = img
