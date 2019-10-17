@@ -6,6 +6,7 @@ target 'Wiedmayer & Co' do
   use_frameworks!
 
   # Pods for Wiedmayer & Co
+  pod 'WLEmptyState'
   pod 'Parse'
   target 'Wiedmayer & CoTests' do
     inherit! :search_paths

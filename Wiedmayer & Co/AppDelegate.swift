@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import WLEmptyState
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,13 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Configure Parse client
         let configuration = ParseClientConfiguration {
             $0.applicationId = "eWBpWgr9JEQjC3mkfYgAoN5XwVw0qjiz1W5mmQvW"
             $0.clientKey = "XlZgc342N2FS7E6hJ1IP4fF3Hi7DXSUzjUCgnKy6"
             $0.server = "https://parseapi.back4app.com"
         }
         Parse.initialize(with: configuration)
+        
+        // Empty tableview framework
+        WLEmptyState.configure()
         
         UINavigationBar.appearance().barTintColor = UIColor.darkGray
         UINavigationBar.appearance().tintColor = UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)

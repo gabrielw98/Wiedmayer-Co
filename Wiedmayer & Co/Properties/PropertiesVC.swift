@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Parse
+import WLEmptyState
 
-class PropertiesVC: UITableViewController {
+class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     
     var selectedProperty = Property()
     var properties = [Property]()
@@ -61,8 +62,12 @@ class PropertiesVC: UITableViewController {
         let propertyRef = Property()
         propertyRef.getProperties(query: query, completion: { (propertyObjects) in
             self.properties = propertyRef.orderByCreatedAtAscending(properties: propertyObjects)
-            self.tableView.tableFooterView = UIView()
             self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
+            if self.properties.count == 0 { // Show empty set
+                self.tableView.emptyStateDataSource = self
+                self.tableView.reloadData()
+            }
         })
     }
     
@@ -87,6 +92,20 @@ class PropertiesVC: UITableViewController {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         return screenWidth
+    }
+    
+    func imageForEmptyDataSet() -> UIImage? {
+        return UIImage(named: "emptySet")
+    }
+    
+    func titleForEmptyDataSet() -> NSAttributedString {
+        let title = NSAttributedString(string: "No Properties Found", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)])
+        return title
+    }
+    
+    func descriptionForEmptyDataSet() -> NSAttributedString {
+        let title = NSAttributedString(string: "Click on the \"+\" button to create a new property.", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        return title
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
