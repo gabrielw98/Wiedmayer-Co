@@ -50,8 +50,8 @@ class PropertiesVC: UITableViewController {
     
     override func viewDidLoad() {
         print("In PropertiesVC")
+        self.tableView.showsVerticalScrollIndicator = false
         queryProperties()
-        
     }
     
     func queryProperties() {
@@ -71,16 +71,22 @@ class PropertiesVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "propertyCell") as! PropertyTableViewCell
         cell.selectionStyle = .none
-        cell.textLabel?.text = self.properties[indexPath.row].title
-        cell.imageView?.image = self.properties[indexPath.row].image
+        cell.titleLabel?.text = self.properties[indexPath.row].title
+        cell.propertyImageView.image = self.properties[indexPath.row].image
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedProperty = self.properties[indexPath.row]
         self.performSegue(withIdentifier: "showPropertyDetails", sender: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        return screenWidth
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

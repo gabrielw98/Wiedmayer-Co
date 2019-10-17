@@ -18,6 +18,7 @@ class Property {
     var address: String
     var image: UIImage
     var createdAt: Date
+    var objectId: String
     
     // array of properties returned from the query
     var properties = [Property]()
@@ -31,6 +32,7 @@ class Property {
         self.address = ""
         self.image = UIImage()
         self.createdAt = Date()
+        self.objectId = ""
     }
     
     func getMissingAttributes() -> [String] {
@@ -58,7 +60,7 @@ class Property {
     }
     
     //Constructor with all params provided
-    init(title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage, createdAt: Date) {
+    init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage, createdAt: Date) {
         self.title = title
         self.price = price
         self.squareFootageLiveable = squareFootageLiveable
@@ -66,23 +68,19 @@ class Property {
         self.address = address
         self.image = image
         self.createdAt = createdAt
+        self.objectId = objectId
     }
     
-    /*func getProperties() -> [Property] {
-        let addresses = ["708 Spring St NW, Atlanta, GA 30308", "532 8th St NW, Atlanta, GA 30318", "930 Spring St NW, Atlanta, GA 30309"]
-        let prices = [4500000, 6000000, 100000]
-        let squareFootageLiveableValues = [8000, 12000, 9000]
-        let squareFootageTotalValues = [8000, 12000, 9000]
-        let defaultPropertyImage = UIImage(named: "defaultProperty")!
-        
-        
-        var properties = [Property]()
-        for i in 0...2 {
-            let newProperty = Property(title: "Title", price: prices[i], squareFootageLiveable: squareFootageLiveableValues[i], squareFootageTotal: squareFootageTotalValues[i],  address: addresses[i], image: defaultPropertyImage)
-            properties.append(newProperty)
-        }
-        return properties
-    }*/
+    func updateAttribute(attributeType: String, newValue: Any) {
+        print(attributeType, newValue)
+        let currentProperty = PFObject(withoutDataWithClassName: "Property", objectId: self.objectId)
+        currentProperty.setValue(newValue, forKey: attributeType)
+        currentProperty.saveInBackground(block: { (success, error) in
+            if error == nil {
+                print("Success: Updated the property's " + attributeType)
+            }
+        })
+    }
     
     func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
         return properties.sorted(by: { $0.createdAt.compare($1.createdAt as Date) == ComparisonResult.orderedDescending })
@@ -110,7 +108,7 @@ class Property {
                                     let squareFootageTotal = object["squareFootageTotal"] as! Int
                                     let address = object["address"] as! String
                                     let createdAt = object.createdAt!
-                                    let property = Property(title: title, price: price, squareFootageLiveable: squareFootageLiveable, squareFootageTotal: squareFootageTotal, address: address, image: UIImage(), createdAt: createdAt)
+                                    let property = Property(objectId: object.objectId!, title: title, price: price, squareFootageLiveable: squareFootageLiveable, squareFootageTotal: squareFootageTotal, address: address, image: UIImage(), createdAt: createdAt)
                                     property.image = finalimage
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {
@@ -121,7 +119,6 @@ class Property {
                             }
                         }
                     }
-                    
                 }
             }
         }

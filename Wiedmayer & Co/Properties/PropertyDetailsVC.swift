@@ -22,6 +22,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var tableViewFields = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
     var attributeNames = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
+    var sectionHeaders = ["Title", "Address & Cost", "Size"]
     
     override func viewDidLoad() {
         print("In PropertiesDetailsVC")
@@ -40,6 +41,14 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func setupUI() {
         self.propertyImageView.image = selectedProperty.image
+        propertyImageView.backgroundColor = UIColor.white
+        
+        // Rounded corner
+        propertyImageView.layer.cornerRadius = 10
+        propertyImageView.layer.borderColor = UIColor.darkGray.cgColor
+        propertyImageView.layer.borderWidth = 2.0
+        propertyImageView.clipsToBounds = true
+        
         tableView.tableFooterView = UIView()
         if !fromCreate {
             self.title = String(selectedProperty.title)
@@ -101,6 +110,16 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewFields.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UITableViewCell()
+        header.textLabel!.text = sectionHeaders[section]
+        header.backgroundColor = #colorLiteral(red: 0.9073890448, green: 0.8150985837, blue: 0.6634473205, alpha: 1)
+        header.textLabel?.textColor = UIColor.darkGray
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
+        return header
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

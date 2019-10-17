@@ -10,5 +10,7 @@ import Foundation
 import UIKit
 class PropertyTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var propertyImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
 }
