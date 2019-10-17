@@ -20,8 +20,8 @@ class ProfileVC: UITableViewController {
             PFUser.logOut()
             print("logging out")
             self.performSegue(withIdentifier: "unwindProfileToRegistration", sender: nil)
-            
         }))
+        
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
         }))
         present(refreshAlert, animated: true, completion: nil)
@@ -29,6 +29,11 @@ class ProfileVC: UITableViewController {
     
     override func viewDidLoad() {
         print("In ProfileVC")
+        self.setupUI()
+    }
+    
+    func setupUI() {
+        //setup profile ui here
     }
     
     
