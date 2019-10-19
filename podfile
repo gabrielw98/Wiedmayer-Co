@@ -6,6 +6,8 @@ target 'Wiedmayer & Co' do
   use_frameworks!
 
   # Pods for Wiedmayer & Co
+  pod 'SCLAlertView'
+  pod 'SendGrid-Swift'
   pod 'WLEmptyState'
   pod 'Parse'
   target 'Wiedmayer & CoTests' do

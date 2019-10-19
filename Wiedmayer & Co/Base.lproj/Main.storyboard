@@ -357,7 +357,99 @@
                 <exit id="30w-LN-SZ3" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vYh-JI-zAJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3695" y="797"/>
+            <point key="canvasLocation" x="3926" y="1487"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="YKw-ir-LOR">
+            <objects>
+                <viewController id="dWO-qF-Ttb" customClass="ProfileVC" customModule="Wiedmayer___Co" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DUH-KG-0hl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="beigeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="s6b-uu-gkH">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6Z-T1-q5c">
+                                <rect key="frame" x="16" y="251" width="343" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSE-6C-EDP">
+                                        <rect key="frame" x="8" y="20" width="327" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <string key="text">When business moves,
+Wiedmayer &amp; Co. moves with it.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileAdmin" translatesAutoresizingMaskIntoConstraints="NO" id="1vs-UM-uuJ">
+                                        <rect key="frame" x="38" y="174" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileShare" translatesAutoresizingMaskIntoConstraints="NO" id="M6L-96-Q9C">
+                                        <rect key="frame" x="149" y="100" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOG-hR-7c4">
+                                        <rect key="frame" x="8" y="219" width="104" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Admin Account">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="adminAction:" destination="dWO-qF-Ttb" eventType="touchUpInside" id="NPN-d1-as3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmv-16-onr">
+                                        <rect key="frame" x="113" y="145" width="117" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Invite Colleagues">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="inviteAction:" destination="dWO-qF-Ttb" eventType="touchUpInside" id="Aan-Wm-Lmz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhb-pV-ZrJ">
+                                        <rect key="frame" x="260" y="219" width="57" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileSettings" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-sO-oPU">
+                                        <rect key="frame" x="266" y="174" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="X7a-uX-KR8">
+                                <rect key="frame" x="147" y="163" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JVV-Ka-58t"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6tx-Ks-ILN">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="FIK-0B-19n">
+                            <connections>
+                                <action selector="logoutAction:" destination="dWO-qF-Ttb" id="xtu-bk-QkZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionsView" destination="A6Z-T1-q5c" id="70R-Ai-CbM"/>
+                        <outlet property="adminImageView" destination="1vs-UM-uuJ" id="n4T-tW-fRo"/>
+                        <outlet property="inviteImageView" destination="M6L-96-Q9C" id="UZD-BW-aCI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H12-eC-w4d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3693.5999999999999" y="796.55172413793105"/>
         </scene>
         <!--Profile-->
         <scene sceneID="UC8-BH-91w">
@@ -369,7 +461,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="rhv-Da-MVY" kind="relationship" relationship="rootViewController" id="QBh-wg-fxC"/>
+                        <segue destination="dWO-qF-Ttb" kind="relationship" relationship="rootViewController" id="FLr-5g-GC0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77q-lp-VG1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -472,7 +564,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="CONFIRM">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="confirmAction:" destination="wqZ-BL-RZG" eventType="touchUpInside" id="D2b-DZ-Ham"/>
@@ -1279,9 +1371,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="beigeBackground" width="495" height="799"/>
         <image name="cityBackground" width="1002" height="817"/>
         <image name="icon" width="50" height="50"/>
         <image name="plus.square.fill.on.square.fill" catalog="system" width="64" height="56"/>
+        <image name="profileAdmin" width="45" height="45"/>
+        <image name="profileSettings" width="48" height="48"/>
+        <image name="profileShare" width="48" height="48"/>
         <image name="tabBarProfile" width="25" height="25"/>
         <image name="tabBarProperties" width="25" height="25"/>
         <image name="woodBackground" width="1250" height="833.5"/>

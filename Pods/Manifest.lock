@@ -4,23 +4,31 @@ PODS:
     - Parse/Core (= 1.17.3)
   - Parse/Core (1.17.3):
     - Bolts/Tasks (~> 1.9)
+  - SCLAlertView (0.8)
+  - SendGrid-Swift (0.1.2)
   - WLEmptyState (3.1.0)
 
 DEPENDENCIES:
   - Parse
+  - SCLAlertView
+  - SendGrid-Swift
   - WLEmptyState
 
 SPEC REPOS:
   trunk:
     - Bolts
     - Parse
+    - SCLAlertView
+    - SendGrid-Swift
     - WLEmptyState
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SendGrid-Swift: ac2a563f564d95e9c8e069db337279b442bed67e
   WLEmptyState: 2bbb3970f62c0b9252029d34a8f74cb3d436eeea
 
-PODFILE CHECKSUM: 845cd562b15f840d4ba3edad2048310ea5fafa62
+PODFILE CHECKSUM: 42752ee51a45c12088562423233674b528223870
 
 COCOAPODS: 1.8.3

@@ -14,7 +14,10 @@ import WLEmptyState
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Properties deletion
-    // Properties update db
+    //*Properties update db
+    // Profile send app to colleague
+    // Profile admin send grid
+    // Profile Icon and mission statement
     
      var window: UIWindow?
 
@@ -38,8 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextField.appearance().tintColor = UIColor.darkGray
         return true
     }
-    
-
-
 }
 
