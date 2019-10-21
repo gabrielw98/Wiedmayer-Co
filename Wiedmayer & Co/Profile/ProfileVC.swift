@@ -19,6 +19,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var adminImageView: UIImageView!
     @IBOutlet weak var actionsView: UIView!
     
+    var code = ""
+    
     @IBAction func inviteAction(_ sender: Any) {
     }
     
@@ -37,7 +39,8 @@ class ProfileVC: UIViewController {
             print("Text value: \(String(describing: txt.text))")
             let email = txt.text
             if self.isValidEmail(emailStr: email!) {
-                self.sendMail(enteredEmail: email!, code: self.createVerificationCode())
+                self.code = self.createVerificationCode()
+                self.sendMail(enteredEmail: email!, code: self.code)
             }
         }
         alert.showEdit("Email", // Title of view
@@ -89,6 +92,33 @@ class ProfileVC: UIViewController {
                     print(error)
                 } else {
                     print("Email Sent with this code:", code)
+                    //Update
+                    let appearance = SCLAlertView.SCLAppearance(
+                        kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                        kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                        kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                        showCloseButton: true
+                    )
+                    let alert = SCLAlertView(appearance: appearance)
+                    let txt = alert.addTextField("Enter the code")
+                    alert.addButton("Verify") {
+                        print("Text value: \(String(describing: txt.text))")
+                        if txt.text == self.code {
+                            let CurrentUser = PFUser(withoutDataWithObjectId: PFUser.current()?.objectId)
+                            CurrentUser["isAdmin"] = true
+                            CurrentUser.saveInBackground { (success, error) in
+                                if success {
+                                    print("Success: Saved the current admin")
+                                } else {
+                                    print("Error:", error?.localizedDescription)
+                                }
+                            }
+                        }
+                    }
+                    alert.showEdit("Verify Code", // Title of view
+                    subTitle: "Enter the your email to recieve a 6 digit verification code.", // String of view
+                    colorStyle: 0x434343,
+                    colorTextButton: 0xF9E4B7)
                 }
             }
         }
