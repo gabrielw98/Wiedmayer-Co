@@ -15,13 +15,32 @@ import SCLAlertView
 class ProfileVC: UIViewController {
     
     
+    @IBOutlet weak var settingsImageView: UIImageView!
     @IBOutlet weak var inviteImageView: UIImageView!
     @IBOutlet weak var adminImageView: UIImageView!
     @IBOutlet weak var actionsView: UIView!
     
     var code = ""
     
+    @IBAction func settingsAction(_ sender: Any) {
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: true
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        alert.showInfo("Notice", // Title of view
+        subTitle: "The settings feature is currently in development.", // String of view
+        colorStyle: 0x434343,
+        colorTextButton: 0xF9E4B7)
+    }
+    
     @IBAction func inviteAction(_ sender: Any) {
+        let items: [Any] = ["Manage properties with our new app!", URL(string: "http://www.wiedmayer.com")!]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     @IBAction func adminAction(_ sender: Any) {
@@ -34,10 +53,11 @@ class ProfileVC: UIViewController {
             )
             
             let alert = SCLAlertView(appearance: appearance)
-            alert.showEdit("Congrats on Admin Status!", // Title of view
-            subTitle: "You are now able to delete and update properties.", // String of view
+            alert.showInfo("Congrats on Admin Status!", // Title of view
+            subTitle: "You are now able to add, update, and delete properties.", // String of view
             colorStyle: 0x434343,
-            colorTextButton: 0xF9E4B7)
+            colorTextButton: 0xF9E4B7,
+            circleIconImage: UIImage(named: "adminUnlocked"))
         } else {
             let appearance = SCLAlertView.SCLAppearance(
                 kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
@@ -83,8 +103,8 @@ class ProfileVC: UIViewController {
         let refreshAlert = UIAlertController(title: "Notice", message: "Are you sure you want to log out?", preferredStyle: UIAlertController.Style.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (action: UIAlertAction!) in
+            DataModel.adminStatus = false
             PFUser.logOut()
-            print("logging out")
             self.performSegue(withIdentifier: "unwindProfileToRegistration", sender: nil)
         }))
         
@@ -159,8 +179,34 @@ class ProfileVC: UIViewController {
         //setup profile ui here
         self.actionsView.clipsToBounds = true
         self.actionsView.layer.cornerRadius = 5
-        //self.actionsView.layer.borderWidth = 2.0
-        //self.actionsView.layer.borderColor = UIColor.lightGray.cgColor
+        let inviteTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(inviteTapped(tapGestureRecognizer:)))
+        let adminTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(adminTapped(tapGestureRecognizer:)))
+        let settingsTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsTapped(tapGestureRecognizer:)))
+        
+        
+        
+        self.inviteImageView.isUserInteractionEnabled = true
+        self.adminImageView.isUserInteractionEnabled = true
+        self.settingsImageView.isUserInteractionEnabled = true
+            
+        self.inviteImageView.addGestureRecognizer(inviteTapGestureRecognizer)
+        self.adminImageView.addGestureRecognizer(adminTapGestureRecognizer)
+        self.settingsImageView.addGestureRecognizer(settingsTapGestureRecognizer)
+    }
+    
+    @objc func inviteTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        self.inviteAction(self)
+    }
+    
+    @objc func adminTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        self.adminAction(self)
+    }
+    
+    @objc func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        self.settingsAction(self)
     }
     
     

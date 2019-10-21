@@ -68,8 +68,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableViewFields[1][0] = property.address
         self.tableViewFields[1][1] = "$" + property.price.withCommas()
         
-        self.tableViewFields[2][0] = "Liveable: " + String(property.squareFootageLiveable)
-        self.tableViewFields[2][1] = "Total: " + String(property.squareFootageTotal)
+        self.tableViewFields[2][0] = "Liveable: " + String(property.squareFootageLiveable.withCommas())
+        self.tableViewFields[2][1] = "Total: " + String(property.squareFootageTotal.withCommas())
         
         self.propertyImageView.image = property.image
         
@@ -136,9 +136,11 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
-        self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
-        self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+        if DataModel.adminStatus {
+            self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
+            self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
+            self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -35,7 +35,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
             }
             NewProperty.saveInBackground { (success, error) in
                 if success {
-                    print("Property Saved")
+                    print("Success: New Property Saved")
                 }
             }
             // Reset the newProperty to empty
@@ -51,8 +51,16 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     
     override func viewDidLoad() {
         print("In PropertiesVC")
-        self.tableView.showsVerticalScrollIndicator = false
+        setupUI()
         queryProperties()
+    }
+    
+    func setupUI() {
+        self.tableView.showsVerticalScrollIndicator = false
+        print(DataModel.adminStatus)
+        if !(DataModel.adminStatus) {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func queryProperties() {

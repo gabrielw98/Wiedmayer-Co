@@ -24,9 +24,9 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitLoginSignUpAction(_ sender: Any) {
         print("Submitting Login/Sign Up")
-        if confirmPasswordTextField.isHidden { //Login
+        if confirmPasswordTextField.isHidden {
             login()
-        } else { //Sign Up
+        } else {
             signUp()
         }
     }
@@ -64,7 +64,6 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() != nil {
             setupAdminStatus()
-            self.performSegue(withIdentifier: "showProperties", sender: nil)
         }
     }
     
@@ -82,6 +81,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
                 if let adminStatus = object!["isAdmin"] {
                     DataModel.adminStatus = adminStatus as! Bool
                 }
+                self.performSegue(withIdentifier: "showProperties", sender: nil)
             }
         }
     }
@@ -103,7 +103,6 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     }
     
     func signUp() {
-        print("in sign up")
         let user = PFUser()
         user.username = usernameTextField.text
         user.password = passwordTextField.text
@@ -112,7 +111,6 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
             user.signUpInBackground(block: { (success, error) in
                 if success {
                     self.setupAdminStatus()
-                    self.performSegue(withIdentifier: "showProperties", sender: nil)
                 } else {
                     let signUpErrorAlertView = UIAlertController(title: "Notice", message: error!.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                     signUpErrorAlertView.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action: UIAlertAction!) in
@@ -130,14 +128,12 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     }
     
     func login() {
-        print("got to login")
         PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: passwordTextField.text!, block: { (user, error) in
             if user != nil {
                 // Yes, User Exists
                 self.usernameTextField.text = ""
                 self.passwordTextField.text = ""
                 self.setupAdminStatus()
-                self.performSegue(withIdentifier: "showProperties", sender: nil)
             } else {
                 // No, User Doesn't Exist
             }
@@ -146,7 +142,6 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        print("return pressed")
         if textField == self.usernameTextField {
             passwordTextField.becomeFirstResponder()
         } else if textField == self.passwordTextField {

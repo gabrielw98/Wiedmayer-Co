@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="adD-eP-ff7">
-                                <rect key="frame" x="0.0" y="-43" width="375" height="710"/>
+                                <rect key="frame" x="0.0" y="-43" width="375.00000000000023" height="710.00000000000023"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JW-MM-DFu">
                                 <rect key="frame" x="51" y="290" width="273" height="50"/>
@@ -320,45 +320,6 @@
             </objects>
             <point key="canvasLocation" x="1816.8" y="30.134932533733135"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="sDq-gy-Rew">
-            <objects>
-                <tableViewController id="rhv-Da-MVY" customClass="ProfileVC" customModule="Wiedmayer___Co" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CWb-LQ-haW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UME-iM-8Bo">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UME-iM-8Bo" id="0fE-jt-3wG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="rhv-Da-MVY" id="f6z-od-bsI"/>
-                            <outlet property="delegate" destination="rhv-Da-MVY" id="bQ4-zg-F04"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Profile" id="wvh-rb-qrE">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="k2v-OK-qrx">
-                            <connections>
-                                <action selector="logOutAction:" destination="rhv-Da-MVY" id="xJH-RP-QNA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="30w-LN-SZ3" kind="unwind" identifier="unwindProfileToRegistration" unwindAction="registrationUnwindWithSegue:" id="bMw-BF-WIo"/>
-                    </connections>
-                </tableViewController>
-                <exit id="30w-LN-SZ3" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vYh-JI-zAJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3926" y="1487"/>
-        </scene>
         <!--ProfileVC-->
         <scene sceneID="YKw-ir-LOR">
             <objects>
@@ -418,6 +379,9 @@ Wiedmayer &amp; Co. moves with it.</string>
                                         <state key="normal" title="Settings">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="settingsAction:" destination="dWO-qF-Ttb" eventType="touchUpInside" id="nyO-mo-1p9"/>
+                                        </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileSettings" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-sO-oPU">
                                         <rect key="frame" x="266" y="174" width="45" height="45"/>
@@ -445,9 +409,12 @@ Wiedmayer &amp; Co. moves with it.</string>
                         <outlet property="actionsView" destination="A6Z-T1-q5c" id="70R-Ai-CbM"/>
                         <outlet property="adminImageView" destination="1vs-UM-uuJ" id="n4T-tW-fRo"/>
                         <outlet property="inviteImageView" destination="M6L-96-Q9C" id="UZD-BW-aCI"/>
+                        <outlet property="settingsImageView" destination="Ebn-sO-oPU" id="jXl-oR-yyJ"/>
+                        <segue destination="u7E-ZC-5F7" kind="unwind" identifier="unwindProfileToRegistration" unwindAction="registrationUnwindWithSegue:" id="4Up-qb-rrl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H12-eC-w4d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="u7E-ZC-5F7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3693.5999999999999" y="796.55172413793105"/>
         </scene>
@@ -734,7 +701,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-w4-0KI">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -832,7 +799,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-CZ-6jJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -929,7 +896,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-A2-ov3">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1027,7 +994,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-sO-BwT">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1149,7 +1116,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Rc9-Ya-lpp">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1265,7 +1232,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-ik-TDV">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
