@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Properties deletion
     //*Properties update db
     // Profile send app to colleague
-    // Profile admin send grid
-    // Profile Icon and mission statement
+    // Update & delete only accessible to admin
+    //*Profile admin send grid
+    //*Profile Icon and mission statement
     
      var window: UIWindow?
 

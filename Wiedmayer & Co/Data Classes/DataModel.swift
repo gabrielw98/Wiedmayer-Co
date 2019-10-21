@@ -13,6 +13,8 @@ struct DataModel {
     
     // New Property Data
     static var newProperty = Property()
+
+    static var adminStatus = false
     
     
     

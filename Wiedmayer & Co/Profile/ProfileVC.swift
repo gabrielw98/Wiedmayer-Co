@@ -25,28 +25,43 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func adminAction(_ sender: Any) {
-        // Get started
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
-            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
-            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
-            showCloseButton: true
-        )
-        
-        let alert = SCLAlertView(appearance: appearance)
-        let txt = alert.addTextField("Enter your work email")
-        alert.addButton("Send Code") {
-            print("Text value: \(String(describing: txt.text))")
-            let email = txt.text
-            if self.isValidEmail(emailStr: email!) {
-                self.code = self.createVerificationCode()
-                self.sendMail(enteredEmail: email!, code: self.code)
+        if DataModel.adminStatus {
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                showCloseButton: true
+            )
+            
+            let alert = SCLAlertView(appearance: appearance)
+            alert.showEdit("Congrats on Admin Status!", // Title of view
+            subTitle: "You are now able to delete and update properties.", // String of view
+            colorStyle: 0x434343,
+            colorTextButton: 0xF9E4B7)
+        } else {
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                showCloseButton: true
+            )
+            
+            let alert = SCLAlertView(appearance: appearance)
+            let txt = alert.addTextField("Enter your work email")
+            alert.addButton("Send Code") {
+                print("Text value: \(String(describing: txt.text))")
+                let email = txt.text
+                if self.isValidEmail(emailStr: email!) {
+                    self.code = self.createVerificationCode()
+                    self.sendMail(enteredEmail: email!, code: self.code)
+                }
             }
+            alert.showEdit("Email", // Title of view
+            subTitle: "Enter your email to recieve a 6 digit verification code.", // String of view
+            colorStyle: 0x434343,
+            colorTextButton: 0xF9E4B7)
         }
-        alert.showEdit("Email", // Title of view
-        subTitle: "Enter your email to recieve a 6 digit verification code.", // String of view
-        colorStyle: 0x434343,
-        colorTextButton: 0xF9E4B7)
+        
     }
     
     func createVerificationCode() -> String {
@@ -99,26 +114,31 @@ class ProfileVC: UIViewController {
                         kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
                         showCloseButton: true
                     )
-                    let alert = SCLAlertView(appearance: appearance)
-                    let txt = alert.addTextField("Enter the code")
-                    alert.addButton("Verify") {
-                        print("Text value: \(String(describing: txt.text))")
-                        if txt.text == self.code {
-                            let CurrentUser = PFUser(withoutDataWithObjectId: PFUser.current()?.objectId)
-                            CurrentUser["isAdmin"] = true
-                            CurrentUser.saveInBackground { (success, error) in
-                                if success {
-                                    print("Success: Saved the current admin")
-                                } else {
-                                    print("Error:", error?.localizedDescription)
+                    DispatchQueue.main.async {
+                        //Do UI Code here.
+                        let alert = SCLAlertView(appearance: appearance)
+                        let txt = alert.addTextField("Enter the code")
+                        alert.addButton("Verify") {
+                            print("Text value: \(String(describing: txt.text))")
+                            if txt.text == self.code {
+                                DataModel.adminStatus = true
+                                let CurrentUser = PFUser(withoutDataWithObjectId: PFUser.current()?.objectId)
+                                CurrentUser["isAdmin"] = true
+                                CurrentUser.saveInBackground { (success, error) in
+                                    if success {
+                                        print("Success: Saved the current admin")
+                                    } else {
+                                        print("Error:", error!)
+                                    }
                                 }
                             }
                         }
+                        alert.showEdit("Verify Code", // Title of view
+                        subTitle: "Enter the your email to recieve a 6 digit verification code.", // String of view
+                        colorStyle: 0x434343,
+                        colorTextButton: 0xF9E4B7)
                     }
-                    alert.showEdit("Verify Code", // Title of view
-                    subTitle: "Enter the your email to recieve a 6 digit verification code.", // String of view
-                    colorStyle: 0x434343,
-                    colorTextButton: 0xF9E4B7)
+                    
                 }
             }
         }

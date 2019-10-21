@@ -63,6 +63,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() != nil {
+            setupAdminStatus()
             self.performSegue(withIdentifier: "showProperties", sender: nil)
         }
     }
@@ -70,8 +71,19 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
         setupUI()
+    }
+    
+    func setupAdminStatus() {
+        let query = PFQuery(className: "_User")
+        query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
+        query.getFirstObjectInBackground { (object, error) in
+            if object != nil {
+                if let adminStatus = object!["isAdmin"] {
+                    DataModel.adminStatus = adminStatus as! Bool
+                }
+            }
+        }
     }
 
     func setupUI() {
@@ -99,7 +111,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
         if confirmPasswordTextField.text == passwordTextField.text {
             user.signUpInBackground(block: { (success, error) in
                 if success {
-                    
+                    self.setupAdminStatus()
                     self.performSegue(withIdentifier: "showProperties", sender: nil)
                 } else {
                     let signUpErrorAlertView = UIAlertController(title: "Notice", message: error!.localizedDescription, preferredStyle: UIAlertController.Style.alert)
@@ -124,6 +136,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
                 // Yes, User Exists
                 self.usernameTextField.text = ""
                 self.passwordTextField.text = ""
+                self.setupAdminStatus()
                 self.performSegue(withIdentifier: "showProperties", sender: nil)
             } else {
                 // No, User Doesn't Exist
