@@ -86,6 +86,16 @@ class Property {
         return properties.sorted(by: { $0.createdAt.compare($1.createdAt as Date) == ComparisonResult.orderedDescending })
     }
     
+    func deleteFromParse() {
+        PFObject(withoutDataWithClassName: "Property", objectId: self.objectId).deleteInBackground { (success, error) in
+            if success {
+                print("Success: Deleted the selected property")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
     func getProperties(query: PFQuery<PFObject>, completion: @escaping (_ result: [Property])->()) {
         query.findObjectsInBackground {
             (objects:[PFObject]?, error:Error?) -> Void in

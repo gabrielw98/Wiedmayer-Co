@@ -14,7 +14,6 @@ class AddressVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
-        print("AddressVC")
         textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         print(DataModel.newProperty.title)
@@ -23,6 +22,12 @@ class AddressVC: UIViewController, UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
             DataModel.newProperty.address = text
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+          self.textField.becomeFirstResponder()
         }
     }
     

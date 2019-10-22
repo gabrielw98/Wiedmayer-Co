@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Parse
+import SCLAlertView
 
 class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -30,6 +31,26 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         setupUI()
     }
     
+    @IBAction func deleteAction(_ sender: Any) {
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: true
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Delete Property") {
+            self.selectedProperty.deleteFromParse()
+            self.performSegue(withIdentifier: "propertyDeletedUnwind", sender: nil)
+        }
+        alert.showInfo("Notice", // Title of view
+        subTitle: "Are you sure you want to remove this property?", // String of view
+        colorStyle: 0x434343,
+        colorTextButton: 0xF9E4B7)
+        
+    }
+    
     @IBAction func doneAction(_ sender: Any) {
         self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
     }
@@ -41,6 +62,10 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func setupUI() {
+        
+        if !(DataModel.adminStatus) || fromCreate {
+            self.navigationItem.rightBarButtonItem = nil
+        }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         propertyImageView.isUserInteractionEnabled = true
@@ -185,6 +210,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             targetVC.attributeType = self.attributeType
             targetVC.selectedProperty = self.selectedProperty
             print("Segue: PropertiesVC -> PropertyDetailsVC")
+        } else if segue.identifier == "propertyDeletedUnwind" {
+            
         }
     }
 }

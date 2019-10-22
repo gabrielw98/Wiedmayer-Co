@@ -15,7 +15,6 @@ class NameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
-        print("NameVC")
         textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
@@ -23,6 +22,12 @@ class NameVC: UIViewController, UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
             DataModel.newProperty.title = text
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+          self.textField.becomeFirstResponder()
         }
     }
     

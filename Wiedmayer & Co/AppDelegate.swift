@@ -13,12 +13,13 @@ import WLEmptyState
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    // Properties deletion
+    //*Properties deletion
     //*Properties update db
-    // Profile send app to colleague
-    // Update & delete only accessible to admin
+    //*Profile send app to colleague
+    //*Update & delete only accessible to admin
     //*Profile admin send grid
     //*Profile Icon and mission statement
+    // Dropdown for auto filling address field 
     
      var window: UIWindow?
 

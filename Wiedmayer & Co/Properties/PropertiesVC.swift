@@ -29,23 +29,33 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
             NewProperty["price"] = DataModel.newProperty.price
             NewProperty["squareFootageLiveable"] = DataModel.newProperty.squareFootageLiveable
             NewProperty["squareFootageTotal"] = DataModel.newProperty.squareFootageTotal
+            
+            
             if let imageData = DataModel.newProperty.image.jpegData(compressionQuality: 0.25) {
                 let file = PFFileObject(name: "img.png", data: imageData)
                 NewProperty["image"] = file
             }
+            
             NewProperty.saveInBackground { (success, error) in
                 if success {
                     print("Success: New Property Saved")
+                    print(NewProperty.objectId!)
+                    DataModel.newProperty.objectId = NewProperty.objectId!
+                    // Reset the newProperty to empty
+                    if self.properties.count == 0 {
+                        self.properties.append(DataModel.newProperty)
+                    } else if self.properties.count > 0 {
+                        self.properties.insert(DataModel.newProperty, at: 0)
+                    }
+                    self.tableView.reloadData()
+                    DataModel.newProperty = Property()
                 }
             }
-            // Reset the newProperty to empty
-            if self.properties.count == 0 {
-                self.properties.append(DataModel.newProperty)
-            } else if self.properties.count > 0 {
-                self.properties.insert(DataModel.newProperty, at: 0)
-            }
-            self.tableView.reloadData()
-            DataModel.newProperty = Property()
+        } else if segue.identifier == "propertyDeletedUnwind" {
+            // delete property from the tableview
+            properties.removeAll{$0 === self.selectedProperty}
+            tableView.reloadData()
+            self.selectedProperty = Property()
         }
     }
     
@@ -57,7 +67,6 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     
     func setupUI() {
         self.tableView.showsVerticalScrollIndicator = false
-        print(DataModel.adminStatus)
         if !(DataModel.adminStatus) {
             self.navigationItem.rightBarButtonItem = nil
         }
