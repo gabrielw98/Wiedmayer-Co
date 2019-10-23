@@ -34,6 +34,7 @@
 		8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF8235411BA0054E6AD /* PriceVC.swift */; };
 		8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */; };
 		8C442FFD235411DE0054E6AD /* SquareFootageTotal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */; };
+		8C53A751236023EB002928C0 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A750236023EA002928C0 /* ReportVC.swift */; };
 		8C85D6F9235B667700F9393F /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C85D6F8235B667700F9393F /* keys.plist */; };
 		C6D68FEB4A41F91E26351715 /* Pods_Wiedmayer___CoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		8C442FF8235411BA0054E6AD /* PriceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceVC.swift; sourceTree = "<group>"; };
 		8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageLiveable.swift; sourceTree = "<group>"; };
 		8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageTotal.swift; sourceTree = "<group>"; };
+		8C53A750236023EA002928C0 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		8C85D6F8235B667700F9393F /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		A188A6944C345E5EEAAFBE59 /* Pods-Wiedmayer & Co.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & Co.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co.debug.xcconfig"; sourceTree = "<group>"; };
 		C4733660094205CED5D74647 /* Pods-Wiedmayer & CoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoTests.release.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoTests/Pods-Wiedmayer & CoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		8C442FE52352BECE0054E6AD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8C53A750236023EA002928C0 /* ReportVC.swift */,
 				8C442FE32352BCFC0054E6AD /* ProfileVC.swift */,
 			);
 			path = Profile;
@@ -507,6 +510,7 @@
 				8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */,
 				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
 				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,
+				8C53A751236023EB002928C0 /* ReportVC.swift in Sources */,
 				8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */,
 				8C442FF0235401680054E6AD /* AddImageVC.swift in Sources */,
 				8C442FEE2353B1210054E6AD /* CreateAttributesVC.swift in Sources */,

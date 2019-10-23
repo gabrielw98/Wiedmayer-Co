@@ -21,6 +21,10 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var actionsView: UIView!
     
     var code = ""
+    let textView = UITextView(frame: CGRect.zero)
+    
+    @IBAction func profileUnwind(segue: UIStoryboardSegue) {
+    }
     
     @IBAction func settingsAction(_ sender: Any) {
         let appearance = SCLAlertView.SCLAppearance(
@@ -31,8 +35,11 @@ class ProfileVC: UIViewController {
         )
         
         let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Report") {
+            self.performSegue(withIdentifier: "showReport", sender: nil)
+        }
         alert.showInfo("Notice", // Title of view
-        subTitle: "The settings feature is currently in development.", // String of view
+        subTitle: "Report a bug or any features that might be useful to you.", // String of view
         colorStyle: 0x434343,
         colorTextButton: 0xF9E4B7)
     }
