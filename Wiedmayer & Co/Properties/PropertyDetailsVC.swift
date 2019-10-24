@@ -142,6 +142,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 if let imageData = img.jpegData(compressionQuality: 0.25) {
                     let file = PFFileObject(name: "img.png", data: imageData)
                     selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                    selectedProperty.image = img
+                    DataModel.propertyImageChanged = true
                 }
             }
             propertyImageView.image = img

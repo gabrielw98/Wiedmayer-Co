@@ -16,6 +16,8 @@ struct DataModel {
 
     static var adminStatus = false
     
+    static var propertyImageChanged = false
+    
     
     
 }

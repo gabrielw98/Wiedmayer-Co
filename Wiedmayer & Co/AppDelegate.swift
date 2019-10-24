@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import WLEmptyState
+import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Profile admin send grid
     //*Profile Icon and mission statement
     // Dropdown for auto filling address field
-    // Update existing property image
-    // Change Settings to allow users to report bugs directly to me
+    //*Update existing property image
+    //*Change Settings to allow users to report bugs directly to me
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
+    // Make proerty details less static (consider LinkedIn like viewing)
     
      var window: UIWindow?
 

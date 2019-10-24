@@ -59,6 +59,13 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if DataModel.propertyImageChanged {
+            DataModel.propertyImageChanged = false
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         print("In PropertiesVC")
         setupUI()
