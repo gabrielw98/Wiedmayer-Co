@@ -17,14 +17,24 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var doneOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var upperShadowLabel: UILabel!
+    @IBOutlet weak var lowerShadowLabel: UILabel!
+    
+    
+    
     var selectedProperty = Property()
     var attributeToEdit = ""
     var attributeType = ""
     var fromCreate = false
     
-    var tableViewFields = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
-    var attributeNames = [["Title"], ["Address", "Price"], ["Square footage liveable", "Square footage total"]]
-    var sectionHeaders = ["Title", "Address & Cost", "Size"]
+    var tableViewFields = [["Price", "Square footage liveable", "Square footage total"]]
+    var attributeNames = [["Price", "Square footage liveable", "Square footage total"]]
+    
+    var sectionHeaders = ["Details", "Address & Cost", "Size"]
     
     override func viewDidLoad() {
         print("In PropertiesDetailsVC")
@@ -63,23 +73,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func setupUI() {
         
-        if !(DataModel.adminStatus) || fromCreate {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        propertyImageView.isUserInteractionEnabled = true
-        propertyImageView.addGestureRecognizer(tapGestureRecognizer)
-        self.propertyImageView.image = selectedProperty.image
-        propertyImageView.backgroundColor = UIColor.white
-        
-        // Rounded corner
-        propertyImageView.layer.cornerRadius = 10
-        propertyImageView.layer.borderColor = UIColor.darkGray.cgColor
-        propertyImageView.layer.borderWidth = 2.0
-        propertyImageView.clipsToBounds = true
-        
-        tableView.tableFooterView = UIView()
+        // defining property
         var property = Property()
         if fromCreate {
             property = DataModel.newProperty
@@ -88,16 +82,38 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             doneOutlet.isHidden = true
         }
         
-        self.tableViewFields[0][0] = property.title
+        // collection view
+        upperShadowLabel.layer.shadowPath = UIBezierPath(rect: upperShadowLabel.bounds).cgPath
+        upperShadowLabel.layer.shadowRadius = 3
+        upperShadowLabel.layer.shadowOffset = .zero
+        upperShadowLabel.layer.shadowOpacity = 0.8
         
-        self.tableViewFields[1][0] = property.address
-        self.tableViewFields[1][1] = "$" + property.price.withCommas()
+        lowerShadowLabel.layer.shadowPath = UIBezierPath(rect: lowerShadowLabel.bounds).cgPath
+        lowerShadowLabel.layer.shadowRadius = 3
+        lowerShadowLabel.layer.shadowOffset = .zero
+        lowerShadowLabel.layer.shadowOpacity = 0.8
         
-        self.tableViewFields[2][0] = "Liveable: " + String(property.squareFootageLiveable.withCommas())
-        self.tableViewFields[2][1] = "Total: " + String(property.squareFootageTotal.withCommas())
+        // nav bar
+        if !(DataModel.adminStatus) || fromCreate {
+            self.navigationItem.rightBarButtonItem = nil
+        }
         
+        
+        // image view
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        propertyImageView.isUserInteractionEnabled = true
+        propertyImageView.addGestureRecognizer(tapGestureRecognizer)
+        self.propertyImageView.image = selectedProperty.image
+        propertyImageView.backgroundColor = UIColor.white
         self.propertyImageView.image = property.image
         
+        // table view
+        tableView.tableFooterView = UIView()
+        self.nameLabel.text = property.title
+        self.addressLabel.text = property.address
+        self.tableViewFields[0][0] = "Price: $" + property.price.withCommas()
+        self.tableViewFields[0][1] = "Liveable: " + String(property.squareFootageLiveable.withCommas())
+        self.tableViewFields[0][2] = "Total: " + String(property.squareFootageTotal.withCommas())
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()

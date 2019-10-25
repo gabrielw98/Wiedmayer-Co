@@ -20,11 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Update & delete only accessible to admin
     //*Profile admin send grid
     //*Profile Icon and mission statement
-    // Dropdown for auto filling address field
+    //*Dropdown for auto filling address field
     //*Update existing property image
     //*Change Settings to allow users to report bugs directly to me
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
     // Make proerty details less static (consider LinkedIn like viewing)
+    // Search table view by name
+    // Build out details collection view
+    // Build out details bottom view
+    //
     
      var window: UIWindow?
 
