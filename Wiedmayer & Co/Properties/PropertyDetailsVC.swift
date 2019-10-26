@@ -11,8 +11,8 @@ import UIKit
 import Parse
 import SCLAlertView
 
-class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
+
     @IBOutlet weak var propertyImageView: UIImageView!
     @IBOutlet weak var doneOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -24,8 +24,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var upperShadowLabel: UILabel!
     @IBOutlet weak var lowerShadowLabel: UILabel!
     
-    
-    
     var selectedProperty = Property()
     var attributeToEdit = ""
     var attributeType = ""
@@ -35,6 +33,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     var attributeNames = [["Price", "Square footage liveable", "Square footage total"]]
     
     var sectionHeaders = ["Details", "Address & Cost", "Size"]
+    
+    var collectionViewTitles = ["Image", "Edit", "Trash"]
     
     override func viewDidLoad() {
         print("In PropertiesDetailsVC")
@@ -72,6 +72,17 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func setupUI() {
+        
+        //collection view
+        self.collectionView.dataSource = self
+        self.collectionView.reloadData()
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView!.collectionViewLayout = layout
         
         // defining property
         var property = Property()
@@ -212,10 +223,21 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UITableViewCell()
         header.textLabel!.text = sectionHeaders[section]
-        header.backgroundColor = #colorLiteral(red: 0.9073890448, green: 0.8150985837, blue: 0.6634473205, alpha: 1)
-        header.textLabel?.textColor = UIColor.darkGray
+        header.backgroundColor = self.navigationController?.navigationBar.barTintColor
+        header.textLabel?.textColor = #colorLiteral(red: 0.9073890448, green: 0.8150985837, blue: 0.6634473205, alpha: 1)
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.collectionViewTitles.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PropertyDetailsCollectionViewCell
+        cell.imageView.image = UIImage(named: "cv" + collectionViewTitles[indexPath.row])
+        cell.titleLabel.text = collectionViewTitles[indexPath.row]
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
