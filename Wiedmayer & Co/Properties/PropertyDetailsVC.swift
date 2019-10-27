@@ -83,6 +83,9 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
+        self.collectionView.layer.cornerRadius = 3
+        self.collectionView.layer.masksToBounds = true
+        
         
         // defining property
         var property = Property()
@@ -136,7 +139,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func imageViewSelected() {
-        print("trying to add image")
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -236,8 +238,25 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PropertyDetailsCollectionViewCell
         cell.imageView.image = UIImage(named: "cv" + collectionViewTitles[indexPath.row])
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(collectionViewimageTapped(tapGestureRecognizer:)))
+        tapGestureRecognizer.accessibilityLabel = collectionViewTitles[indexPath.row]
+        cell.imageView.isUserInteractionEnabled = true
+        cell.imageView.addGestureRecognizer(tapGestureRecognizer)
+        
         cell.titleLabel.text = collectionViewTitles[indexPath.row]
         return cell
+    }
+
+    @objc func collectionViewimageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        if tapGestureRecognizer.accessibilityLabel == "Image" {
+            imageViewSelected()
+        } else if tapGestureRecognizer.accessibilityLabel == "Edit" {
+            print("Editing")
+        } else if tapGestureRecognizer.accessibilityLabel == "Trash" {
+            deleteAction(self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
