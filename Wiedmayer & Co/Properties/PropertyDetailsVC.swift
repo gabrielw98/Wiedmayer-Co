@@ -41,26 +41,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         setupUI()
     }
     
-    @IBAction func deleteAction(_ sender: Any) {
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
-            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
-            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
-            showCloseButton: true
-        )
-        
-        let alert = SCLAlertView(appearance: appearance)
-        alert.addButton("Delete Property") {
-            self.selectedProperty.deleteFromParse()
-            self.performSegue(withIdentifier: "propertyDeletedUnwind", sender: nil)
-        }
-        alert.showInfo("Notice", // Title of view
-        subTitle: "Are you sure you want to remove this property?", // String of view
-        colorStyle: 0x434343,
-        colorTextButton: 0xF9E4B7)
-        
-    }
-    
     @IBAction func doneAction(_ sender: Any) {
         self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
     }
@@ -86,7 +66,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.collectionView.layer.cornerRadius = 3
         self.collectionView.layer.masksToBounds = true
         
-        
         // defining property
         var property = Property()
         if fromCreate {
@@ -106,12 +85,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         lowerShadowLabel.layer.shadowRadius = 3
         lowerShadowLabel.layer.shadowOffset = .zero
         lowerShadowLabel.layer.shadowOpacity = 0.8
-        
-        // nav bar
-        if !(DataModel.adminStatus) || fromCreate {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-        
         
         // image view
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -136,6 +109,40 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         imageViewSelected()
+    }
+    
+    func editSelected() {
+        if self.collectionViewTitles[1] == "Edit" {
+            self.collectionViewTitles[1] = "Cancel"
+            self.collectionView.reloadData()
+            self.tableView.reloadData()
+            //show edit symbols on the table view
+        } else if self.collectionViewTitles[1] == "Cancel" {
+            self.collectionViewTitles[1] = "Edit"
+            self.collectionView.reloadData()
+            //show edit symbols on the table view
+            self.tableView.reloadData()
+            
+        }
+    }
+    
+    func deleteSelected() {
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: true
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Delete Property") {
+            self.selectedProperty.deleteFromParse()
+            self.performSegue(withIdentifier: "propertyDeletedUnwind", sender: nil)
+        }
+        alert.showInfo("Notice", // Title of view
+        subTitle: "Are you sure you want to remove this property?", // String of view
+        colorStyle: 0x434343,
+        colorTextButton: 0xF9E4B7)
     }
     
     func imageViewSelected() {
@@ -192,10 +199,12 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if DataModel.adminStatus {
-            self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
-            self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
-            self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+        if self.collectionViewTitles[1] == "Cancel" {
+            if DataModel.adminStatus {
+                self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
+                self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
+                self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+            }
         }
     }
     
@@ -210,6 +219,13 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.textLabel?.text = tableViewFields[indexPath.section][indexPath.row]
         }
         
+        if self.collectionViewTitles[1] == "Cancel" {
+            let imageView: UIImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
+            imageView.image = UIImage(named: "cvEdit")
+            imageView.contentMode = .scaleAspectFit
+            cell.accessoryView = imageView
+        }
+
         return cell
     }
     
@@ -252,10 +268,10 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         if tapGestureRecognizer.accessibilityLabel == "Image" {
             imageViewSelected()
-        } else if tapGestureRecognizer.accessibilityLabel == "Edit" {
-            print("Editing")
+        } else if tapGestureRecognizer.accessibilityLabel == "Edit" || tapGestureRecognizer.accessibilityLabel == "Cancel"  {
+            self.editSelected()
         } else if tapGestureRecognizer.accessibilityLabel == "Trash" {
-            deleteAction(self)
+            self.deleteSelected()
         }
     }
     
