@@ -28,7 +28,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
             NewProperty["address"] = DataModel.newProperty.address
             NewProperty["price"] = DataModel.newProperty.price
             NewProperty["squareFootageLiveable"] = DataModel.newProperty.squareFootageLiveable
-            NewProperty["squareFootageTotal"] = DataModel.newProperty.squareFootageTotal
+            NewProperty["propertyType"] = DataModel.newProperty.propertyType
             
             
             if let imageData = DataModel.newProperty.image.jpegData(compressionQuality: 0.25) {

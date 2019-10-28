@@ -52,10 +52,10 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
                     propertyToEdit.squareFootageLiveable = Int(self.textField.text!)!
                     attributeToChangeKey = "squareFootageLiveable"
                     newValue = Int(self.textField.text!)!
-                } else if self.attributeType == "Square footage total" {
-                    propertyToEdit.squareFootageTotal = Int(self.textField.text!)!
-                    attributeToChangeKey = "squareFootageTotal"
-                    newValue = Int(self.textField.text!)!
+                } else if self.attributeType == "Property Type" {
+                    propertyToEdit.propertyType = self.textField.text!
+                    attributeToChangeKey = "propertyType"
+                    newValue = self.textField.text
                 }
                 
                 propertyToEdit.updateAttribute(attributeType: attributeToChangeKey, newValue: newValue!)

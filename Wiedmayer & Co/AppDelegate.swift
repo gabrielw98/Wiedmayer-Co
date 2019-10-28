@@ -24,11 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Update existing property image
     //*Change Settings to allow users to report bugs directly to me
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
-    // Make proerty details less static (consider LinkedIn like viewing)
+    //*Make proerty details less static (consider LinkedIn like viewing)
     // Search table view by name
-    // Build out details collection view
-    // Build out details bottom view
-    //
+    //*Build out details collection view
+    //*Build out details bottom view
+    // Get the correct property attributes
     
      var window: UIWindow?
 

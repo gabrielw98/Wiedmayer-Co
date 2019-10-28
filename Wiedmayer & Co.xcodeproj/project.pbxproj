@@ -33,7 +33,7 @@
 		8C442FF7235411950054E6AD /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF6235411950054E6AD /* AddressVC.swift */; };
 		8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FF8235411BA0054E6AD /* PriceVC.swift */; };
 		8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */; };
-		8C442FFD235411DE0054E6AD /* SquareFootageTotal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */; };
+		8C442FFD235411DE0054E6AD /* PropertyTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFC235411DE0054E6AD /* PropertyTypeVC.swift */; };
 		8C53A751236023EB002928C0 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A750236023EA002928C0 /* ReportVC.swift */; };
 		8C53A753236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */; };
 		8C85D6F9235B667700F9393F /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C85D6F8235B667700F9393F /* keys.plist */; };
@@ -92,7 +92,7 @@
 		8C442FF6235411950054E6AD /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
 		8C442FF8235411BA0054E6AD /* PriceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceVC.swift; sourceTree = "<group>"; };
 		8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageLiveable.swift; sourceTree = "<group>"; };
-		8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareFootageTotal.swift; sourceTree = "<group>"; };
+		8C442FFC235411DE0054E6AD /* PropertyTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeVC.swift; sourceTree = "<group>"; };
 		8C53A750236023EA002928C0 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsActionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C85D6F8235B667700F9393F /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				8C442FF6235411950054E6AD /* AddressVC.swift */,
 				8C442FF8235411BA0054E6AD /* PriceVC.swift */,
 				8C442FFA235411CB0054E6AD /* SquareFootageLiveable.swift */,
-				8C442FFC235411DE0054E6AD /* SquareFootageTotal.swift */,
+				8C442FFC235411DE0054E6AD /* PropertyTypeVC.swift */,
 				8C442FEF235401670054E6AD /* AddImageVC.swift */,
 			);
 			path = "New Attributes";
@@ -509,7 +509,7 @@
 			files = (
 				8C442FE22352B7050054E6AD /* EditPropertyAttributeVC.swift in Sources */,
 				8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */,
-				8C442FFD235411DE0054E6AD /* SquareFootageTotal.swift in Sources */,
+				8C442FFD235411DE0054E6AD /* PropertyTypeVC.swift in Sources */,
 				8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */,
 				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
 				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,

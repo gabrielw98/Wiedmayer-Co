@@ -29,8 +29,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     var attributeType = ""
     var fromCreate = false
     
-    var tableViewFields = [["Price", "Square footage liveable", "Square footage total"]]
-    var attributeNames = [["Price", "Square footage liveable", "Square footage total"]]
+    var tableViewFields = [["Price", "Square footage liveable", "Property Type"]]
+    var attributeNames = [["Price", "Square footage liveable", "Property Type"]]
     
     var sectionHeaders = ["Details", "Address & Cost", "Size"]
     
@@ -86,6 +86,9 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         lowerShadowLabel.layer.shadowOffset = .zero
         lowerShadowLabel.layer.shadowOpacity = 0.8
         
+        self.tableView.layer.cornerRadius = 3
+        self.tableView.layer.masksToBounds = true
+        
         // image view
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         propertyImageView.isUserInteractionEnabled = true
@@ -99,8 +102,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.nameLabel.text = property.title
         self.addressLabel.text = property.address
         self.tableViewFields[0][0] = "Price: $" + property.price.withCommas()
-        self.tableViewFields[0][1] = "Liveable: " + String(property.squareFootageLiveable.withCommas())
-        self.tableViewFields[0][2] = "Total: " + String(property.squareFootageTotal.withCommas())
+        self.tableViewFields[0][1] = "Building Size: " + String(property.squareFootageLiveable.withCommas())
+        self.tableViewFields[0][2] = "Property Type: " + property.propertyType
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()

@@ -14,7 +14,7 @@ class Property {
     var title: String
     var price: Int
     var squareFootageLiveable: Int
-    var squareFootageTotal: Int
+    var propertyType: String
     var address: String
     var image: UIImage
     var createdAt: Date
@@ -28,7 +28,7 @@ class Property {
         self.title = ""
         self.price = 0
         self.squareFootageLiveable = 0
-        self.squareFootageTotal = 0
+        self.propertyType = ""
         self.address = ""
         self.image = UIImage()
         self.createdAt = Date()
@@ -46,8 +46,8 @@ class Property {
         if squareFootageLiveable == 0 {
             missingAttributes.append("Square Footage Liveable")
         }
-        if squareFootageTotal == 0 {
-            missingAttributes.append("Square Footage Total")
+        if propertyType == "" {
+            missingAttributes.append("Property Type")
         }
         if address == "" {
             missingAttributes.append("Address")
@@ -56,15 +56,15 @@ class Property {
     }
     
     func isValid() -> Bool {
-        return self.title != "" && self.price != 0 && self.squareFootageLiveable != 0 && self.squareFootageTotal != 0 && self.address != ""
+        return self.title != "" && self.price != 0 && self.squareFootageLiveable != 0 && self.propertyType != "" && self.address != ""
     }
     
     //Constructor with all params provided
-    init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , squareFootageTotal: Int, address: String, image: UIImage, createdAt: Date) {
+    init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , propertyType: String, address: String, image: UIImage, createdAt: Date) {
         self.title = title
         self.price = price
         self.squareFootageLiveable = squareFootageLiveable
-        self.squareFootageTotal = squareFootageTotal
+        self.propertyType = propertyType
         self.address = address
         self.image = image
         self.createdAt = createdAt
@@ -115,10 +115,10 @@ class Property {
                                     print(title)
                                     let price = object["price"] as! Int
                                     let squareFootageLiveable = object["squareFootageLiveable"] as! Int
-                                    let squareFootageTotal = object["squareFootageTotal"] as! Int
+                                    let propertyType = object["propertyType"] as! String
                                     let address = object["address"] as! String
                                     let createdAt = object.createdAt!
-                                    let property = Property(objectId: object.objectId!, title: title, price: price, squareFootageLiveable: squareFootageLiveable, squareFootageTotal: squareFootageTotal, address: address, image: UIImage(), createdAt: createdAt)
+                                    let property = Property(objectId: object.objectId!, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, address: address, image: UIImage(), createdAt: createdAt)
                                     property.image = finalimage
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {
