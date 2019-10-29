@@ -14,6 +14,7 @@ import DropDown
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    /* COMPLETE */
     //*Properties deletion
     //*Properties update db
     //*Profile send app to colleague
@@ -23,12 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Dropdown for auto filling address field
     //*Update existing property image
     //*Change Settings to allow users to report bugs directly to me
-    // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
     //*Make proerty details less static (consider LinkedIn like viewing)
-    // Search table view by name
+    //*Edit the name and the address (from property details)
     //*Build out details collection view
     //*Build out details bottom view
-    // Get the correct property attributes
+    //*Get the correct property attributes
+    //*Notify user on login failure
+    
+    /* IN PROGRESS */
+    // Create property image constraints
+    // Add state and zipcode to the address
+    // Address Dropdown scrollable
+    // Edit address add dropdown
+    // Edit Property Type add dropdown
+    // Login shake animation when input is invalid
+    
+    /* BACK LOG */
+    // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
+    // Potentially remove tab bar and replace with a fan menu
+    // Search table view by name
+    // Gracefully handle connectivity issues
     
      var window: UIWindow?
 

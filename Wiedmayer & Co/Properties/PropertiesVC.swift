@@ -64,6 +64,10 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
             DataModel.propertyImageChanged = false
             self.tableView.reloadData()
         }
+        if DataModel.propertyAttributeChanged {
+            DataModel.propertyAttributeChanged = true
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {

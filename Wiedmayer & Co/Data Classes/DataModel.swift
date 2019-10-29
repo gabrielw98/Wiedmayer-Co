@@ -18,6 +18,8 @@ struct DataModel {
     
     static var propertyImageChanged = false
     
+    static var propertyAttributeChanged = false
+    
     
     
 }

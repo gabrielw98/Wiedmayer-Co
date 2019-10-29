@@ -35,6 +35,7 @@ class AddressVC: UIViewController, UITextFieldDelegate, MKLocalSearchCompleterDe
         dropDown.dataSource = addresses
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.textField.text = item
+            DataModel.newProperty.address = item
         }
     }
     

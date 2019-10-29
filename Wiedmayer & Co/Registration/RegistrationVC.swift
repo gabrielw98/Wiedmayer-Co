@@ -136,6 +136,11 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
                 self.setupAdminStatus()
             } else {
                 // No, User Doesn't Exist
+                let signUpErrorAlertView = UIAlertController(title: "Notice", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                signUpErrorAlertView.view.tintColor = UIColor.darkGray
+                signUpErrorAlertView.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action: UIAlertAction!) in
+                }))
+                self.present(signUpErrorAlertView, animated: true, completion: nil)
             }
         })
     }

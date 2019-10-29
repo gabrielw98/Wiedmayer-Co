@@ -6,6 +6,7 @@ target 'Wiedmayer & Co' do
   use_frameworks!
 
   # Pods for Wiedmayer & Co
+  pod "SimpleAnimation"
   pod 'DropDown'
   pod 'SCLAlertView'
   pod 'SendGrid-Swift'

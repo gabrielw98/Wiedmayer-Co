@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Parse
 import SCLAlertView
+import SimpleAnimation
 
 class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource {
 
@@ -28,6 +29,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     var attributeToEdit = ""
     var attributeType = ""
     var fromCreate = false
+    var originalValue = ""
     
     var tableViewFields = [["Price", "Square footage liveable", "Property Type"]]
     var attributeNames = [["Price", "Square footage liveable", "Property Type"]]
@@ -70,6 +72,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         var property = Property()
         if fromCreate {
             property = DataModel.newProperty
+            self.collectionView.isHidden = true
+            self.upperShadowLabel.isHidden = true
         } else {
             property = selectedProperty
             doneOutlet.isHidden = true
@@ -90,23 +94,48 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.layer.masksToBounds = true
         
         // image view
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        propertyImageView.isUserInteractionEnabled = true
-        propertyImageView.addGestureRecognizer(tapGestureRecognizer)
         self.propertyImageView.image = selectedProperty.image
         propertyImageView.backgroundColor = UIColor.white
         self.propertyImageView.image = property.image
         
+        // name / address labels
+        let nameTap = UITapGestureRecognizer(target: self, action:#selector(nameTapped(sender:)))
+        self.nameLabel.addGestureRecognizer(nameTap)
+        self.nameLabel.text = property.title
+        self.nameLabel.isUserInteractionEnabled = true
+        
+        let addressTap = UITapGestureRecognizer(target: self, action:#selector(addressTapped(sender:)))
+        self.addressLabel.text = property.address
+        self.addressLabel.addGestureRecognizer(addressTap)
+        self.addressLabel.isUserInteractionEnabled = true
+        
         // table view
         tableView.tableFooterView = UIView()
-        self.nameLabel.text = property.title
-        self.addressLabel.text = property.address
+        
         self.tableViewFields[0][0] = "Price: $" + property.price.withCommas()
         self.tableViewFields[0][1] = "Building Size: " + String(property.squareFootageLiveable.withCommas())
         self.tableViewFields[0][2] = "Property Type: " + property.propertyType
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()
+    }
+    
+    @objc func nameTapped(sender:UITapGestureRecognizer) {
+        if DataModel.adminStatus && self.collectionViewTitles[1] == "Cancel" {
+            self.attributeToEdit = "Title"
+            self.attributeType = "Title"
+            self.originalValue = self.nameLabel.text!
+            self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+        }
+    }
+    
+    @objc func addressTapped(sender:UITapGestureRecognizer) {
+        if DataModel.adminStatus && self.collectionViewTitles[1] == "Cancel" {
+            self.attributeToEdit = "Address"
+            self.attributeType = "Address"
+            self.originalValue = self.addressLabel.text!
+            self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
+        }
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -117,6 +146,8 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func editSelected() {
         if self.collectionViewTitles[1] == "Edit" {
             self.collectionViewTitles[1] = "Cancel"
+            self.addressLabel.shake(toward: .top, amount: 0.2, duration: 1.5, delay: 0.01)
+            self.nameLabel.shake(toward: .top, amount: 0.2, duration: 1.5, delay: 0.01)
             self.collectionView.reloadData()
             self.tableView.reloadData()
             //show edit symbols on the table view
@@ -206,6 +237,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             if DataModel.adminStatus {
                 self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
                 self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
+                self.originalValue = tableViewFields[indexPath.section][indexPath.row]
                 self.performSegue(withIdentifier: "showEditAttribute", sender: nil)
             }
         }
@@ -284,7 +316,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             targetVC.attributeToEdit = self.attributeToEdit
             targetVC.fromCreate = self.fromCreate
             print(self.attributeToEdit)
-            targetVC.originalValue = self.attributeToEdit
+            targetVC.originalValue = self.originalValue
             targetVC.attributeType = self.attributeType
             targetVC.selectedProperty = self.selectedProperty
             print("Segue: PropertiesVC -> PropertyDetailsVC")

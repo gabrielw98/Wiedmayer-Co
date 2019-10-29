@@ -47,6 +47,7 @@ class PropertyTypeVC: UIViewController, UITextFieldDelegate {
         dropDown.dataSource = propertyTypes
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.textField.text = item
+            DataModel.newProperty.propertyType = item
         }
         let filteredProperties = [propertyTypes[0], propertyTypes[1]]
         dropDown.dataSource = filteredProperties

@@ -61,7 +61,7 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
                 propertyToEdit.updateAttribute(attributeType: attributeToChangeKey, newValue: newValue!)
                 // TODO Update property field in backend
                 // use the property class to handle this backend code
-                
+                DataModel.propertyAttributeChanged = true
                 self.performSegue(withIdentifier: "propertyDetailsUnwind", sender: nil)
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
