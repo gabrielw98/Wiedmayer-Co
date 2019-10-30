@@ -32,10 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Notify user on login failure
     //*Login shake animation when input is invalid
     //*Add state and zipcode to the address
+    //*Add edit icon above "Name"
     
     /* IN PROGRESS */
-    // Add edit icon above "Name"
     // Search table view by name
+    // Don't show login screen on loading
     // Gracefully handle connectivity issues
     
     /* BACK LOG */
@@ -65,6 +66,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)]
         
         UITextField.appearance().tintColor = UIColor.darkGray
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+        window?.makeKeyAndVisible()
+        
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginSignUpVC")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
         return true
     }
 }

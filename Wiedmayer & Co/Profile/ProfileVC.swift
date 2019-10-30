@@ -112,7 +112,8 @@ class ProfileVC: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (action: UIAlertAction!) in
             DataModel.adminStatus = false
             PFUser.logOut()
-            self.performSegue(withIdentifier: "unwindProfileToRegistration", sender: nil)
+            //self.performSegue(withIdentifier: "unwindProfileToRegistration", sender: nil)
+            self.performSegue(withIdentifier: "logoutSegue", sender: nil)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -214,6 +215,13 @@ class ProfileVC: UIViewController {
     @objc func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         self.settingsAction(self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "logoutSegue" {
+            let targetVC = segue.destination as! RegistrationVC
+            targetVC.fromLogout = true
+        }
     }
     
     

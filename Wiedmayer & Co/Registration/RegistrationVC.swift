@@ -21,6 +21,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var confirmPasswordLabel: UILabel!
     @IBOutlet weak var confirmPasswordLine: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     
     @IBAction func submitLoginSignUpAction(_ sender: Any) {
@@ -62,9 +63,22 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
         textFieldDidChange()
     }
     
+    var fromLogout = false
+    
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() != nil {
             setupAdminStatus()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if fromLogout {
+            fromLogout = false
+            self.tabBarController?.tabBar.isHidden = true
+            self.navigationController?.navigationBar.isHidden = true
+            self.backgroundImageView.isUserInteractionEnabled = false
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+            
         }
     }
     

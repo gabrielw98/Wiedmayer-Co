@@ -24,6 +24,18 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var upperShadowLabel: UILabel!
     @IBOutlet weak var lowerShadowLabel: UILabel!
+    @IBOutlet weak var editNameAddressOutlet: UIButton!
+    
+    @IBAction func doneAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
+    }
+    
+    @IBAction func editNameAddressAction(_ sender: Any) {
+        // shake name and address
+        self.addressLabel.shake(toward: .bottom, amount: 0.075, duration:1, delay: 0.1)
+        self.nameLabel.shake(toward: .bottom, amount: 0.075, duration:1, delay: 0.1)
+    }
+    
     
     var selectedProperty = Property()
     var attributeToEdit = ""
@@ -42,11 +54,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         print("In PropertiesDetailsVC")
         setupUI()
     }
-    
-    @IBAction func doneAction(_ sender: Any) {
-        self.performSegue(withIdentifier: "propertiesUnwind", sender: nil)
-    }
-    
     
     @IBAction func propertyDetailsUnwind(segue: UIStoryboardSegue) {
         print("Updated", DataModel.newProperty.title)
@@ -103,6 +110,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.nameLabel.addGestureRecognizer(nameTap)
         self.nameLabel.text = property.title
         self.nameLabel.isUserInteractionEnabled = true
+        self.editNameAddressOutlet.isHidden = true
         
         let addressTap = UITapGestureRecognizer(target: self, action:#selector(addressTapped(sender:)))
         self.addressLabel.text = property.address
@@ -243,7 +251,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-
         cell.selectionStyle = .none
         cell.textLabel?.textColor = UIColor.darkGray
         if fromCreate {
@@ -258,6 +265,9 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             imageView.contentMode = .scaleAspectFit
             cell.accessoryView = imageView
             imageView.popIn()
+            self.editNameAddressOutlet.popIn()
+        } else {
+            self.editNameAddressOutlet.popOut()
         }
 
         return cell
