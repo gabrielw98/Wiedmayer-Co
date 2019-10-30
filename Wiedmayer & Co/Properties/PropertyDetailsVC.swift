@@ -146,8 +146,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func editSelected() {
         if self.collectionViewTitles[1] == "Edit" {
             self.collectionViewTitles[1] = "Cancel"
-            self.addressLabel.shake(toward: .top, amount: 0.2, duration: 1.5, delay: 0.01)
-            self.nameLabel.shake(toward: .top, amount: 0.2, duration: 1.5, delay: 0.01)
             self.collectionView.reloadData()
             self.tableView.reloadData()
             //show edit symbols on the table view
@@ -259,6 +257,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             imageView.image = UIImage(named: "cvEdit")
             imageView.contentMode = .scaleAspectFit
             cell.accessoryView = imageView
+            imageView.popIn()
         }
 
         return cell
@@ -294,6 +293,10 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         tapGestureRecognizer.accessibilityLabel = collectionViewTitles[indexPath.row]
         cell.imageView.isUserInteractionEnabled = true
         cell.imageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        if self.collectionViewTitles[1] == "Cancel" && indexPath.row == 1 {
+            cell.imageView.popIn()
+        }
         
         cell.titleLabel.text = collectionViewTitles[indexPath.row]
         return cell

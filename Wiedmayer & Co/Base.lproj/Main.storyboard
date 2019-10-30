@@ -524,15 +524,15 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwx-4j-R10">
-                                <rect key="frame" x="16" y="338" width="337" height="280"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwx-4j-R10">
+                                <rect key="frame" x="16" y="338" width="337" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="orv-Rq-JCl">
-                                <rect key="frame" x="16" y="338" width="343" height="280"/>
+                                <rect key="frame" x="16" y="338" width="343" height="266"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cki-Tj-4GK">
                                 <rect key="frame" x="0.0" y="553" width="375" height="65"/>
@@ -588,7 +588,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-CT-CI3">
-                                <rect key="frame" x="16" y="242" width="337" height="80"/>
+                                <rect key="frame" x="16" y="242" width="335" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s6F-vM-joD">
                                     <size key="itemSize" width="100" height="80"/>
@@ -641,7 +641,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                             <constraint firstItem="orv-Rq-JCl" firstAttribute="top" secondItem="ORG-Oc-TwT" secondAttribute="bottom" constant="52" id="AXa-gf-nrF"/>
                             <constraint firstItem="HRV-CT-CI3" firstAttribute="top" secondItem="uJH-qF-Na2" secondAttribute="top" id="AkN-X1-9Iz"/>
                             <constraint firstItem="ASW-gD-PB7" firstAttribute="bottom" secondItem="Cki-Tj-4GK" secondAttribute="bottom" id="BBH-YH-6QJ"/>
-                            <constraint firstItem="Cki-Tj-4GK" firstAttribute="top" secondItem="orv-Rq-JCl" secondAttribute="bottom" constant="-65" id="Efj-FX-aZQ"/>
+                            <constraint firstItem="Cki-Tj-4GK" firstAttribute="top" secondItem="orv-Rq-JCl" secondAttribute="bottom" constant="-51" id="Efj-FX-aZQ"/>
                             <constraint firstItem="ORG-Oc-TwT" firstAttribute="leading" secondItem="AzO-6u-eE0" secondAttribute="leading" id="Hvu-cU-36o"/>
                             <constraint firstItem="Cki-Tj-4GK" firstAttribute="bottom" secondItem="AzO-6u-eE0" secondAttribute="bottom" id="Kv8-PI-nXa"/>
                             <constraint firstItem="7eg-3M-HK3" firstAttribute="leading" secondItem="ZPs-Ir-7nT" secondAttribute="leading" id="LBN-nY-Xei"/>
@@ -655,13 +655,13 @@ Wiedmayer &amp; Co. moves with it.</string>
                             <constraint firstItem="orv-Rq-JCl" firstAttribute="top" secondItem="ZPs-Ir-7nT" secondAttribute="bottom" constant="155" id="ZSq-kt-ggZ"/>
                             <constraint firstItem="Ned-wc-HdD" firstAttribute="bottom" secondItem="ORG-Oc-TwT" secondAttribute="bottom" id="beX-aB-6dg"/>
                             <constraint firstItem="HRV-CT-CI3" firstAttribute="bottom" secondItem="uJH-qF-Na2" secondAttribute="bottom" id="dpS-9m-Iw6"/>
-                            <constraint firstItem="HRV-CT-CI3" firstAttribute="trailing" secondItem="uJH-qF-Na2" secondAttribute="trailing" constant="1" id="fkO-Qd-eW4"/>
+                            <constraint firstItem="HRV-CT-CI3" firstAttribute="trailing" secondItem="uJH-qF-Na2" secondAttribute="trailing" constant="-1" id="fkO-Qd-eW4"/>
                             <constraint firstItem="Ned-wc-HdD" firstAttribute="leading" secondItem="ORG-Oc-TwT" secondAttribute="leading" id="iDx-Jn-cJb"/>
                             <constraint firstItem="7eg-3M-HK3" firstAttribute="top" secondItem="AzO-6u-eE0" secondAttribute="top" constant="83" id="jP5-xh-7SL"/>
                             <constraint firstItem="Lwx-4j-R10" firstAttribute="top" secondItem="uJH-qF-Na2" secondAttribute="bottom" constant="16" id="jmJ-yU-MeR"/>
-                            <constraint firstItem="uJH-qF-Na2" firstAttribute="trailing" secondItem="Lwx-4j-R10" secondAttribute="trailing" constant="-1" id="jyD-jn-gdp"/>
+                            <constraint firstItem="uJH-qF-Na2" firstAttribute="trailing" secondItem="Lwx-4j-R10" secondAttribute="trailing" constant="1" id="jyD-jn-gdp"/>
                             <constraint firstItem="ASW-gD-PB7" firstAttribute="trailing" secondItem="Cki-Tj-4GK" secondAttribute="trailing" id="kDx-3x-76t"/>
-                            <constraint firstItem="Lwx-4j-R10" firstAttribute="baseline" secondItem="ASW-gD-PB7" secondAttribute="baseline" id="lgA-5Q-8HS"/>
+                            <constraint firstItem="Lwx-4j-R10" firstAttribute="baseline" secondItem="ASW-gD-PB7" secondAttribute="baseline" constant="-30" id="lgA-5Q-8HS"/>
                             <constraint firstItem="uJH-qF-Na2" firstAttribute="leading" secondItem="Hg4-OD-yc9" secondAttribute="leadingMargin" constant="7" id="pHt-dI-VvX"/>
                             <constraint firstItem="7eg-3M-HK3" firstAttribute="leading" secondItem="AzO-6u-eE0" secondAttribute="leading" constant="34" id="qHo-Xr-Qhe"/>
                         </constraints>

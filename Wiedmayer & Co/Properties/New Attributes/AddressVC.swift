@@ -23,27 +23,32 @@ class AddressVC: UIViewController, UITextFieldDelegate, MKLocalSearchCompleterDe
     override func viewDidLoad() {
         textField.delegate = self
         self.textField.addTarget(self, action: #selector(NameVC.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        print(DataModel.newProperty.title)
     }
     
     func setupDropDown() {
         searchCompleter.delegate = self
-        
         dropDown.anchorView = self.textField
-        //dropDown.bottomOffset = CGPoint(x: 0, y: 10)
         dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.dataSource = addresses
+        dropDown.width = self.textField.frame.width
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.textField.text = item
             DataModel.newProperty.address = item
+            let startPosition = self.textField.position(from: self.textField.beginningOfDocument, offset: 0)
+            let endPosition = self.textField.position(from: self.textField.beginningOfDocument, offset: 0)
+
+            if startPosition != nil && endPosition != nil {
+                self.textField.selectedTextRange = self.textField.textRange(from: startPosition!, to: endPosition!)
+            }
         }
     }
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         addresses.removeAll()
+        
         for i in 0..<3 {
             if i < completer.results.count {
-                addresses.append(completer.results[i].title)
+                addresses.append(completer.results[i].title + ", " + completer.results[i].subtitle)
             }
         }
         dropDown.dataSource = addresses

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Gabe Wilson. All rights reserved.
 //
 import UIKit
+import SimpleAnimation
 import Parse
 
 class RegistrationVC: UIViewController, UITextFieldDelegate {
@@ -140,7 +141,9 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
                 signUpErrorAlertView.view.tintColor = UIColor.darkGray
                 signUpErrorAlertView.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (action: UIAlertAction!) in
                 }))
+                self.submitLoginSignUpOutlet.shake(toward: .right, amount: 0.03, duration: 0.5, delay: 0)
                 self.present(signUpErrorAlertView, animated: true, completion: nil)
+                
             }
         })
     }
