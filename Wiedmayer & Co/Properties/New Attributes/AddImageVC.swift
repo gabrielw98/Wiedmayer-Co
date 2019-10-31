@@ -47,7 +47,25 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         } else if self.addActionOutlet.titleLabel?.text == "REVIEW" {
             print("Reviewing...")
             if DataModel.newProperty.isValid() {
-                self.performSegue(withIdentifier: "showReview", sender: nil)
+                print(connectedToNetwork())
+                if !connectedToNetwork() {
+                    let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                          switch action.style{
+                          case .default:
+                                print("default")
+                          case .cancel:
+                                print("cancel")
+                          case .destructive:
+                                print("destructive")
+                    }}))
+                    alert.view.tintColor = UIColor.darkGray
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                } else {
+                    self.performSegue(withIdentifier: "showReview", sender: nil)
+                }
+                
             } else {
                 
                 let alert = UIAlertController(title: "Notice", message: "Whoops! Your new property is missing: \(DataModel.newProperty.getMissingAttributes())", preferredStyle: .alert)

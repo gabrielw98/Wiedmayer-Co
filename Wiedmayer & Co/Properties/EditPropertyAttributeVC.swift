@@ -57,8 +57,23 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
                     attributeToChangeKey = "propertyType"
                     newValue = self.textField.text
                 }
-                
-                propertyToEdit.updateAttribute(attributeType: attributeToChangeKey, newValue: newValue!)
+                if !connectedToNetwork() {
+                    let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                          switch action.style{
+                          case .default:
+                                print("default")
+                          case .cancel:
+                                print("cancel")
+                          case .destructive:
+                                print("destructive")
+                    }}))
+                    alert.view.tintColor = UIColor.darkGray
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                } else {
+                    propertyToEdit.updateAttribute(attributeType: attributeToChangeKey, newValue: newValue!)
+                }
                 // TODO Update property field in backend
                 // use the property class to handle this backend code
                 DataModel.propertyAttributeChanged = true

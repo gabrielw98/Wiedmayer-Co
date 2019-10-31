@@ -8,6 +8,7 @@ PODS:
   - SCLAlertView (0.8)
   - SendGrid-Swift (0.1.2)
   - SimpleAnimation (0.4.2)
+  - SkeletonView (1.8.2)
   - WLEmptyState (3.1.0)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SendGrid-Swift
   - SimpleAnimation
+  - SkeletonView
   - WLEmptyState
 
 SPEC REPOS:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - SCLAlertView
     - SendGrid-Swift
     - SimpleAnimation
+    - SkeletonView
     - WLEmptyState
 
 SPEC CHECKSUMS:
@@ -35,8 +38,9 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SendGrid-Swift: ac2a563f564d95e9c8e069db337279b442bed67e
   SimpleAnimation: 5430010b9548f392e7459290acce01c9ceba7171
+  SkeletonView: bb27c39857e5492136f02ee8a3aa78de55d12ecd
   WLEmptyState: 2bbb3970f62c0b9252029d34a8f74cb3d436eeea
 
-PODFILE CHECKSUM: 9f3adb03d53804f98a7a990bc327603ab7b3db3b
+PODFILE CHECKSUM: eb9d753a58bc3334a3f2a2b14d1040f8ef9e2863
 
 COCOAPODS: 1.8.3

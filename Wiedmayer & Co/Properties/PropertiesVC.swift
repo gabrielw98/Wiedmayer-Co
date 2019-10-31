@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Parse
 import WLEmptyState
+import SkeletonView
 
 class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     
@@ -49,6 +50,9 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
                     }
                     self.tableView.reloadData()
                     DataModel.newProperty = Property()
+                } else {
+                    print("--NETWORK ERROR?--")
+                    print(error?.localizedDescription)
                 }
             }
         } else if segue.identifier == "propertyDeletedUnwind" {
@@ -73,7 +77,18 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     override func viewDidLoad() {
         print("In PropertiesVC")
         setupUI()
-        queryProperties()
+        //queryProperties()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        self.properties = DataModel.properties
+        self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView()
+        if self.properties.count == 0 { // Show empty set
+            self.tableView.emptyStateDataSource = self
+            self.tableView.reloadData()
+        }
     }
     
     func setupUI() {
@@ -143,7 +158,4 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
             print("Segue: PropertiesVC -> PropertyDetailsVC")
         }
     }
-    
-    
-
 }

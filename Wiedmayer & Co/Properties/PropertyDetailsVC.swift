@@ -217,9 +217,25 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.selectedProperty.image = img
                 if let imageData = img.jpegData(compressionQuality: 0.25) {
                     let file = PFFileObject(name: "img.png", data: imageData)
-                    selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
-                    selectedProperty.image = img
-                    DataModel.propertyImageChanged = true
+                    if !connectedToNetwork() {
+                        let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                              switch action.style{
+                              case .default:
+                                    print("default")
+                              case .cancel:
+                                    print("cancel")
+                              case .destructive:
+                                    print("destructive")
+                        }}))
+                        alert.view.tintColor = UIColor.darkGray
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    } else {
+                        selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                        selectedProperty.image = img
+                        DataModel.propertyImageChanged = true
+                    }
                 }
             }
             propertyImageView.image = img
@@ -230,7 +246,24 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.selectedProperty.image = img
                 if let imageData = img.jpegData(compressionQuality: 0.25) {
                     let file = PFFileObject(name: "img.png", data: imageData)
-                    selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                    if !connectedToNetwork() {
+                        let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+                              switch action.style{
+                              case .default:
+                                    print("default")
+                              case .cancel:
+                                    print("cancel")
+                              case .destructive:
+                                    print("destructive")
+                        }}))
+                        alert.view.tintColor = UIColor.darkGray
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    } else {
+                        selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                    }
+                    
                 }
             }
             propertyImageView.image = img

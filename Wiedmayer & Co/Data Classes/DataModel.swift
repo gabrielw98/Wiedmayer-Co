@@ -20,6 +20,8 @@ struct DataModel {
     
     static var propertyAttributeChanged = false
     
+    static var properties = [Property]()
+    
     
     
 }

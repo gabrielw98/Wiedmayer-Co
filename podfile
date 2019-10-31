@@ -1,4 +1,4 @@
-# Uncomment the next line to define a global platform for your project
+#Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
 target 'Wiedmayer & Co' do
@@ -6,7 +6,8 @@ target 'Wiedmayer & Co' do
   use_frameworks!
 
   # Pods for Wiedmayer & Co
-  pod "SimpleAnimation"
+  pod 'SkeletonView'
+  pod 'SimpleAnimation'
   pod 'DropDown'
   pod 'SCLAlertView'
   pod 'SendGrid-Swift'

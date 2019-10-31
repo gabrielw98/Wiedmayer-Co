@@ -33,18 +33,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Login shake animation when input is invalid
     //*Add state and zipcode to the address
     //*Add edit icon above "Name"
+    //*Don't show login screen on loading
     
     /* IN PROGRESS */
     // Search table view by name
-    // Don't show login screen on loading
     // Gracefully handle connectivity issues
+    // Potentially remove tab bar and replace with a fan menu
     
     /* BACK LOG */
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
-    // Potentially remove tab bar and replace with a fan menu
     // Create property image constraints
     // Address Dropdown scrollable
     // Edit Property Type add dropdown
+    // Refactor AppDelegate query and setup admin to launch vc
+    // Add Skeleton View
     
      var window: UIWindow?
 
@@ -71,18 +73,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         
-        if PFUser.current() != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginSignUpVC")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        }
+        queryProperties()
+        
         return true
+    }
+    
+    func setupAdminStatus() {
+        let query = PFQuery(className: "_User")
+        query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
+        query.getFirstObjectInBackground { (object, error) in
+            if (error != nil) {
+                print("CAPTURED NETWORK ERROR")
+            }
+            if object != nil {
+                if let adminStatus = object!["isAdmin"] {
+                    DataModel.adminStatus = adminStatus as! Bool
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
+        }
+    }
+    
+    func queryProperties() {
+        let query = PFQuery(className: "Property")
+        query.addDescendingOrder("createdAt")
+        query.limit = 100
+        let propertyRef = Property()
+        propertyRef.getProperties(query: query, completion: { (propertyObjects) in
+            DataModel.properties = propertyRef.orderByCreatedAtAscending(properties: propertyObjects)
+            if PFUser.current() != nil {
+                self.setupAdminStatus()
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginSignUpVC")
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+            }
+        })
     }
 }
 
