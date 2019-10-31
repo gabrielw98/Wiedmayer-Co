@@ -218,18 +218,12 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 if let imageData = img.jpegData(compressionQuality: 0.25) {
                     let file = PFFileObject(name: "img.png", data: imageData)
                     if !connectedToNetwork() {
-                        let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-                              switch action.style{
-                              case .default:
-                                    print("default")
-                              case .cancel:
-                                    print("cancel")
-                              case .destructive:
-                                    print("destructive")
-                        }}))
-                        alert.view.tintColor = UIColor.darkGray
-                        self.present(alert, animated: true, completion: nil)
+                        let appearance = SCLAlertView.SCLAppearance(kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!, kTextFont: UIFont(name: "HelveticaNeue", size: 14)!, kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!, showCloseButton: true)
+                        let alert = SCLAlertView(appearance: appearance)
+                        alert.showInfo("Notice", // Title of view
+                        subTitle: "You must connect to a wifi network", // String of view
+                        colorStyle: 0x434343,
+                        colorTextButton: 0xF9E4B7)
                         return
                     } else {
                         selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
@@ -247,18 +241,12 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 if let imageData = img.jpegData(compressionQuality: 0.25) {
                     let file = PFFileObject(name: "img.png", data: imageData)
                     if !connectedToNetwork() {
-                        let alert = UIAlertController(title: "Notice", message: "Whoops! You are not connected to the internet", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
-                              switch action.style{
-                              case .default:
-                                    print("default")
-                              case .cancel:
-                                    print("cancel")
-                              case .destructive:
-                                    print("destructive")
-                        }}))
-                        alert.view.tintColor = UIColor.darkGray
-                        self.present(alert, animated: true, completion: nil)
+                        let appearance = SCLAlertView.SCLAppearance(kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!, kTextFont: UIFont(name: "HelveticaNeue", size: 14)!, kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!, showCloseButton: true)
+                        let alert = SCLAlertView(appearance: appearance)
+                        alert.showInfo("Notice", // Title of view
+                        subTitle: "You must connect to a wifi network", // String of view
+                        colorStyle: 0x434343,
+                        colorTextButton: 0xF9E4B7)
                         return
                     } else {
                         selectedProperty.updateAttribute(attributeType: "image", newValue: file!)

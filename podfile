@@ -6,6 +6,7 @@ target 'Wiedmayer & Co' do
   use_frameworks!
 
   # Pods for Wiedmayer & Co
+  pod 'ReachabilitySwift'
   pod 'SkeletonView'
   pod 'SimpleAnimation'
   pod 'DropDown'

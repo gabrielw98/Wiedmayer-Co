@@ -12,10 +12,12 @@ import Parse
 import WLEmptyState
 import SkeletonView
 
-class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
+class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResultsUpdating {
     
     var selectedProperty = Property()
     var properties = [Property]()
+    var filteredProperties = [Property]()
+    var resultSearchController = UISearchController()
 
     @IBAction func createPropertyAction(_ sender: Any) {
         self.performSegue(withIdentifier: "showCreateAttributes", sender: nil)
@@ -77,7 +79,6 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     override func viewDidLoad() {
         print("In PropertiesVC")
         setupUI()
-        //queryProperties()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +93,22 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     }
     
     func setupUI() {
+        
+        
+        self.resultSearchController.searchBar.autocapitalizationType = .words
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
+        /*resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.searchBar.sizeToFit()
+            tableView.tableHeaderView = controller.searchBar
+            controller.searchBar.barTintColor = UIColor.darkGray
+            controller.searchBar.searchTextField.backgroundColor = UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)
+            return controller
+        })()*/
+        
         self.tableView.showsVerticalScrollIndicator = false
         if !(DataModel.adminStatus) {
             self.navigationItem.rightBarButtonItem = nil
@@ -115,19 +132,37 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return properties.count
+        var propertiesToShow = [Property]()
+        if (resultSearchController.isActive) {
+            propertiesToShow = filteredProperties
+        } else {
+            propertiesToShow = self.properties
+        }
+        return propertiesToShow.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var propertiesToShow = [Property]()
+        if (resultSearchController.isActive) {
+            propertiesToShow = filteredProperties
+        } else {
+            propertiesToShow = self.properties
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "propertyCell") as! PropertyTableViewCell
         cell.selectionStyle = .none
-        cell.titleLabel?.text = self.properties[indexPath.row].title
-        cell.propertyImageView.image = self.properties[indexPath.row].image
+        cell.titleLabel?.text = propertiesToShow[indexPath.row].title
+        cell.propertyImageView.image = propertiesToShow[indexPath.row].image
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedProperty = self.properties[indexPath.row]
+        var propertiesToShow = [Property]()
+        if (resultSearchController.isActive) {
+            propertiesToShow = filteredProperties
+        } else {
+            propertiesToShow = self.properties
+        }
+        self.selectedProperty = propertiesToShow[indexPath.row]
         self.performSegue(withIdentifier: "showPropertyDetails", sender: nil)
     }
     
@@ -149,6 +184,13 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource {
     func descriptionForEmptyDataSet() -> NSAttributedString {
         let title = NSAttributedString(string: "Click on the \"+\" button to create a new property.", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
         return title
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.filteredProperties = self.properties.filter {
+            $0.title.range(of: searchController.searchBar.text!, options: .caseInsensitive) != nil
+        }
+        self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co-framew
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework
 ${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework
 ${BUILT_PRODUCTS_DIR}/SendGrid-Swift/SendGrid_Swift.framework
 ${BUILT_PRODUCTS_DIR}/SimpleAnimation/SimpleAnimation.framework

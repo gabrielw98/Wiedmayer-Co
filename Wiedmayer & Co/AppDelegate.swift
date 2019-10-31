@@ -10,6 +10,8 @@ import UIKit
 import Parse
 import WLEmptyState
 import DropDown
+import Reachability
+import SCLAlertView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,11 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Add state and zipcode to the address
     //*Add edit icon above "Name"
     //*Don't show login screen on loading
+    //*Gracefully handle connectivity issues
     
     /* IN PROGRESS */
     // Search table view by name
-    // Gracefully handle connectivity issues
     // Potentially remove tab bar and replace with a fan menu
+    // Admin Verification send email to gabewils4
     
     /* BACK LOG */
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
@@ -48,9 +51,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Refactor AppDelegate query and setup admin to launch vc
     // Add Skeleton View
     
-     var window: UIWindow?
+    var window: UIWindow?
+    let reachability = try! Reachability()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        reachability.whenUnreachable = { _ in
+            print("Not reachable")
+        }
+
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do {
+          try reachability.startNotifier()
+        } catch {
+          print("could not start reachability notifier")
+        }
+        
         
         //Configure Parse client
         let configuration = ParseClientConfiguration {
@@ -76,6 +105,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queryProperties()
         
         return true
+    }
+    
+    @objc func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        switch reachability.connection {
+            case .wifi:
+                print("Reachable via WiFi")
+            case .cellular:
+                print("Reachable via Cellular")
+            case .unavailable:
+              print("Network not reachable")
+              let alertViewIcon = UIImage(named: "noWifi")
+              let appearance = SCLAlertView.SCLAppearance(kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!, kTextFont: UIFont(name: "HelveticaNeue", size: 14)!, kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!, showCloseButton: true)
+              let alert = SCLAlertView(appearance: appearance)
+              /*alert.showInfo("Notice", // Title of view
+              subTitle: "You must connect to a wifi network", // String of view
+              colorStyle: 0x434343,
+              colorTextButton: 0xF9E4B7)*/
+              alert.showInfo("Notice", subTitle: "You must connect to a wifi network", closeButtonTitle: "Done", timeout: .none, colorStyle: 0x434343, colorTextButton: 0xF9E4B7, circleIconImage: alertViewIcon, animationStyle: .topToBottom)
+            case .none:
+              print("none case")
+        }
     }
     
     func setupAdminStatus() {
