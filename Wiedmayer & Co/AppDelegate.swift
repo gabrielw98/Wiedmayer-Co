@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Search table view by name
     // Potentially remove tab bar and replace with a fan menu
     // Admin Verification send email to gabewils4
+    // Move search bar into navigation bar FB style.
     
     /* BACK LOG */
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed

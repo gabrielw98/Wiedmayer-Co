@@ -17,7 +17,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     var selectedProperty = Property()
     var properties = [Property]()
     var filteredProperties = [Property]()
-    var resultSearchController = UISearchController()
+    let searchController = UISearchController(searchResultsController: nil)
 
     @IBAction func createPropertyAction(_ sender: Any) {
         self.performSegue(withIdentifier: "showCreateAttributes", sender: nil)
@@ -93,21 +93,17 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func setupUI() {
+        self.tableView.backgroundColor = UIColor.gray
         
-        
-        self.resultSearchController.searchBar.autocapitalizationType = .words
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
-        
-        /*resultSearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.searchBar.sizeToFit()
-            tableView.tableHeaderView = controller.searchBar
-            controller.searchBar.barTintColor = UIColor.darkGray
-            controller.searchBar.searchTextField.backgroundColor = UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)
-            return controller
-        })()*/
+        // Search Controller
+        searchController.searchResultsUpdater = self
+        self.definesPresentationContext = true
+        // Place the search bar in the navigation item's title view.
+        self.navigationItem.titleView = searchController.searchBar
+        // Don't hide the navigation bar because the search bar is in it.
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.searchTextField.backgroundColor = UIColor.lightText
+        searchController.searchBar.autocapitalizationType = .words
         
         self.tableView.showsVerticalScrollIndicator = false
         if !(DataModel.adminStatus) {
@@ -133,7 +129,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var propertiesToShow = [Property]()
-        if (resultSearchController.isActive) {
+        if (searchController.isActive) {
             propertiesToShow = filteredProperties
         } else {
             propertiesToShow = self.properties
@@ -143,7 +139,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var propertiesToShow = [Property]()
-        if (resultSearchController.isActive) {
+        if (searchController.isActive) {
             propertiesToShow = filteredProperties
         } else {
             propertiesToShow = self.properties
@@ -157,7 +153,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var propertiesToShow = [Property]()
-        if (resultSearchController.isActive) {
+        if (searchController.isActive) {
             propertiesToShow = filteredProperties
         } else {
             propertiesToShow = self.properties
