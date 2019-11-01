@@ -93,7 +93,12 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func setupUI() {
-        self.tableView.backgroundColor = UIColor.gray
+        
+        // Refresh Controller
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)]
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Searching for new properties...", attributes: attributes)
+        self.refreshControl?.tintColor = UIColor(red: 249/255, green: 228/255, blue: 183/255, alpha: 1)
+        self.refreshControl?.addTarget(self, action: #selector(startRefresh), for: UIControl.Event.valueChanged)
         
         // Search Controller
         searchController.searchResultsUpdater = self
@@ -105,7 +110,11 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         searchController.searchBar.searchTextField.backgroundColor = UIColor.lightText
         searchController.searchBar.autocapitalizationType = .words
         
+        // Table View
+        self.tableView.backgroundColor = UIColor.gray
         self.tableView.showsVerticalScrollIndicator = false
+       
+        // Admin Status
         if !(DataModel.adminStatus) {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -187,6 +196,18 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             $0.title.range(of: searchController.searchBar.text!, options: .caseInsensitive) != nil
         }
         self.tableView.reloadData()
+    }
+    
+    @objc func startRefresh(sender:AnyObject) {
+        // First check core data
+        print("Refreshing...")
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
+        //self.queryProperties()
+    }
+    
+    @objc func endRefresh() {
+        print("End Refreshing...")
+        self.refreshControl?.endRefreshing()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
