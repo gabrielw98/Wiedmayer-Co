@@ -115,7 +115,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         self.tableView.showsVerticalScrollIndicator = false
        
         // Admin Status
-        if !(DataModel.adminStatus) {
+        if !(DataModel.isAdmin) {
             self.navigationItem.rightBarButtonItem = nil
         }
     }

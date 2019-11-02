@@ -430,6 +430,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                     <connections>
                         <outlet property="actionsView" destination="A6Z-T1-q5c" id="70R-Ai-CbM"/>
                         <outlet property="adminImageView" destination="1vs-UM-uuJ" id="n4T-tW-fRo"/>
+                        <outlet property="adminLabel" destination="BOG-hR-7c4" id="Jz3-BV-8Gq"/>
                         <outlet property="inviteImageView" destination="M6L-96-Q9C" id="UZD-BW-aCI"/>
                         <outlet property="settingsImageView" destination="Ebn-sO-oPU" id="jXl-oR-yyJ"/>
                         <segue destination="u7E-ZC-5F7" kind="unwind" identifier="unwindProfileToRegistration" unwindAction="registrationUnwindWithSegue:" id="4Up-qb-rrl"/>

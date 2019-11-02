@@ -94,7 +94,7 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
         query.getFirstObjectInBackground { (object, error) in
             if object != nil {
                 if let adminStatus = object!["isAdmin"] {
-                    DataModel.adminStatus = adminStatus as! Bool
+                    DataModel.isAdmin = adminStatus as! Bool
                 }
                 self.performSegue(withIdentifier: "showProperties", sender: nil)
             }

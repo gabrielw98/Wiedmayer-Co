@@ -14,14 +14,14 @@ struct DataModel {
     // New Property Data
     static var newProperty = Property()
 
-    static var adminStatus = false
+    static var isAdmin = false
+    
+    static var adminStatus = ""
     
     static var propertyImageChanged = false
     
     static var propertyAttributeChanged = false
     
     static var properties = [Property]()
-    
-    
     
 }

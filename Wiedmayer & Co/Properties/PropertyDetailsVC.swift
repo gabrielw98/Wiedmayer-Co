@@ -129,7 +129,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func nameTapped(sender:UITapGestureRecognizer) {
-        if DataModel.adminStatus && self.collectionViewTitles[1] == "Cancel" {
+        if DataModel.isAdmin && self.collectionViewTitles[1] == "Cancel" {
             self.attributeToEdit = "Title"
             self.attributeType = "Title"
             self.originalValue = self.nameLabel.text!
@@ -138,7 +138,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func addressTapped(sender:UITapGestureRecognizer) {
-        if DataModel.adminStatus && self.collectionViewTitles[1] == "Cancel" {
+        if DataModel.isAdmin && self.collectionViewTitles[1] == "Cancel" {
             self.attributeToEdit = "Address"
             self.attributeType = "Address"
             self.originalValue = self.addressLabel.text!
@@ -261,7 +261,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.collectionViewTitles[1] == "Cancel" {
-            if DataModel.adminStatus {
+            if DataModel.isAdmin {
                 self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
                 self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
                 self.originalValue = tableViewFields[indexPath.section][indexPath.row]

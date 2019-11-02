@@ -37,12 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Add edit icon above "Name"
     //*Don't show login screen on loading
     //*Gracefully handle connectivity issues
+    //*Move search bar into navigation bar FB style
     
     /* IN PROGRESS */
     // Search table view by name
     // Potentially remove tab bar and replace with a fan menu
     // Admin Verification send email to gabewils4
-    // Move search bar into navigation bar FB style.
+    // Core data
+    // Change email textfield to not capitalize or autocorrect
+    // Track request admin status
     
     /* BACK LOG */
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
@@ -120,10 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
               let alertViewIcon = UIImage(named: "noWifi")
               let appearance = SCLAlertView.SCLAppearance(kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!, kTextFont: UIFont(name: "HelveticaNeue", size: 14)!, kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!, showCloseButton: true)
               let alert = SCLAlertView(appearance: appearance)
-              /*alert.showInfo("Notice", // Title of view
-              subTitle: "You must connect to a wifi network", // String of view
-              colorStyle: 0x434343,
-              colorTextButton: 0xF9E4B7)*/
               alert.showInfo("Notice", subTitle: "You must connect to a wifi network", closeButtonTitle: "Done", timeout: .none, colorStyle: 0x434343, colorTextButton: 0xF9E4B7, circleIconImage: alertViewIcon, animationStyle: .topToBottom)
             case .none:
               print("none case")
@@ -138,8 +137,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("CAPTURED NETWORK ERROR")
             }
             if object != nil {
-                if let adminStatus = object!["isAdmin"] {
-                    DataModel.adminStatus = adminStatus as! Bool
+                if let isAdmin = object!["isAdmin"] {
+                    DataModel.isAdmin = isAdmin as! Bool
+                }
+                if let adminStatus = object!["adminStatus"] {
+                    DataModel.adminStatus = adminStatus as! String
                 }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
