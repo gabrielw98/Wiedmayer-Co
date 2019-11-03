@@ -141,6 +141,7 @@ class ProfileVC: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (action: UIAlertAction!) in
             DataModel.isAdmin = false
+            DataModel.adminStatus = ""
             PFUser.logOut()
             //self.performSegue(withIdentifier: "unwindProfileToRegistration", sender: nil)
             self.performSegue(withIdentifier: "logoutSegue", sender: nil)
@@ -212,6 +213,7 @@ class ProfileVC: UIViewController {
                             print("Text value: \(String(describing: txt.text))")
                             if txt.text == self.code {
                                 DataModel.isAdmin = true
+                                DataModel.adminStatus = "Verified"
                                 let CurrentUser = PFUser(withoutDataWithObjectId: PFUser.current()?.objectId)
                                 CurrentUser["isAdmin"] = true
                                 CurrentUser["adminStatus"] = "Verified"

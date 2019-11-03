@@ -38,14 +38,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Don't show login screen on loading
     //*Gracefully handle connectivity issues
     //*Move search bar into navigation bar FB style
+    //*Search table view by name
     
     /* IN PROGRESS */
-    // Search table view by name
-    // Potentially remove tab bar and replace with a fan menu
     // Admin Verification send email to gabewils4
     // Core data
     // Change email textfield to not capitalize or autocorrect
     // Track request admin status
+    // Add a image and description behind the table view when there is no data
+    // Change tableView bacground of properties to be a gray gradient
     
     /* BACK LOG */
     // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed

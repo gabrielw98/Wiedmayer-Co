@@ -63,17 +63,23 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func setupUI() {
         
         //collection view
-        self.collectionView.dataSource = self
-        self.collectionView.reloadData()
-        //Define Layout here
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        collectionView!.collectionViewLayout = layout
-        self.collectionView.layer.cornerRadius = 3
-        self.collectionView.layer.masksToBounds = true
+        if DataModel.adminStatus == "Verified" {
+            self.collectionView.dataSource = self
+            self.collectionView.reloadData()
+            //Define Layout here
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            layout.itemSize = CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height)
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            collectionView!.collectionViewLayout = layout
+            self.collectionView.layer.cornerRadius = 3
+            self.collectionView.layer.masksToBounds = true
+        } else {
+            self.collectionView.isHidden = true
+            self.upperShadowLabel.isHidden = true
+        }
+        
         
         // defining property
         var property = Property()
@@ -129,7 +135,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func nameTapped(sender:UITapGestureRecognizer) {
-        if DataModel.isAdmin && self.collectionViewTitles[1] == "Cancel" {
+        if DataModel.adminStatus == "Verified" && self.collectionViewTitles[1] == "Cancel" {
             self.attributeToEdit = "Title"
             self.attributeType = "Title"
             self.originalValue = self.nameLabel.text!
@@ -138,7 +144,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func addressTapped(sender:UITapGestureRecognizer) {
-        if DataModel.isAdmin && self.collectionViewTitles[1] == "Cancel" {
+        if DataModel.adminStatus == "Verified" && self.collectionViewTitles[1] == "Cancel" {
             self.attributeToEdit = "Address"
             self.attributeType = "Address"
             self.originalValue = self.addressLabel.text!
@@ -261,7 +267,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.collectionViewTitles[1] == "Cancel" {
-            if DataModel.isAdmin {
+            if DataModel.adminStatus == "Verified" {
                 self.attributeToEdit = tableViewFields[indexPath.section][indexPath.row]
                 self.attributeType = self.attributeNames[indexPath.section][indexPath.row]
                 self.originalValue = tableViewFields[indexPath.section][indexPath.row]

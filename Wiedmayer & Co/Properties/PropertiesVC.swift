@@ -109,13 +109,15 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.searchTextField.backgroundColor = UIColor.lightText
         searchController.searchBar.autocapitalizationType = .words
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.keyboardAppearance = UIKeyboardAppearance.dark
         
         // Table View
         self.tableView.backgroundColor = UIColor.gray
         self.tableView.showsVerticalScrollIndicator = false
        
         // Admin Status
-        if !(DataModel.isAdmin) {
+        if !(DataModel.adminStatus == "Verified") {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
@@ -192,6 +194,11 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text!.isEmpty {
+            filteredProperties = properties
+            self.tableView.reloadData()
+            return
+        }
         self.filteredProperties = self.properties.filter {
             $0.title.range(of: searchController.searchBar.text!, options: .caseInsensitive) != nil
         }
