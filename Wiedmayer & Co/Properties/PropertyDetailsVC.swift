@@ -55,6 +55,13 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if DataModel.adminStatusChanged {
+            DataModel.adminStatusChanged = false
+            setupUI()
+        }
+    }
+    
     @IBAction func propertyDetailsUnwind(segue: UIStoryboardSegue) {
         print("Updated", DataModel.newProperty.title)
         setupUI()

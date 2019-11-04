@@ -39,12 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Gracefully handle connectivity issues
     //*Move search bar into navigation bar FB style
     //*Search table view by name
+    //*Test each stage of admin verification process
     
     /* IN PROGRESS */
-    // Admin Verification send email to gabewils4
+    // Add push capabilities from back4app dashboard
     // Core data
-    // Change email textfield to not capitalize or autocorrect
-    // Track request admin status
     // Add a image and description behind the table view when there is no data
     // Change tableView bacground of properties to be a gray gradient
     

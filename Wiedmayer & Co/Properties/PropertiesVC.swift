@@ -18,7 +18,8 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     var properties = [Property]()
     var filteredProperties = [Property]()
     let searchController = UISearchController(searchResultsController: nil)
-
+    var newPropertyButton = UIBarButtonItem()
+    
     @IBAction func createPropertyAction(_ sender: Any) {
         self.performSegue(withIdentifier: "showCreateAttributes", sender: nil)
     }
@@ -74,6 +75,12 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             DataModel.propertyAttributeChanged = true
             self.tableView.reloadData()
         }
+        print("View Appeared", DataModel.adminStatusChanged)
+        if DataModel.adminStatusChanged {
+            DataModel.adminStatusChanged = false
+            print(DataModel.adminStatus, "status")
+            self.navigationItem.rightBarButtonItem = newPropertyButton
+        }
     }
     
     override func viewDidLoad() {
@@ -118,6 +125,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
        
         // Admin Status
         if !(DataModel.adminStatus == "Verified") {
+            newPropertyButton = self.navigationItem.rightBarButtonItem!
             self.navigationItem.rightBarButtonItem = nil
         }
     }

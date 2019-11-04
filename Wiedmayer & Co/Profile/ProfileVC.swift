@@ -86,7 +86,15 @@ class ProfileVC: UIViewController {
                 showCloseButton: true
             )
             let alert = SCLAlertView(appearance: appearance)
+            
+            // Alert Textfield
             let txt = alert.addTextField("Enter your work email")
+            txt.keyboardAppearance = .dark
+            txt.autocorrectionType = .no
+            txt.returnKeyType = .done
+            txt.keyboardType = .emailAddress
+            txt.autocapitalizationType = .none
+            
             alert.addButton("Send Code") {
                 print("Text value: \(String(describing: txt.text))")
                 let email = txt.text
@@ -206,14 +214,19 @@ class ProfileVC: UIViewController {
                         showCloseButton: true
                     )
                     DispatchQueue.main.async {
-                        //Do UI Code here.
                         let alert = SCLAlertView(appearance: appearance)
+                        
+                        // Alert Textfield
                         let txt = alert.addTextField("Enter the code")
+                        txt.keyboardAppearance = .dark
+                        txt.keyboardType = .numberPad
+                        
                         alert.addButton("Verify") {
                             print("Text value: \(String(describing: txt.text))")
                             if txt.text == self.code {
                                 DataModel.isAdmin = true
                                 DataModel.adminStatus = "Verified"
+                                DataModel.adminStatusChanged = true
                                 let CurrentUser = PFUser(withoutDataWithObjectId: PFUser.current()?.objectId)
                                 CurrentUser["isAdmin"] = true
                                 CurrentUser["adminStatus"] = "Verified"
