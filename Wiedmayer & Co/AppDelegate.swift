@@ -48,12 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Change tableView bacground of properties to be a gray gradient
     
     /* BACK LOG */
-    // Cache the properties in sql db so I dont have to retrieve them every time the app is opened and closed
     // Create property image constraints
     // Address Dropdown scrollable
     // Edit Property Type add dropdown
     // Refactor AppDelegate query and setup admin to launch vc
     // Add Skeleton View
+    // Force square images or exapnd to fill square
     
     var window: UIWindow?
     let reachability = try! Reachability()

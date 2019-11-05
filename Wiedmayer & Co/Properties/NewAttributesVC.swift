@@ -10,8 +10,6 @@ import UIKit
 
 class NewAttributesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    
-    
     enum PageViews: String {
         case firstPV
         case secondPV

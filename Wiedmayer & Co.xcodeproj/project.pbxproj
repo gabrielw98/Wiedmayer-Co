@@ -38,6 +38,8 @@
 		8C53A753236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */; };
 		8C85D6F9235B667700F9393F /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C85D6F8235B667700F9393F /* keys.plist */; };
 		8C93092D2369D65D0045CFF6 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C93092C2369D65D0045CFF6 /* LaunchVC.swift */; };
+		8CFCC3BF2370D6A0009D4426 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CFCC3BD2370D6A0009D4426 /* CoreData.xcdatamodeld */; };
+		8CFCC3C52370DB9A009D4426 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFCC3C42370DB9A009D4426 /* CoreDataManager.swift */; };
 		C6D68FEB4A41F91E26351715 /* Pods_Wiedmayer___CoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +100,8 @@
 		8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsActionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C85D6F8235B667700F9393F /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		8C93092C2369D65D0045CFF6 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
+		8CFCC3BE2370D6A0009D4426 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		8CFCC3C42370DB9A009D4426 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A188A6944C345E5EEAAFBE59 /* Pods-Wiedmayer & Co.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & Co.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & Co/Pods-Wiedmayer & Co.debug.xcconfig"; sourceTree = "<group>"; };
 		C4733660094205CED5D74647 /* Pods-Wiedmayer & CoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoTests.release.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoTests/Pods-Wiedmayer & CoTests.release.xcconfig"; sourceTree = "<group>"; };
 		C652C8AA6636DD1A47FFEA8F /* Pods_Wiedmayer___Co.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___Co.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,9 +229,11 @@
 		8C442FDB235292FC0054E6AD /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8CFCC3BD2370D6A0009D4426 /* CoreData.xcdatamodeld */,
 				8C442FD52352717A0054E6AD /* Utilities.swift */,
 				8C442FF123540E2D0054E6AD /* DataModel.swift */,
 				8C442FDC235293160054E6AD /* Property.swift */,
+				8CFCC3C42370DB9A009D4426 /* CoreDataManager.swift */,
 			);
 			path = "Data Classes";
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */,
 				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
 				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,
+				8CFCC3C52370DB9A009D4426 /* CoreDataManager.swift in Sources */,
 				8C53A751236023EB002928C0 /* ReportVC.swift in Sources */,
 				8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */,
 				8C442FF0235401680054E6AD /* AddImageVC.swift in Sources */,
@@ -525,6 +532,7 @@
 				8C442FF223540E2D0054E6AD /* DataModel.swift in Sources */,
 				8C442FF7235411950054E6AD /* AddressVC.swift in Sources */,
 				8C442FDA235291A50054E6AD /* PropertyDetailsVC.swift in Sources */,
+				8CFCC3BF2370D6A0009D4426 /* CoreData.xcdatamodeld in Sources */,
 				8C93092D2369D65D0045CFF6 /* LaunchVC.swift in Sources */,
 				8C442FEC2353AF770054E6AD /* NewAttributesVC.swift in Sources */,
 				8C442FD823528C940054E6AD /* PropertiesVC.swift in Sources */,
@@ -866,6 +874,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8CFCC3BD2370D6A0009D4426 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8CFCC3BE2370D6A0009D4426 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 8CFCC3BE2370D6A0009D4426 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8C442F8E235253530054E6AD /* Project object */;
 }

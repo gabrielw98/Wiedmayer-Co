@@ -11,6 +11,7 @@ import UIKit
 import Parse
 import WLEmptyState
 import SkeletonView
+import CoreData
 
 class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResultsUpdating {
     
@@ -42,6 +43,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             
             NewProperty.saveInBackground { (success, error) in
                 if success {
+                    
                     print("Success: New Property Saved")
                     print(NewProperty.objectId!)
                     DataModel.newProperty.objectId = NewProperty.objectId!
@@ -86,6 +88,17 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     override func viewDidLoad() {
         print("In PropertiesVC")
         setupUI()
+        //createPropertyTest()
+    }
+    
+    func createPropertyTest() {
+        let newProperty = Property()
+        newProperty.title = "Test"
+        CoreDataManager.shared.save()
+    }
+    
+    func getProperty() {
+        guard let properties = try! CoreDataManager.shared.context.fetch(NSFetchRequest<Property>(entityName: "Property")) as? [Property] else { return }
     }
     
     override func viewWillAppear(_ animated: Bool) {

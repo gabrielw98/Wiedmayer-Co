@@ -9,22 +9,24 @@
 import Foundation
 import UIKit
 import Parse
+import CoreData
 
-class Property {
-    var title: String
-    var price: Int
-    var squareFootageLiveable: Int
-    var propertyType: String
-    var address: String
-    var image: UIImage
-    var createdAt: Date
-    var objectId: String
+class Property: NSManagedObject {
+    var title = ""
+    var price = 0
+    var squareFootageLiveable = 0
+    var propertyType = ""
+    var address = ""
+    var image = UIImage()
+    var createdAt = Date()
+    var objectId = ""
     
     // array of properties returned from the query
     var properties = [Property]()
     
     //Empty constructor
-    init() {
+    /*convenience override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext!) {
+        self.init(entity: entity, insertInto: context)
         self.title = ""
         self.price = 0
         self.squareFootageLiveable = 0
@@ -33,7 +35,7 @@ class Property {
         self.image = UIImage()
         self.createdAt = Date()
         self.objectId = ""
-    }
+    }*/
     
     func getMissingAttributes() -> [String] {
         var missingAttributes = [String]()
@@ -60,7 +62,8 @@ class Property {
     }
     
     //Constructor with all params provided
-    init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , propertyType: String, address: String, image: UIImage, createdAt: Date) {
+    convenience init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , propertyType: String, address: String, image: UIImage, createdAt: Date) {
+        self.init()
         self.title = title
         self.price = price
         self.squareFootageLiveable = squareFootageLiveable
