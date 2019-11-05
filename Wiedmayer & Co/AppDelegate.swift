@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Move search bar into navigation bar FB style
     //*Search table view by name
     //*Test each stage of admin verification process
+    //*Core Data Fetch
     
     /* IN PROGRESS */
     // Add push capabilities from back4app dashboard
