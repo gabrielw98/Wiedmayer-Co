@@ -12,6 +12,7 @@ import WLEmptyState
 import DropDown
 import Reachability
 import SCLAlertView
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -109,6 +110,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queryProperties()
         
         return true
+    }
+    
+    private func createRecordForEntity(_ entity: String, inManagedObjectContext managedObjectContext: NSManagedObjectContext) -> NSManagedObject? {
+        // Helpers
+        var result: NSManagedObject?
+
+        // Create Entity Description
+        let entityDescription = NSEntityDescription.entity(forEntityName: entity, in: managedObjectContext)
+
+        if let entityDescription = entityDescription {
+            // Create Managed Object
+            result = NSManagedObject(entity: entityDescription, insertInto: managedObjectContext)
+        }
+
+        return result
     }
     
     @objc func reachabilityChanged(note: Notification) {

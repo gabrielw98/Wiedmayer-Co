@@ -24,7 +24,7 @@ class SquareFootageLiveableVC: UIViewController, UITextFieldDelegate {
             if text.isEmpty {
                 DataModel.newProperty.squareFootageLiveable = 0
             } else {
-                DataModel.newProperty.squareFootageLiveable = Int(text)!
+                DataModel.newProperty.squareFootageLiveable = Int64(Int(text)!)
             }
         }
     }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		49A7C4A2FE7F27B5A7FB6E79 /* Pods_Wiedmayer___CoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B052023F5DE01F575A8D1E7 /* Pods_Wiedmayer___CoUITests.framework */; };
 		810D59CD0484F64EC18720DC /* Pods_Wiedmayer___Co.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C652C8AA6636DD1A47FFEA8F /* Pods_Wiedmayer___Co.framework */; };
+		8C1C0BA023712EAA00AF5059 /* Property+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C0B9E23712EAA00AF5059 /* Property+CoreDataClass.swift */; };
+		8C1C0BA123712EAA00AF5059 /* Property+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C0B9F23712EAA00AF5059 /* Property+CoreDataProperties.swift */; };
 		8C442F9A235253530054E6AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442F99235253530054E6AD /* AppDelegate.swift */; };
 		8C442FA0235253550054E6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C442F9F235253550054E6AD /* Assets.xcassets */; };
 		8C442FA3235253550054E6AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C442FA2235253550054E6AD /* Preview Assets.xcassets */; };
@@ -20,7 +22,6 @@
 		8C442FD62352717A0054E6AD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD52352717A0054E6AD /* Utilities.swift */; };
 		8C442FD823528C940054E6AD /* PropertiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD723528C940054E6AD /* PropertiesVC.swift */; };
 		8C442FDA235291A50054E6AD /* PropertyDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FD9235291A50054E6AD /* PropertyDetailsVC.swift */; };
-		8C442FDD235293160054E6AD /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FDC235293160054E6AD /* Property.swift */; };
 		8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FDF2352AE410054E6AD /* PropertyTableViewCell.swift */; };
 		8C442FE22352B7050054E6AD /* EditPropertyAttributeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FE12352B7050054E6AD /* EditPropertyAttributeVC.swift */; };
 		8C442FE42352BCFC0054E6AD /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FE32352BCFC0054E6AD /* ProfileVC.swift */; };
@@ -65,6 +66,8 @@
 		4735EB6F901A6EAC5EF19765 /* Pods-Wiedmayer & CoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wiedmayer & CoTests.debug.xcconfig"; path = "Target Support Files/Pods-Wiedmayer & CoTests/Pods-Wiedmayer & CoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5EEFF0039AB0AC320C9676B0 /* Pods_Wiedmayer___CoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___CoTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B052023F5DE01F575A8D1E7 /* Pods_Wiedmayer___CoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Wiedmayer___CoUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C1C0B9E23712EAA00AF5059 /* Property+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Property+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C1C0B9F23712EAA00AF5059 /* Property+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Property+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C442F96235253530054E6AD /* Wiedmayer & Co.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wiedmayer & Co.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C442F99235253530054E6AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C442F9F235253550054E6AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,7 +85,6 @@
 		8C442FD52352717A0054E6AD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8C442FD723528C940054E6AD /* PropertiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesVC.swift; sourceTree = "<group>"; };
 		8C442FD9235291A50054E6AD /* PropertyDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsVC.swift; sourceTree = "<group>"; };
-		8C442FDC235293160054E6AD /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		8C442FDF2352AE410054E6AD /* PropertyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTableViewCell.swift; sourceTree = "<group>"; };
 		8C442FE12352B7050054E6AD /* EditPropertyAttributeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertyAttributeVC.swift; sourceTree = "<group>"; };
 		8C442FE32352BCFC0054E6AD /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -229,10 +231,11 @@
 		8C442FDB235292FC0054E6AD /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C1C0B9E23712EAA00AF5059 /* Property+CoreDataClass.swift */,
+				8C1C0B9F23712EAA00AF5059 /* Property+CoreDataProperties.swift */,
 				8CFCC3BD2370D6A0009D4426 /* CoreData.xcdatamodeld */,
 				8C442FD52352717A0054E6AD /* Utilities.swift */,
 				8C442FF123540E2D0054E6AD /* DataModel.swift */,
-				8C442FDC235293160054E6AD /* Property.swift */,
 				8CFCC3C42370DB9A009D4426 /* CoreDataManager.swift */,
 			);
 			path = "Data Classes";
@@ -520,6 +523,8 @@
 				8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */,
 				8C442FFD235411DE0054E6AD /* PropertyTypeVC.swift in Sources */,
 				8C442FFB235411CB0054E6AD /* SquareFootageLiveable.swift in Sources */,
+				8C1C0BA123712EAA00AF5059 /* Property+CoreDataProperties.swift in Sources */,
+				8C1C0BA023712EAA00AF5059 /* Property+CoreDataClass.swift in Sources */,
 				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
 				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,
 				8CFCC3C52370DB9A009D4426 /* CoreDataManager.swift in Sources */,
@@ -527,7 +532,6 @@
 				8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */,
 				8C442FF0235401680054E6AD /* AddImageVC.swift in Sources */,
 				8C442FEE2353B1210054E6AD /* CreateAttributesVC.swift in Sources */,
-				8C442FDD235293160054E6AD /* Property.swift in Sources */,
 				8C442FE42352BCFC0054E6AD /* ProfileVC.swift in Sources */,
 				8C442FF223540E2D0054E6AD /* DataModel.swift in Sources */,
 				8C442FF7235411950054E6AD /* AddressVC.swift in Sources */,

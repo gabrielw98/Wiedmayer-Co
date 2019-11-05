@@ -1,41 +1,24 @@
 //
-//  Property.swift
+//  Property+CoreDataClass.swift
 //  Wiedmayer & Co
 //
-//  Created by Gabe Wilson on 10/12/19.
+//  Created by Gabe Wilson on 11/4/19.
 //  Copyright © 2019 Gabe Wilson. All rights reserved.
 //
-/*
+//
+
 import Foundation
 import UIKit
 import Parse
 import CoreData
 
-class Property: NSManagedObject {
-    var title = ""
-    var price = 0
-    var squareFootageLiveable = 0
-    var propertyType = ""
-    var address = ""
+
+public class Property: NSManagedObject {
+    
     var image = UIImage()
-    var createdAt = Date()
-    var objectId = ""
     
     // array of properties returned from the query
     var properties = [Property]()
-    
-    //Empty constructor
-    convenience override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext!) {
-        self.init(entity: entity, insertInto: context)
-        self.title = ""
-        self.price = 0
-        self.squareFootageLiveable = 0
-        self.propertyType = ""
-        self.address = ""
-        self.image = UIImage()
-        self.createdAt = Date()
-        self.objectId = ""
-    }
     
     func getMissingAttributes() -> [String] {
         var missingAttributes = [String]()
@@ -65,11 +48,11 @@ class Property: NSManagedObject {
     convenience init(objectId: String, title: String, price: Int, squareFootageLiveable: Int , propertyType: String, address: String, image: UIImage, createdAt: Date) {
         self.init()
         self.title = title
-        self.price = price
-        self.squareFootageLiveable = squareFootageLiveable
+        self.price = Int64(price)
+        self.squareFootageLiveable = Int64(squareFootageLiveable)
         self.propertyType = propertyType
         self.address = address
-        self.image = image
+        self.imageData = image.pngData()
         self.createdAt = createdAt
         self.objectId = objectId
     }
@@ -86,7 +69,7 @@ class Property: NSManagedObject {
     }
     
     func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
-        return properties.sorted(by: { $0.createdAt.compare($1.createdAt as Date) == ComparisonResult.orderedDescending })
+        return properties.sorted(by: { $0.createdAt!.compare($1.createdAt as! Date) == ComparisonResult.orderedDescending })
     }
     
     func deleteFromParse() {
@@ -96,6 +79,57 @@ class Property: NSManagedObject {
             } else {
                 print(error?.localizedDescription)
             }
+        }
+    }
+    
+    func savePropertyToCoreData(objectId: String, address: String, title: String, price: Int64, squareFootageLiveable: Int64, propertyType: String, imageData: Data, createdAt: Date, image: UIImage) -> Property {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Property", in: context)
+        let newProperty = NSManagedObject(entity: entity!, insertInto: context) as! Property
+        newProperty.objectId = objectId
+        newProperty.address = address
+        newProperty.title = title
+        newProperty.price = price
+        newProperty.squareFootageLiveable = squareFootageLiveable
+        newProperty.propertyType = propertyType
+        newProperty.imageData = imageData
+        newProperty.createdAt = createdAt
+        newProperty.image = image
+        
+        /*do {
+           try context.save()
+          } catch {
+           print("Error: Failed Saving Property To Core Data")
+        }*/
+        return newProperty
+    }
+    
+    func deletePropertiesFromCoreData() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+            print("Error:", error)
+        }
+    }
+    
+    func fetchPropertiesFromCoreData() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            print(result.count)
+            for data in result as! [NSManagedObject] {
+                print("Fetched...")
+                print(data.value(forKey: "title") as! String)
+          }
+        } catch {
+            print("Failed")
         }
     }
     
@@ -116,13 +150,15 @@ class Property: NSManagedObject {
                                 if let finalimage = UIImage(data: imageData!) {
                                     let title = object["title"] as! String
                                     print(title)
-                                    let price = object["price"] as! Int
-                                    let squareFootageLiveable = object["squareFootageLiveable"] as! Int
+                                    let price = Int64(object["price"] as! Int)
+                                    let squareFootageLiveable = Int64(object["squareFootageLiveable"] as! Int)
                                     let propertyType = object["propertyType"] as! String
                                     let address = object["address"] as! String
                                     let createdAt = object.createdAt!
-                                    let property = Property(objectId: object.objectId!, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, address: address, image: UIImage(), createdAt: createdAt)
-                                    property.image = finalimage
+                                    
+                                    let property = self.savePropertyToCoreData(objectId: object.objectId!, address: address, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, imageData: imageData!, createdAt: createdAt, image: finalimage)
+                                    
+                                    //property.imageData = finalimage.pngData()
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {
                                         print(self.properties.count)
@@ -136,5 +172,5 @@ class Property: NSManagedObject {
             }
         }
     }
+
 }
-*/

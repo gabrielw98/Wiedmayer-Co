@@ -46,11 +46,11 @@ class EditPropertyAttributeVC: UIViewController, UITextFieldDelegate {
                     attributeToChangeKey = "address"
                 } else if self.attributeType == "Price" {
                     //TODO change keyboard types
-                    propertyToEdit.price = Int(self.textField.text!)!
+                    propertyToEdit.price = Int64(Int(self.textField.text!)!)
                     attributeToChangeKey = "price"
                     newValue = Int(self.textField.text!)!
                 } else if self.attributeType == "Square footage liveable" {
-                    propertyToEdit.squareFootageLiveable = Int(self.textField.text!)!
+                    propertyToEdit.squareFootageLiveable = Int64(Int(self.textField.text!)!)
                     attributeToChangeKey = "squareFootageLiveable"
                     newValue = Int(self.textField.text!)!
                 } else if self.attributeType == "Property Type" {

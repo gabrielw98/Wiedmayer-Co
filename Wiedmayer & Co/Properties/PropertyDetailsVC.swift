@@ -133,9 +133,9 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         // table view
         tableView.tableFooterView = UIView()
         
-        self.tableViewFields[0][0] = "Price: $" + property.price.withCommas()
-        self.tableViewFields[0][1] = "Building Size: " + String(property.squareFootageLiveable.withCommas())
-        self.tableViewFields[0][2] = "Property Type: " + property.propertyType
+        self.tableViewFields[0][0] = "Price: $" + Int(property.price).withCommas()
+        self.tableViewFields[0][1] = "Building Size: " + String(Int(property.squareFootageLiveable).withCommas())
+        self.tableViewFields[0][2] = "Property Type: " + property.propertyType!
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.reloadData()

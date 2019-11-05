@@ -24,7 +24,7 @@ class PriceVC: UIViewController, UITextFieldDelegate {
             if text.isEmpty {
                 DataModel.newProperty.price = 0
             } else {
-                DataModel.newProperty.price = Int(text)!
+                DataModel.newProperty.price = Int64(Int(text)!)
             }
         }
     }

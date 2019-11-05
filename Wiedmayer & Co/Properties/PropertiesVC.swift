@@ -77,7 +77,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             DataModel.propertyAttributeChanged = true
             self.tableView.reloadData()
         }
-        print("View Appeared", DataModel.adminStatusChanged)
+        
         if DataModel.adminStatusChanged {
             DataModel.adminStatusChanged = false
             print(DataModel.adminStatus, "status")
@@ -92,9 +92,14 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func createPropertyTest() {
-        let newProperty = Property()
-        newProperty.title = "Test"
-        CoreDataManager.shared.save()
+        
+        //let managedObjectContext = CoreDataManager.shared.context
+        //let entity = NSEntityDescription.entity(forEntityName: "Property", in: managedObjectContext)
+        
+        /*print(entity == nil)
+        print(managedObjectContext == nil)
+        let newProperty = Property(entity: entity!, insertInto: managedObjectContext)
+        CoreDataManager.shared.save()*/
     }
     
     func getProperty() {
@@ -141,6 +146,11 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             newPropertyButton = self.navigationItem.rightBarButtonItem!
             self.navigationItem.rightBarButtonItem = nil
         }
+        
+        print("Trying to fetch")
+        let propertyRef = Property()
+        propertyRef.fetchPropertiesFromCoreData()
+        //propertyRef.deletePropertiesFromCoreData()
     }
     
     func queryProperties() {
@@ -221,7 +231,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             return
         }
         self.filteredProperties = self.properties.filter {
-            $0.title.range(of: searchController.searchBar.text!, options: .caseInsensitive) != nil
+            $0.title!.range(of: searchController.searchBar.text!, options: .caseInsensitive) != nil
         }
         self.tableView.reloadData()
     }
