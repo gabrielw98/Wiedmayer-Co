@@ -57,10 +57,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Add Skeleton View
     // Force square images or exapnd to fill square
     
+    // Core Data Story
+    // When the user opens the app, check core data for user in core data
+    // If user does NOT exist, query all properties then save new user with current timestamp
+    // If user exists, check time stamp, pull Properties createdAt later than timestamp (if any), fetch properties already in  core data. Save new properties to core data. Show new properties + fetched properties.
+    
+    
     var window: UIWindow?
     let reachability = try! Reachability()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        
+        
+        let user = User(context: CoreDataManager.shared.persistentContainer.viewContext)
+        user.deleteUserFromCoreData()
+        //user.isNewUser()
+        /*if (user.isNewUser()) {
+            print("new user")
+            // Query properties
+            // Save New user with time stamp
+        } else {
+            
+        }*/
         
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
