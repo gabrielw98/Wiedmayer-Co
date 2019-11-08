@@ -117,20 +117,25 @@ public class Property: NSManagedObject {
         }
     }
     
-    func fetchPropertiesFromCoreData() {
+    func fetchPropertiesFromCoreData() -> [Property] {
+        var fetchedProperties = [Property]()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
             print(result.count)
-            for data in result as! [NSManagedObject] {
+            for property in result as! [Property] {
                 print("Fetched...")
-                print(data.value(forKey: "title") as! String)
-          }
+                property.image = UIImage(data: property.imageData!)!
+                fetchedProperties.append(property)
+            }
+            fetchedProperties = result as! [Property]
+            return fetchedProperties
         } catch {
             print("Failed")
         }
+        return fetchedProperties
     }
     
     func getProperties(query: PFQuery<PFObject>, completion: @escaping (_ result: [Property])->()) {
@@ -140,6 +145,8 @@ public class Property: NSManagedObject {
                 print("Error: " + error.localizedDescription)
             } else {
                 if objects?.count == 0 || objects?.count == nil {
+                    print("No new objects")
+                    completion(self.properties)
                     return
                 }
                 for object in objects! {

@@ -68,19 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        
-        
-        let user = User(context: CoreDataManager.shared.persistentContainer.viewContext)
-        user.deleteUserFromCoreData()
-        //user.isNewUser()
-        /*if (user.isNewUser()) {
-            print("new user")
-            // Query properties
-            // Save New user with time stamp
-        } else {
-            
-        }*/
-        
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
                 print("Reachable via WiFi")
@@ -127,7 +114,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         
-        queryProperties()
+        let userRef = User()
+        //userRef.deleteUserFromCoreData()
+        if (userRef.isNewUser()) {
+            print("new user")
+            queryNewProperties()
+            userRef.saveUserToCoreData()
+            userRef.isNewUser()
+            // Query properties
+            // Save New user with time stamp
+        } else {
+            print("no new user")
+            // replace queryProperties() with fetch and query with timestamp
+            let propertyRef = Property()
+            print("fetching core data properties")
+            let fetchedProperties = propertyRef.fetchPropertiesFromCoreData()
+            print(fetchedProperties.count, "fetched count")
+            DataModel.properties = fetchedProperties
+            queryNewProperties()
+        }
         
         return true
     }
@@ -187,13 +192,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func queryProperties() {
+    func queryNewProperties() {
         let query = PFQuery(className: "Property")
         query.addDescendingOrder("createdAt")
+        query.whereKey("createdAt", greaterThan: Date())
         query.limit = 100
         let propertyRef = Property()
         propertyRef.getProperties(query: query, completion: { (propertyObjects) in
-            DataModel.properties = propertyRef.orderByCreatedAtAscending(properties: propertyObjects)
+            DataModel.properties.insert(contentsOf: propertyRef.orderByCreatedAtAscending(properties: propertyObjects), at: 0)
             if PFUser.current() != nil {
                 self.setupAdminStatus()
             } else {

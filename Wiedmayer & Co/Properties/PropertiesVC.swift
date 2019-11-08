@@ -146,11 +146,6 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             newPropertyButton = self.navigationItem.rightBarButtonItem!
             self.navigationItem.rightBarButtonItem = nil
         }
-        
-        print("Trying to fetch")
-        let propertyRef = Property()
-        propertyRef.fetchPropertiesFromCoreData()
-        //propertyRef.deletePropertiesFromCoreData()
     }
     
     func queryProperties() {

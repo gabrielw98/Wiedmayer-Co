@@ -34,19 +34,33 @@ public class User: NSManagedObject {
     
     func deleteUserFromCoreData() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         let context = CoreDataManager.shared.context
 
-        do {
-            print("deleted this...")
-            try context.execute(deleteRequest)
-        } catch let error as NSError {
-            // TODO: handle the error
-            print("Error:", error)
+        if let result = try? context.fetch(fetchRequest) {
+            for object in result {
+                context.delete(object as! NSManagedObject)
+            }
         }
         self.isNewUser()
     }
 
+    func updateLastQuery() {
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+
+        // Helpers
+        var result = [NSManagedObject]()
+
+        do {
+            // Execute Fetch Request
+            let records = try? CoreDataManager.shared.context.fetch(fetchRequest)
+
+            if let records = records as? [NSManagedObject] {
+                result = records
+                result[0].setValue(Date(), forKey: "lastQuery")
+            }
+        }
+    }
     
     func saveUserToCoreData() -> User {
         let context = CoreDataManager.shared.context
@@ -58,11 +72,11 @@ public class User: NSManagedObject {
         to: Date())
         newUser.lastQuery = lastYear
         
-        /*do {
+        do {
            try context.save()
           } catch {
            print("Error: Failed Saving Property To Core Data")
-        }*/
+        }
         return newUser
     }
 }
