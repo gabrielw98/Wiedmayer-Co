@@ -62,6 +62,23 @@ public class User: NSManagedObject {
         }
     }
     
+    func fetchLastQueryTimestamp() -> Date {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+
+        // Helpers
+        var result = [NSManagedObject]()
+
+        do {
+            // Execute Fetch Request
+            let records = try? CoreDataManager.shared.context.fetch(fetchRequest)
+
+            if let records = records as? [User] {
+                return records[0].lastQuery!
+            }
+        }
+        return Date()
+    }
+    
     func saveUserToCoreData() -> User {
         let context = CoreDataManager.shared.context
         let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
@@ -73,6 +90,7 @@ public class User: NSManagedObject {
         newUser.lastQuery = lastYear
         
         do {
+            print("saving new user")
            try context.save()
           } catch {
            print("Error: Failed Saving Property To Core Data")

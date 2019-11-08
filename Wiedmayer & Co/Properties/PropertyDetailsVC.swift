@@ -37,7 +37,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     
-    var selectedProperty = Property()
+    var selectedProperty = Property(context: CoreDataManager.shared.context)
     var attributeToEdit = ""
     var attributeType = ""
     var fromCreate = false
@@ -63,7 +63,6 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func propertyDetailsUnwind(segue: UIStoryboardSegue) {
-        print("Updated", DataModel.newProperty.title)
         setupUI()
     }
     

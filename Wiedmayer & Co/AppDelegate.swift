@@ -62,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If user does NOT exist, query all properties then save new user with current timestamp
     // If user exists, check time stamp, pull Properties createdAt later than timestamp (if any), fetch properties already in  core data. Save new properties to core data. Show new properties + fetched properties.
     
+    // reset timestamp
+    // query properties
+    
     
     var window: UIWindow?
     let reachability = try! Reachability()
@@ -115,10 +118,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let userRef = User()
+        var lastQuery = userRef.fetchLastQueryTimestamp()
+        //propertyRef.deletePropertiesFromCoreData()
         //userRef.deleteUserFromCoreData()
+        
         if (userRef.isNewUser()) {
             print("new user")
-            queryNewProperties()
+            queryNewProperties(timestamp: lastQuery)
             userRef.saveUserToCoreData()
             userRef.isNewUser()
             // Query properties
@@ -127,11 +133,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("no new user")
             // replace queryProperties() with fetch and query with timestamp
             let propertyRef = Property()
+            //
             print("fetching core data properties")
             let fetchedProperties = propertyRef.fetchPropertiesFromCoreData()
             print(fetchedProperties.count, "fetched count")
             DataModel.properties = fetchedProperties
-            queryNewProperties()
+            queryNewProperties(timestamp: lastQuery)
         }
         
         return true
@@ -192,13 +199,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func queryNewProperties() {
+    func queryNewProperties(timestamp: Date) {
         let query = PFQuery(className: "Property")
         query.addDescendingOrder("createdAt")
-        query.whereKey("createdAt", greaterThan: Date())
+        query.whereKey("createdAt", greaterThan: timestamp)
         query.limit = 100
         let propertyRef = Property()
         propertyRef.getProperties(query: query, completion: { (propertyObjects) in
+            print("PARSE OBJECTS:", propertyObjects.count)
             DataModel.properties.insert(contentsOf: propertyRef.orderByCreatedAtAscending(properties: propertyObjects), at: 0)
             if PFUser.current() != nil {
                 self.setupAdminStatus()

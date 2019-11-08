@@ -59,6 +59,9 @@ public class Property: NSManagedObject {
     
     func updateAttribute(attributeType: String, newValue: Any) {
         print(attributeType, newValue)
+        // Update core data Property
+        self.updatePropertyInCoreData(objectId: self.objectId!, attributeType: attributeType, newValue: newValue)
+        print("break from function")
         let currentProperty = PFObject(withoutDataWithClassName: "Property", objectId: self.objectId)
         currentProperty.setValue(newValue, forKey: attributeType)
         currentProperty.saveInBackground(block: { (success, error) in
@@ -69,7 +72,7 @@ public class Property: NSManagedObject {
     }
     
     func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
-        return properties.sorted(by: { $0.createdAt!.compare($1.createdAt as! Date) == ComparisonResult.orderedDescending })
+        return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
     }
     
     func deleteFromParse() {
@@ -79,6 +82,33 @@ public class Property: NSManagedObject {
             } else {
                 print(error?.localizedDescription)
             }
+        }
+    }
+    
+    func updatePropertyInCoreData(objectId: String, attributeType: String, newValue: Any) {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
+        fetchRequest.predicate = NSPredicate(format: "objectId = %@", objectId)
+        do {
+            let result = try context.fetch(fetchRequest)
+            if result.count == 1 {
+                let propertyToUpdate = result[0] as! Property
+                print(propertyToUpdate)
+                propertyToUpdate.setValue(newValue, forKey: attributeType)
+                
+                print("updated in core data")
+            } else {
+                print("Error: Incorrect result count... Could not update", result.count, "Properties")
+            }
+            
+            do {
+                try context.save()
+               }
+            catch {
+                print("Saving Core Data Failed: \(error)")
+            }
+        } catch {
+            print("Error: Failed to update")
         }
     }
     
@@ -124,9 +154,10 @@ public class Property: NSManagedObject {
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
-            print(result.count)
+            print("FETCHED CORE DATA", result.count)
             for property in result as! [Property] {
                 print("Fetched...")
+                print(property.title)
                 property.image = UIImage(data: property.imageData!)!
                 fetchedProperties.append(property)
             }

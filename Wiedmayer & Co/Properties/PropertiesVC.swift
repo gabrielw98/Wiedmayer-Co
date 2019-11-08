@@ -100,6 +100,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         print(managedObjectContext == nil)
         let newProperty = Property(entity: entity!, insertInto: managedObjectContext)
         CoreDataManager.shared.save()*/
+        
     }
     
     func getProperty() {
