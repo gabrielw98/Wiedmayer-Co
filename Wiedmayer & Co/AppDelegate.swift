@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If user does NOT exist, query all properties then save new user with current timestamp
     // If user exists, check time stamp, pull Properties createdAt later than timestamp (if any), fetch properties already in  core data. Save new properties to core data. Show new properties + fetched properties.
     
+    // when recieved parse objects, update time stamp
     // reset timestamp
     // query properties
     

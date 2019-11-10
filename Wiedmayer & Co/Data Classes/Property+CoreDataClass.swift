@@ -200,6 +200,8 @@ public class Property: NSManagedObject {
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {
                                         print(self.properties.count)
+                                        let userRef = User()
+                                        userRef.updateLastQuery()
                                         completion(self.properties)
                                     }
                                 }

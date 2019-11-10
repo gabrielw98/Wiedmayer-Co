@@ -56,6 +56,7 @@ public class User: NSManagedObject {
             let records = try? CoreDataManager.shared.context.fetch(fetchRequest)
 
             if let records = records as? [NSManagedObject] {
+                print("Success: Updated the time stamp")
                 result = records
                 result[0].setValue(Date(), forKey: "lastQuery")
             }
