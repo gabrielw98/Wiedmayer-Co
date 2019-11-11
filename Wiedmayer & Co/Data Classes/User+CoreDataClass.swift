@@ -45,6 +45,7 @@ public class User: NSManagedObject {
     }
 
     func updateLastQuery() {
+        let context = CoreDataManager.shared.context
         // Create Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
 
@@ -53,12 +54,17 @@ public class User: NSManagedObject {
 
         do {
             // Execute Fetch Request
-            let records = try? CoreDataManager.shared.context.fetch(fetchRequest)
+            let records = try? context.fetch(fetchRequest)
 
             if let records = records as? [NSManagedObject] {
-                print("Success: Updated the time stamp")
                 result = records
                 result[0].setValue(Date(), forKey: "lastQuery")
+                do {
+                    print("Success: Updated the time stamp")
+                   try context.save()
+                  } catch {
+                   print("Error: Failed Saving Property To Core Data")
+                }
             }
         }
     }
