@@ -126,11 +126,12 @@ public class Property: NSManagedObject {
         newProperty.createdAt = createdAt
         newProperty.image = image
         
-        /*do {
+        do {
+            print("Success: Saved new property to Core Data")
            try context.save()
           } catch {
            print("Error: Failed Saving Property To Core Data")
-        }*/
+        }
         return newProperty
     }
     
@@ -158,6 +159,7 @@ public class Property: NSManagedObject {
             for property in result as! [Property] {
                 print("Fetched...")
                 print(property.title)
+                print(property.imageData)
                 property.image = UIImage(data: property.imageData!)!
                 fetchedProperties.append(property)
             }
@@ -196,7 +198,6 @@ public class Property: NSManagedObject {
                                     
                                     let property = self.savePropertyToCoreData(objectId: object.objectId!, address: address, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, imageData: imageData!, createdAt: createdAt, image: finalimage)
                                     
-                                    //property.imageData = finalimage.pngData()
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {
                                         print(self.properties.count)

@@ -44,10 +44,14 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             NewProperty.saveInBackground { (success, error) in
                 if success {
                     let propertyRef = Property()
-                    propertyRef.savePropertyToCoreData(objectId: DataModel.newProperty.objectId!, address: DataModel.newProperty.address!, title: DataModel.newProperty.title!, price: DataModel.newProperty.price, squareFootageLiveable: DataModel.newProperty.squareFootageLiveable, propertyType: DataModel.newProperty.propertyType!, imageData: DataModel.newProperty.imageData!, createdAt: NewProperty.createdAt!, image: DataModel.newProperty.image)
+                    
                     print("Success: New Property Saved")
                     print(NewProperty.objectId!)
                     DataModel.newProperty.objectId = NewProperty.objectId!
+                    
+                    print(DataModel.newProperty.image.pngData()!, "IMAGE DATA?!")
+                    
+                    _ = propertyRef.savePropertyToCoreData(objectId: NewProperty.objectId!, address: DataModel.newProperty.address!, title: DataModel.newProperty.title!, price: DataModel.newProperty.price, squareFootageLiveable: DataModel.newProperty.squareFootageLiveable, propertyType: DataModel.newProperty.propertyType!, imageData: DataModel.newProperty.image.pngData()!, createdAt: NewProperty.createdAt!, image: DataModel.newProperty.image)
                     // Reset the newProperty to empty
                     if self.properties.count == 0 {
                         self.properties.append(DataModel.newProperty)

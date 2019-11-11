@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // when recieved parse objects, update time stamp
     // reset timestamp
     // query properties
-    
+    // image data is not being saved to core data new property is created
     
     var window: UIWindow?
     let reachability = try! Reachability()
@@ -118,12 +118,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         
+        let propertyRef = Property()
         let userRef = User()
         var lastQuery = userRef.fetchLastQueryTimestamp()
         //propertyRef.deletePropertiesFromCoreData()
         //userRef.deleteUserFromCoreData()
         
-        if (userRef.isNewUser()) {
+        if (userRef.isNewUser()) { 
             print("new user")
             queryNewProperties(timestamp: lastQuery)
             userRef.saveUserToCoreData()
