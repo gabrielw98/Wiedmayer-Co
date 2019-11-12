@@ -35,30 +35,27 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             NewProperty["squareFootageLiveable"] = DataModel.newProperty.squareFootageLiveable
             NewProperty["propertyType"] = DataModel.newProperty.propertyType
             
-            
-            if let imageData = DataModel.newProperty.image.jpegData(compressionQuality: 0.25) {
+            if let imageData = DataModel.newProperty.image.jpegData(compressionQuality: 1.00) {
                 let file = PFFileObject(name: "img.png", data: imageData)
                 NewProperty["image"] = file
             }
             
             NewProperty.saveInBackground { (success, error) in
                 if success {
-                    let propertyRef = Property()
-                    
                     print("Success: New Property Saved")
                     print(NewProperty.objectId!)
                     DataModel.newProperty.objectId = NewProperty.objectId!
                     
-                    print(DataModel.newProperty.image.pngData()!, "IMAGE DATA?!")
-                    
-                    _ = propertyRef.savePropertyToCoreData(objectId: NewProperty.objectId!, address: DataModel.newProperty.address!, title: DataModel.newProperty.title!, price: DataModel.newProperty.price, squareFootageLiveable: DataModel.newProperty.squareFootageLiveable, propertyType: DataModel.newProperty.propertyType!, imageData: DataModel.newProperty.image.pngData()!, createdAt: NewProperty.createdAt!, image: DataModel.newProperty.image)
-                    // Reset the newProperty to empty
                     if self.properties.count == 0 {
                         self.properties.append(DataModel.newProperty)
                     } else if self.properties.count > 0 {
+                        print("Properties count before", self.properties.count)
                         self.properties.insert(DataModel.newProperty, at: 0)
+                        print("Properties count after", self.properties.count)
                     }
                     self.tableView.reloadData()
+                    
+                    // Reset the newProperty to empty
                     DataModel.newProperty = Property()
                 } else {
                     print("--NETWORK ERROR?--")

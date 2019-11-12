@@ -128,7 +128,10 @@ public class Property: NSManagedObject {
         
         do {
             print("Success: Saved new property to Core Data")
-           try context.save()
+            try context.save()
+            print("fetching properties...")
+            // two are saved without title and image
+            fetchPropertiesFromCoreData()
           } catch {
            print("Error: Failed Saving Property To Core Data")
         }
@@ -158,10 +161,15 @@ public class Property: NSManagedObject {
             print("FETCHED CORE DATA", result.count)
             for property in result as! [Property] {
                 print("Fetched...")
+                // TODO UNWRAP HERE
                 print(property.title)
                 print(property.imageData)
-                property.image = UIImage(data: property.imageData!)!
-                fetchedProperties.append(property)
+                if let image = property.imageData {
+                    print(property.title)
+                    property.image = UIImage(data: property.imageData!)!
+                    fetchedProperties.append(property)
+                }
+                
             }
             fetchedProperties = result as! [Property]
             return fetchedProperties

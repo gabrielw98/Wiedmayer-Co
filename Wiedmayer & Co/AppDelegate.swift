@@ -120,29 +120,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let propertyRef = Property()
         let userRef = User()
-        var lastQuery = userRef.fetchLastQueryTimestamp()
-        //propertyRef.deletePropertiesFromCoreData()
+        let lastQuery = userRef.fetchLastQueryTimestamp()
+        print("Last Query:", lastQuery)
         //userRef.deleteUserFromCoreData()
         
-        if (userRef.isNewUser()) { 
-            print("new user")
+        propertyRef.deletePropertiesFromCoreData()
+        if (userRef.isNewUser()) {
+            
+            print("New User Querying")
             queryNewProperties(timestamp: lastQuery)
             userRef.saveUserToCoreData()
-            userRef.isNewUser()
-            // Query properties
-            // Save New user with time stamp
         } else {
-            print("no new user")
+            print("Existing User Querying")
             // replace queryProperties() with fetch and query with timestamp
-            let propertyRef = Property()
-            //
             print("fetching core data properties")
+            
             let fetchedProperties = propertyRef.fetchPropertiesFromCoreData()
-            print(fetchedProperties.count, "fetched count")
             DataModel.properties = fetchedProperties
             queryNewProperties(timestamp: lastQuery)
         }
-        
         return true
     }
     
