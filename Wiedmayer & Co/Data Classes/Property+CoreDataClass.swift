@@ -76,12 +76,31 @@ public class Property: NSManagedObject {
     }
     
     func deleteFromParse() {
+        print("trying to delete from parse", self.objectId)
+        self.deletePropertyFromCoreData(objectId: self.objectId!)
         PFObject(withoutDataWithClassName: "Property", objectId: self.objectId).deleteInBackground { (success, error) in
             if success {
                 print("Success: Deleted the selected property")
+                // Delete from core data
             } else {
                 print(error?.localizedDescription)
             }
+        }
+    }
+    
+    func deletePropertyFromCoreData(objectId: String) {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
+        fetchRequest.predicate = NSPredicate(format: "objectId == %@", objectId)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            print("Deleted from core data")
+            fetchPropertiesFromCoreData()
+        } catch {
+            // Error Handling
+            print("Deleting Core Data Failed: \(error)")
         }
     }
     

@@ -71,16 +71,14 @@ public class User: NSManagedObject {
     
     func fetchLastQueryTimestamp() -> Date {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-
-        // Helpers
-        var result = [NSManagedObject]()
-
         do {
             // Execute Fetch Request
             let records = try? CoreDataManager.shared.context.fetch(fetchRequest)
 
-            if let records = records as? [User] {
-                return records[0].lastQuery!
+            if let users = (records as? [User]) {
+                if users.count > 0, let lastQuery = users[0].lastQuery {
+                    return lastQuery
+                }
             }
         }
         return Date()

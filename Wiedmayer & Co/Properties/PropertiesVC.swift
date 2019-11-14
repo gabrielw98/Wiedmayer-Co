@@ -167,6 +167,22 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         })
     }
     
+    func queryNewProperties(timestamp: Date) {
+        let query = PFQuery(className: "Property")
+        query.addDescendingOrder("createdAt")
+        query.whereKey("createdAt", greaterThan: timestamp)
+        query.limit = 100
+        let propertyRef = Property()
+        propertyRef.getProperties(query: query, completion: { (propertyObjects) in
+            print("PARSE OBJECTS:", propertyObjects.count)
+            for property in propertyObjects {
+                self.properties.insert(property, at: 0)
+                self.tableView.reloadData()
+            }
+            //DataModel.properties.insert(contentsOf: propertyRef.orderByCreatedAtAscending(properties: propertyObjects), at: 0)
+        })
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var propertiesToShow = [Property]()
         if (searchController.isActive) {
@@ -178,6 +194,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("reloading tv")
         var propertiesToShow = [Property]()
         if (searchController.isActive) {
             propertiesToShow = filteredProperties
@@ -238,7 +255,11 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         // First check core data
         print("Refreshing...")
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(endRefresh), userInfo: nil, repeats: false)
-        //self.queryProperties()
+        let userRef = User()
+        let propertyRef = Property()
+        let lastQuery = userRef.fetchLastQueryTimestamp()
+        queryNewProperties(timestamp: lastQuery)
+        self.tableView.reloadData()
     }
     
     @objc func endRefresh() {
