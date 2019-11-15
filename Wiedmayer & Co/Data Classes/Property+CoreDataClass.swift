@@ -72,6 +72,9 @@ public class Property: NSManagedObject {
     }
     
     func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
+        for property in properties {
+            print(property.title, property.createdAt)
+        }
         return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
     }
     
@@ -106,28 +109,17 @@ public class Property: NSManagedObject {
     
     func updatePropertyInCoreData(objectId: String, attributeType: String, newValue: Any) {
         let context = CoreDataManager.shared.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
-        fetchRequest.predicate = NSPredicate(format: "objectId = %@", objectId)
+        let request = NSBatchUpdateRequest(entityName: "Property")
+        request.predicate = NSPredicate(format: "objectId = %@", objectId)
+        request.propertiesToUpdate = [attributeType: newValue]
+        
         do {
-            let result = try context.fetch(fetchRequest)
-            if result.count == 1 {
-                let propertyToUpdate = result[0] as! Property
-                print(propertyToUpdate)
-                propertyToUpdate.setValue(newValue, forKey: attributeType)
-                
-                print("updated in core data")
-            } else {
-                print("Error: Incorrect result count... Could not update", result.count, "Properties")
-            }
-            
-            do {
-                try context.save()
-               }
-            catch {
-                print("Saving Core Data Failed: \(error)")
-            }
+            try context.execute(request)
+            print("Updated in core data")
+            fetchPropertiesFromCoreData()
         } catch {
-            print("Error: Failed to update")
+            // Error Handling
+            print("Updating in Core Data Failed: \(error)")
         }
     }
     

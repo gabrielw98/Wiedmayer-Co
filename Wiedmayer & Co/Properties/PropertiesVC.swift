@@ -64,8 +64,11 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
             }
         } else if segue.identifier == "propertyDeletedUnwind" {
             // delete property from the tableview
-            properties.removeAll{$0 === self.selectedProperty}
-            tableView.reloadData()
+            print("in property delete unwind")
+            print(self.properties.count)
+            DataModel.properties.removeAll{$0 === self.selectedProperty}
+            print(self.properties.count)
+            self.tableView.reloadData()
             self.selectedProperty = Property()
         }
     }
@@ -112,6 +115,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     override func viewWillAppear(_ animated: Bool) {
         //navigationController?.navigationBar.prefersLargeTitles = true
         self.properties = DataModel.properties
+        self.properties = Property().orderByCreatedAtAscending(properties: properties)
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
         if self.properties.count == 0 { // Show empty set
@@ -194,13 +198,14 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("reloading tv")
         var propertiesToShow = [Property]()
+        print("properties count", self.properties.count)
         if (searchController.isActive) {
             propertiesToShow = filteredProperties
         } else {
             propertiesToShow = self.properties
         }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "propertyCell") as! PropertyTableViewCell
         cell.selectionStyle = .none
         cell.titleLabel?.text = propertiesToShow[indexPath.row].title
@@ -215,6 +220,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         } else {
             propertiesToShow = self.properties
         }
+        propertiesToShow = Property().orderByCreatedAtAscending(properties: propertiesToShow)
         self.selectedProperty = propertiesToShow[indexPath.row]
         self.performSegue(withIdentifier: "showPropertyDetails", sender: nil)
     }
@@ -241,7 +247,7 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text!.isEmpty {
-            filteredProperties = properties
+            self.filteredProperties = properties
             self.tableView.reloadData()
             return
         }
@@ -259,7 +265,9 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         let propertyRef = Property()
         let lastQuery = userRef.fetchLastQueryTimestamp()
         queryNewProperties(timestamp: lastQuery)
+        self.properties = Property().orderByCreatedAtAscending(properties: properties)
         self.tableView.reloadData()
+        self.tableView.setContentOffset(.zero, animated: true)
     }
     
     @objc func endRefresh() {

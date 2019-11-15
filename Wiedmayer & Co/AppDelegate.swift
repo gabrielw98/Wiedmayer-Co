@@ -42,16 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Search table view by name
     //*Test each stage of admin verification process
     //*Core Data Fetch
+    //*Core data
+    //*Add an image and description behind the table view when there is no data
     
     /* IN PROGRESS */
     // Add push capabilities from back4app dashboard
-    // Core data
-    // Add a image and description behind the table view when there is no data
-    // Change tableView bacground of properties to be a gray gradient
+    // Change tableView background of properties to be a gray gradient
     
     /* BACK LOG */
     // Create property image constraints
     // Address Dropdown scrollable
+    // Remove Search Nearby from address suggestions
     // Edit Property Type add dropdown
     // Refactor AppDelegate query and setup admin to launch vc
     // Add Skeleton View
