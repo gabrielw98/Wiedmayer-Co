@@ -46,10 +46,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Add an image and description behind the table view when there is no data
     
     /* IN PROGRESS */
+    // Constraints for all devices
+    // Deleted & updated markers -- Replace query createdAt timestamp with
+    // Query objects where updated at does not exist in the current list
+    // Deletion can use DeletedProperties -- check in view did load
+    // Send push on deletion
     // Add push capabilities from back4app dashboard
     // Change tableView background of properties to be a gray gradient
     
     /* BACK LOG */
+    // Cloud code main.js updates deleted & updated
     // Create property image constraints
     // Address Dropdown scrollable
     // Remove Search Nearby from address suggestions

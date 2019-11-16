@@ -238,7 +238,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                         colorTextButton: 0xF9E4B7)
                         return
                     } else {
-                        selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                        selectedProperty.updateAttribute(attributeType: "image", newValue: img.pngData()!)
                         selectedProperty.image = img
                         DataModel.propertyImageChanged = true
                     }
@@ -261,7 +261,7 @@ class PropertyDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
                         colorTextButton: 0xF9E4B7)
                         return
                     } else {
-                        selectedProperty.updateAttribute(attributeType: "image", newValue: file!)
+                        selectedProperty.updateAttribute(attributeType: "image", newValue: img.pngData()!)
                     }
                     
                 }

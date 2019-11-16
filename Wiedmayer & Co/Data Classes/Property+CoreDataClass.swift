@@ -63,7 +63,7 @@ public class Property: NSManagedObject {
         self.updatePropertyInCoreData(objectId: self.objectId!, attributeType: attributeType, newValue: newValue)
         print("break from function")
         let currentProperty = PFObject(withoutDataWithClassName: "Property", objectId: self.objectId)
-        currentProperty.setValue(newValue, forKey: attributeType)
+        currentProperty[attributeType] = newValue
         currentProperty.saveInBackground(block: { (success, error) in
             if error == nil {
                 print("Success: Updated the property's " + attributeType)
@@ -75,7 +75,8 @@ public class Property: NSManagedObject {
         for property in properties {
             print(property.title, property.createdAt)
         }
-        return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
+        return properties
+        //return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
     }
     
     func deleteFromParse() {
@@ -84,7 +85,19 @@ public class Property: NSManagedObject {
         PFObject(withoutDataWithClassName: "Property", objectId: self.objectId).deleteInBackground { (success, error) in
             if success {
                 print("Success: Deleted the selected property")
-                // Delete from core data
+                
+                
+                // Figure out how to best track updates and deletes
+                /*let query = PFQuery(className:"UpdatedProperties")
+                query.whereKey("updateType", equalTo: "delete")
+                query.getFirstObjectInBackground { (deletedObject: PFObject?, error: Error?) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if let deletedObject = deletedObject {
+                        deletedObject.addUniqueObject(self.objectId, forKey: "delete")
+                        deletedObject.saveInBackground()
+                    }
+                }*/
             } else {
                 print(error?.localizedDescription)
             }
@@ -109,18 +122,40 @@ public class Property: NSManagedObject {
     
     func updatePropertyInCoreData(objectId: String, attributeType: String, newValue: Any) {
         let context = CoreDataManager.shared.persistentContainer.viewContext
-        let request = NSBatchUpdateRequest(entityName: "Property")
-        request.predicate = NSPredicate(format: "objectId = %@", objectId)
-        request.propertiesToUpdate = [attributeType: newValue]
         
-        do {
-            try context.execute(request)
-            print("Updated in core data")
-            fetchPropertiesFromCoreData()
-        } catch {
-            // Error Handling
-            print("Updating in Core Data Failed: \(error)")
+        if attributeType == "image" {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
+            request.predicate = NSPredicate(format: "objectId = %@", objectId)
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try context.fetch(request)
+                if result.count == 1, let property = result[0] as? NSManagedObject {
+                    property.setValue(newValue, forKey: "imageData")
+                    context.updatedObjects
+                    try context.save()
+                    print("right before")
+                    fetchPropertiesFromCoreData()
+                }
+            } catch {
+                print("Error: Failed to fetch user")
+            }
+        } else {
+            let request = NSBatchUpdateRequest(entityName: "Property")
+            request.predicate = NSPredicate(format: "objectId = %@", objectId)
+            print("before other update", attributeType, newValue)
+            request.propertiesToUpdate = [attributeType: newValue]
+            do {
+                print("before execute")
+                try context.execute(request)
+                print("Updated in core data")
+                fetchPropertiesFromCoreData()
+            } catch {
+                // Error Handling
+                print("Updating in Core Data Failed: \(error)")
+            }
         }
+        
+        
     }
     
     func savePropertyToCoreData(objectId: String, address: String, title: String, price: Int64, squareFootageLiveable: Int64, propertyType: String, imageData: Data, createdAt: Date, image: UIImage) -> Property {
@@ -163,10 +198,14 @@ public class Property: NSManagedObject {
     }
     
     func fetchPropertiesFromCoreData() -> [Property] {
+        
+        
+        
+        
         var fetchedProperties = [Property]()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
-        request.returnsObjectsAsFaults = false
+        request.returnsObjectsAsFaults = true
         do {
             let result = try context.fetch(request)
             print("FETCHED CORE DATA", result.count)
@@ -179,10 +218,12 @@ public class Property: NSManagedObject {
                     print(property.title)
                     property.image = UIImage(data: property.imageData!)!
                     fetchedProperties.append(property)
+                } else {
+                    print("OBJECT ID TO DELETE", property.objectId)
+                    context.delete(property)
+                    //
                 }
-                
             }
-            fetchedProperties = result as! [Property]
             return fetchedProperties
         } catch {
             print("Failed")
