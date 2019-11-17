@@ -199,7 +199,6 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var propertiesToShow = [Property]()
-        print("properties count", self.properties.count)
         if (searchController.isActive) {
             propertiesToShow = filteredProperties
         } else {

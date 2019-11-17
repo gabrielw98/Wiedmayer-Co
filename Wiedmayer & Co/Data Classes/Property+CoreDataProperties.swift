@@ -19,11 +19,13 @@ extension Property {
 
     @NSManaged public var address: String?
     @NSManaged public var createdAt: Date?
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var imageData: Data?
     @NSManaged public var objectId: String?
     @NSManaged public var price: Int64
     @NSManaged public var propertyType: String?
     @NSManaged public var squareFootageLiveable: Int64
     @NSManaged public var title: String?
+    
 
 }

@@ -125,7 +125,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         
+        
+        // Perhaps just send a push and maybe there is logic that handles deletion even if push isnt opened
         let propertyRef = Property()
+        var deletedPropertyIds = [String]()
+        propertyRef.getDeletedProperties(completion: { (deletedIds) in
+            deletedPropertyIds = deletedIds
+            print("deleted property ids:", deletedPropertyIds)
+        })
+        
+        
         let userRef = User()
         let lastQuery = userRef.fetchLastQueryTimestamp()
         print("Last Query:", lastQuery)

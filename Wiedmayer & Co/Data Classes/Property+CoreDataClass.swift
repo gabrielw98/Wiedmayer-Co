@@ -80,6 +80,7 @@ public class Property: NSManagedObject {
     }
     
     func deleteFromParse() {
+        var objectIdTemp = self.objectId
         print("trying to delete from parse", self.objectId)
         self.deletePropertyFromCoreData(objectId: self.objectId!)
         PFObject(withoutDataWithClassName: "Property", objectId: self.objectId).deleteInBackground { (success, error) in
@@ -88,16 +89,17 @@ public class Property: NSManagedObject {
                 
                 
                 // Figure out how to best track updates and deletes
-                /*let query = PFQuery(className:"UpdatedProperties")
+                let query = PFQuery(className:"UpdatedProperties")
                 query.whereKey("updateType", equalTo: "delete")
                 query.getFirstObjectInBackground { (deletedObject: PFObject?, error: Error?) in
                     if let error = error {
                         print(error.localizedDescription)
                     } else if let deletedObject = deletedObject {
-                        deletedObject.addUniqueObject(self.objectId, forKey: "delete")
+                        deletedObject.addUniqueObject(objectIdTemp, forKey: "propertyIds")
                         deletedObject.saveInBackground()
+                        print("Success: Saved delete object id")
                     }
-                }*/
+                }
             } else {
                 print(error?.localizedDescription)
             }
@@ -198,10 +200,6 @@ public class Property: NSManagedObject {
     }
     
     func fetchPropertiesFromCoreData() -> [Property] {
-        
-        
-        
-        
         var fetchedProperties = [Property]()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
@@ -211,15 +209,12 @@ public class Property: NSManagedObject {
             print("FETCHED CORE DATA", result.count)
             for property in result as! [Property] {
                 print("Fetched...")
-                // TODO UNWRAP HERE
-                print(property.title)
-                print(property.imageData)
                 if let image = property.imageData {
                     print(property.title)
                     property.image = UIImage(data: property.imageData!)!
                     fetchedProperties.append(property)
                 } else {
-                    print("OBJECT ID TO DELETE", property.objectId)
+                    print("Deleting nil property")
                     context.delete(property)
                     //
                 }
@@ -229,6 +224,22 @@ public class Property: NSManagedObject {
             print("Failed")
         }
         return fetchedProperties
+    }
+    
+    func getDeletedProperties(completion: @escaping (_ result: [String])->()) {
+        let query = PFQuery(className:"UpdatedProperties")
+        query.whereKey("updateType", equalTo: "delete")
+        query.getFirstObjectInBackground { (deletedObject: PFObject?, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let deletedObject = deletedObject {
+                var deletedPropertyIds = [String]()
+                for deletedProperty in deletedObject["propertyIds"] as! [String] {
+                    deletedPropertyIds.append(deletedProperty)
+                }
+                completion(deletedPropertyIds)
+            }
+        }
     }
     
     func getProperties(query: PFQuery<PFObject>, completion: @escaping (_ result: [Property])->()) {
