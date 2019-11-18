@@ -115,7 +115,6 @@ public class Property: NSManagedObject {
         do {
             try context.execute(batchDeleteRequest)
             print("Deleted from core data")
-            fetchPropertiesFromCoreData()
         } catch {
             // Error Handling
             print("Deleting Core Data Failed: \(error)")
@@ -133,10 +132,8 @@ public class Property: NSManagedObject {
                 let result = try context.fetch(request)
                 if result.count == 1, let property = result[0] as? NSManagedObject {
                     property.setValue(newValue, forKey: "imageData")
-                    context.updatedObjects
                     try context.save()
-                    print("right before")
-                    fetchPropertiesFromCoreData()
+                    //fetchPropertiesFromCoreData()
                 }
             } catch {
                 print("Error: Failed to fetch user")
@@ -144,13 +141,10 @@ public class Property: NSManagedObject {
         } else {
             let request = NSBatchUpdateRequest(entityName: "Property")
             request.predicate = NSPredicate(format: "objectId = %@", objectId)
-            print("before other update", attributeType, newValue)
             request.propertiesToUpdate = [attributeType: newValue]
             do {
-                print("before execute")
                 try context.execute(request)
-                print("Updated in core data")
-                fetchPropertiesFromCoreData()
+                //fetchPropertiesFromCoreData()
             } catch {
                 // Error Handling
                 print("Updating in Core Data Failed: \(error)")
@@ -175,11 +169,8 @@ public class Property: NSManagedObject {
         newProperty.image = image
         
         do {
-            print("Success: Saved new property to Core Data")
             try context.save()
-            print("fetching properties...")
-            // two are saved without title and image
-            fetchPropertiesFromCoreData()
+            //fetchPropertiesFromCoreData()
           } catch {
            print("Error: Failed Saving Property To Core Data")
         }
@@ -199,7 +190,7 @@ public class Property: NSManagedObject {
         }
     }
     
-    func fetchPropertiesFromCoreData() -> [Property] {
+    func fetchPropertiesFromCoreData(deletedPropertyIds: [String]) -> [Property] {
         var fetchedProperties = [Property]()
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Property")
@@ -209,14 +200,13 @@ public class Property: NSManagedObject {
             print("FETCHED CORE DATA", result.count)
             for property in result as! [Property] {
                 print("Fetched...")
-                if let image = property.imageData {
+                if property.imageData == nil || deletedPropertyIds.contains(property.objectId!) {
+                    print("Deleting nil property")
+                    context.delete(property)
+                } else {
                     print(property.title)
                     property.image = UIImage(data: property.imageData!)!
                     fetchedProperties.append(property)
-                } else {
-                    print("Deleting nil property")
-                    context.delete(property)
-                    //
                 }
             }
             return fetchedProperties

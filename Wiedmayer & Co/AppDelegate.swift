@@ -45,7 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Core data
     //*Add an image and description behind the table view when there is no data
     
+    /* MAIN PRIORITIES */
+    //1 Update core data with deleted info
+    //2 Update core data with updated using updatedAt time stamp
+    //3 Constraints for all devices
+    
     /* IN PROGRESS */
+    // Update fetch properties from core data to take in deleted ids and
     // Constraints for all devices
     // Deleted & updated markers -- Replace query createdAt timestamp with
     // Query objects where updated at does not exist in the current list
@@ -126,13 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         
-        // Perhaps just send a push and maybe there is logic that handles deletion even if push isnt opened
-        let propertyRef = Property()
-        var deletedPropertyIds = [String]()
-        propertyRef.getDeletedProperties(completion: { (deletedIds) in
-            deletedPropertyIds = deletedIds
-            print("deleted property ids:", deletedPropertyIds)
-        })
+        
         
         
         let userRef = User()
@@ -148,9 +148,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userRef.saveUserToCoreData()
         } else {
             print("Existing User Querying")
-            let fetchedProperties = propertyRef.fetchPropertiesFromCoreData()
-            DataModel.properties = fetchedProperties
-            queryNewProperties(timestamp: lastQuery)
+            // Perhaps just send a push and maybe there is logic that handles deletion even if push isnt opened
+            let propertyRef = Property()
+            propertyRef.getDeletedProperties(completion: { (deletedIds) in
+                print("deleted property ids:", deletedIds)
+                let fetchedProperties = propertyRef.fetchPropertiesFromCoreData(deletedPropertyIds: deletedIds)
+                DataModel.properties = fetchedProperties
+                self.queryNewProperties(timestamp: lastQuery)
+            })
+            
         }
         return true
     }
