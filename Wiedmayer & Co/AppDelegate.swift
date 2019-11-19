@@ -131,21 +131,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
         
-        
-        
-        
-        
         let userRef = User()
         let lastQuery = userRef.fetchLastQueryTimestamp()
         print("Last Query:", lastQuery)
         
         //userRef.deleteUserFromCoreData()
-        //propertyRef.deletePropertiesFromCoreData()
+        //Property().deletePropertiesFromCoreData()
         
         if (userRef.isNewUser()) {
             print("New User Querying")
             queryNewProperties(timestamp: lastQuery)
-            userRef.saveUserToCoreData()
+            let _ = userRef.saveUserToCoreData()
         } else {
             print("Existing User Querying")
             // Perhaps just send a push and maybe there is logic that handles deletion even if push isnt opened
@@ -156,7 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DataModel.properties = fetchedProperties
                 self.queryNewProperties(timestamp: lastQuery)
             })
-            
         }
         return true
     }
@@ -217,9 +212,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func queryNewProperties(timestamp: Date) {
+        print("QUERYING NEW PROPERTIES")
+        let updatedAtRef = UpdatedAt()
+        //updatedAtRef.deleteAllTimestamps()
+        let updatedAtList = updatedAtRef.fetchUpdatedAtTimestamps()
+        print("updated at list ", updatedAtList)
+        
         let query = PFQuery(className: "Property")
         query.addDescendingOrder("createdAt")
-        query.whereKey("createdAt", greaterThan: timestamp)
+        //query.whereKey("createdAt", greaterThan: timestamp)
+        query.whereKey("updatedAt", notContainedIn: updatedAtList)
         query.limit = 100
         let propertyRef = Property()
         propertyRef.getProperties(query: query, completion: { (propertyObjects) in

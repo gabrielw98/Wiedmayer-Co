@@ -172,13 +172,27 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func queryNewProperties(timestamp: Date) {
+        print("QUERYING NEW PROPERTIES")
+        let updatedAtRef = UpdatedAt()
+        //updatedAtRef.deleteAllTimestamps()
+        let updatedAtList = updatedAtRef.fetchUpdatedAtTimestamps()
+        print("updated at list ", updatedAtList)
+        
         let query = PFQuery(className: "Property")
         query.addDescendingOrder("createdAt")
-        query.whereKey("createdAt", greaterThan: timestamp)
+        //query.whereKey("createdAt", greaterThan: timestamp)
+        query.whereKey("updatedAt", notContainedIn: updatedAtList)
         query.limit = 100
         let propertyRef = Property()
         propertyRef.getProperties(query: query, completion: { (propertyObjects) in
             print("PARSE OBJECTS:", propertyObjects.count)
+            
+            let coreDataIds = DataModel.properties.map { $0.objectId! }
+            print("core data ids", coreDataIds)
+            
+            if coreDataIds.contains(objectId) {
+                
+            }
             for property in propertyObjects {
                 self.properties.insert(property, at: 0)
                 self.tableView.reloadData()

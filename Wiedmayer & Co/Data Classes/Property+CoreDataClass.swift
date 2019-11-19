@@ -63,20 +63,25 @@ public class Property: NSManagedObject {
         self.updatePropertyInCoreData(objectId: self.objectId!, attributeType: attributeType, newValue: newValue)
         print("break from function")
         let currentProperty = PFObject(withoutDataWithClassName: "Property", objectId: self.objectId)
-        currentProperty[attributeType] = newValue
+        print("old time stamp", currentProperty.updatedAt)
+        if attributeType == "image" {
+            let imageData = newValue as! Data
+            currentProperty[attributeType] = PFFileObject(name: "img.png", data: imageData)
+        } else {
+            currentProperty[attributeType] = newValue
+        }
+        
         currentProperty.saveInBackground(block: { (success, error) in
             if error == nil {
                 print("Success: Updated the property's " + attributeType)
+                print("new time stamp.")
+                UpdatedAt().updateTimestamp(objectId: currentProperty.objectId!, timestamp: currentProperty.updatedAt!)
             }
         })
     }
     
     func orderByCreatedAtAscending(properties: [Property]) -> [Property] {
-        for property in properties {
-            print(property.title, property.createdAt)
-        }
-        return properties
-        //return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
+        return properties.sorted(by: { $0.createdAt!.compare($1.createdAt!) == ComparisonResult.orderedDescending })
     }
     
     func deleteFromParse() {
@@ -150,13 +155,23 @@ public class Property: NSManagedObject {
                 print("Updating in Core Data Failed: \(error)")
             }
         }
-        
-        
     }
     
-    func savePropertyToCoreData(objectId: String, address: String, title: String, price: Int64, squareFootageLiveable: Int64, propertyType: String, imageData: Data, createdAt: Date, image: UIImage) -> Property {
+    func savePropertyToCoreData(objectId: String, address: String, title: String, price: Int64, squareFootageLiveable: Int64, propertyType: String, imageData: Data, createdAt: Date, updatedAt: Date, image: UIImage) -> Property {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Property", in: context)
+        let coreDataIds = DataModel.properties.map { $0.objectId! }
+        print("core data ids", coreDataIds)
+        
+        if coreDataIds.contains(objectId) {
+            // Delete the property because we can't keep track of all the updates
+            if let index = DataModel.properties.index(where: { $0.objectId == objectId }) {
+                // removing item
+                DataModel.properties.remove(at: index)
+            }
+            self.deletePropertyFromCoreData(objectId: objectId)
+            UpdatedAt().updateTimestamp(objectId: objectId, timestamp: updatedAt)
+        }
         let newProperty = NSManagedObject(entity: entity!, insertInto: context) as! Property
         newProperty.objectId = objectId
         newProperty.address = address
@@ -167,12 +182,17 @@ public class Property: NSManagedObject {
         newProperty.imageData = imageData
         newProperty.createdAt = createdAt
         newProperty.image = image
+        newProperty.updatedAt = updatedAt
         
         do {
-            try context.save()
+            if true {
+                try context.save()
+            } else {
+                
+            }
             //fetchPropertiesFromCoreData()
           } catch {
-           print("Error: Failed Saving Property To Core Data")
+            print("Error: Failed Saving Property To Core Data")
         }
         return newProperty
     }
@@ -185,7 +205,6 @@ public class Property: NSManagedObject {
         do {
             try context.execute(deleteRequest)
         } catch let error as NSError {
-            // TODO: handle the error
             print("Error:", error)
         }
     }
@@ -256,8 +275,13 @@ public class Property: NSManagedObject {
                                     let propertyType = object["propertyType"] as! String
                                     let address = object["address"] as! String
                                     let createdAt = object.createdAt!
+                                    let updatedAt = object.updatedAt!
+                                    let objectId = object.objectId!
                                     
-                                    let property = self.savePropertyToCoreData(objectId: object.objectId!, address: address, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, imageData: imageData!, createdAt: createdAt, image: finalimage)
+                                    let updateAtRef = UpdatedAt()
+                                    updateAtRef.saveTimestamp(timestamp: updatedAt, objectId: objectId)
+                                    
+                                    let property = self.savePropertyToCoreData(objectId: objectId, address: address, title: title, price: price, squareFootageLiveable: squareFootageLiveable, propertyType: propertyType, imageData: imageData!, createdAt: createdAt, updatedAt: updatedAt, image: finalimage)
                                     
                                     self.properties.append(property)
                                     if self.properties.count == objects?.count {

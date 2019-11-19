@@ -37,6 +37,8 @@
 		8C442FFD235411DE0054E6AD /* PropertyTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C442FFC235411DE0054E6AD /* PropertyTypeVC.swift */; };
 		8C53A751236023EB002928C0 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A750236023EA002928C0 /* ReportVC.swift */; };
 		8C53A753236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */; };
+		8C5E227C23836C9D00AB09DD /* UpdatedAt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E227B23836C9C00AB09DD /* UpdatedAt+CoreDataProperties.swift */; };
+		8C5E227D23836C9D00AB09DD /* UpdatedAt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5E227A23836C9C00AB09DD /* UpdatedAt+CoreDataClass.swift */; };
 		8C85D6F9235B667700F9393F /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C85D6F8235B667700F9393F /* keys.plist */; };
 		8C8C33F023734374004D4788 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C33EE23734374004D4788 /* User+CoreDataClass.swift */; };
 		8C8C33F123734374004D4788 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C33EF23734374004D4788 /* User+CoreDataProperties.swift */; };
@@ -102,6 +104,8 @@
 		8C442FFC235411DE0054E6AD /* PropertyTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeVC.swift; sourceTree = "<group>"; };
 		8C53A750236023EA002928C0 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		8C53A752236493A6002928C0 /* PropertyDetailsActionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsActionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8C5E227A23836C9C00AB09DD /* UpdatedAt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UpdatedAt+CoreDataClass.swift"; path = "/Users/gabewilson/Desktop/workspaces/Wiedmayer & Co/Wiedmayer & Co/Data Classes/UpdatedAt+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		8C5E227B23836C9C00AB09DD /* UpdatedAt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UpdatedAt+CoreDataProperties.swift"; path = "/Users/gabewilson/Desktop/workspaces/Wiedmayer & Co/Wiedmayer & Co/Data Classes/UpdatedAt+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		8C85D6F8235B667700F9393F /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		8C8C33EE23734374004D4788 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8C8C33EF23734374004D4788 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 		8C442FDB235292FC0054E6AD /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C5E227A23836C9C00AB09DD /* UpdatedAt+CoreDataClass.swift */,
+				8C5E227B23836C9C00AB09DD /* UpdatedAt+CoreDataProperties.swift */,
 				8C8C33EE23734374004D4788 /* User+CoreDataClass.swift */,
 				8C8C33EF23734374004D4788 /* User+CoreDataProperties.swift */,
 				8C1C0B9E23712EAA00AF5059 /* Property+CoreDataClass.swift */,
@@ -525,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C5E227D23836C9D00AB09DD /* UpdatedAt+CoreDataClass.swift in Sources */,
 				8C442FE22352B7050054E6AD /* EditPropertyAttributeVC.swift in Sources */,
 				8C442FF9235411BA0054E6AD /* PriceVC.swift in Sources */,
 				8C442FFD235411DE0054E6AD /* PropertyTypeVC.swift in Sources */,
@@ -533,6 +540,7 @@
 				8C1C0BA023712EAA00AF5059 /* Property+CoreDataClass.swift in Sources */,
 				8C442FEA2352CC830054E6AD /* CreatePropertyVC.swift in Sources */,
 				8C442FE02352AE410054E6AD /* PropertyTableViewCell.swift in Sources */,
+				8C5E227C23836C9D00AB09DD /* UpdatedAt+CoreDataProperties.swift in Sources */,
 				8CFCC3C52370DB9A009D4426 /* CoreDataManager.swift in Sources */,
 				8C53A751236023EB002928C0 /* ReportVC.swift in Sources */,
 				8C442FF523540FBB0054E6AD /* NameVC.swift in Sources */,

@@ -11,6 +11,10 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="UpdatedAt" representedClassName=".UpdatedAt" syncable="YES">
+        <attribute name="objectId" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="adminStatus" optional="YES" attributeType="String"/>
         <attribute name="lastQuery" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -18,5 +22,6 @@
     <elements>
         <element name="Property" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="User" positionX="-63" positionY="45" width="128" height="73"/>
+        <element name="UpdatedAt" positionX="-63" positionY="54" width="128" height="73"/>
     </elements>
 </model>
