@@ -184,20 +184,18 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
         query.whereKey("updatedAt", notContainedIn: updatedAtList)
         query.limit = 100
         let propertyRef = Property()
-        propertyRef.getProperties(query: query, completion: { (propertyObjects) in
+        propertyRef.getProperties(query: query, completion: { ( propertyObjects) in
             print("PARSE OBJECTS:", propertyObjects.count)
-            
-            let coreDataIds = DataModel.properties.map { $0.objectId! }
-            print("core data ids", coreDataIds)
-            
-            if coreDataIds.contains(objectId) {
-                
-            }
+            let coreDataIds = self.properties.map { $0.objectId! }
             for property in propertyObjects {
-                self.properties.insert(property, at: 0)
+                if coreDataIds.contains(property.objectId!) {
+                    let index = self.properties.firstIndex(where: { $0.objectId == property.objectId })
+                    self.properties[index!] = property
+                } else {
+                    self.properties.insert(property, at: 0)
+                }
                 self.tableView.reloadData()
             }
-            //DataModel.properties.insert(contentsOf: propertyRef.orderByCreatedAtAscending(properties: propertyObjects), at: 0)
         })
     }
     
