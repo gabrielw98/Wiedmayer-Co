@@ -45,12 +45,15 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
                     print("Success: New Property Saved")
                     print(NewProperty.objectId!)
                     DataModel.newProperty.objectId = NewProperty.objectId!
-                    
+                    DataModel.newProperty.createdAt = NewProperty.createdAt!
+                    DataModel.newProperty.updatedAt = NewProperty.updatedAt!
                     if self.properties.count == 0 {
                         self.properties.append(DataModel.newProperty)
+                        DataModel.properties.append(DataModel.newProperty)
                     } else if self.properties.count > 0 {
                         print("Properties count before", self.properties.count)
                         self.properties.insert(DataModel.newProperty, at: 0)
+                        DataModel.properties.insert(DataModel.newProperty, at: 0)
                         print("Properties count after", self.properties.count)
                     }
                     self.tableView.reloadData()
@@ -125,6 +128,13 @@ class PropertiesVC: UITableViewController, WLEmptyStateDataSource, UISearchResul
     }
     
     func setupUI() {
+        
+        // Table View Constraints
+        //self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
         // Refresh Controller
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 225/255, green: 198/255, blue: 153/255, alpha: 1)]

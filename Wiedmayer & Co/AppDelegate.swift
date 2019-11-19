@@ -44,18 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Core Data Fetch
     //*Core data
     //*Add an image and description behind the table view when there is no data
+    //*Update core data with deleted info
+    //*Update core data with updated using updatedAt time stamp
+    //*Update fetch properties from core data to take in deleted ids and
     
     /* MAIN PRIORITIES */
-    //1 Update core data with deleted info
-    //2 Update core data with updated using updatedAt time stamp
     //3 Constraints for all devices
     
     /* IN PROGRESS */
-    // Update fetch properties from core data to take in deleted ids and
     // Constraints for all devices
-    // Deleted & updated markers -- Replace query createdAt timestamp with
-    // Query objects where updated at does not exist in the current list
-    // Deletion can use DeletedProperties -- check in view did load
     // Send push on deletion
     // Add push capabilities from back4app dashboard
     // Change tableView background of properties to be a gray gradient

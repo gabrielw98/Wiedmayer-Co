@@ -48,7 +48,18 @@ class AddressVC: UIViewController, UITextFieldDelegate, MKLocalSearchCompleterDe
         
         for i in 0..<3 {
             if i < completer.results.count {
-                addresses.append(completer.results[i].title + ", " + completer.results[i].subtitle)
+                if (completer.results[i].subtitle != "Search Nearby") {
+                    var addressSuggestion = completer.results[i].title + ", " + completer.results[i].subtitle
+                    if addressSuggestion.last == " " {
+                        addressSuggestion.removeLast()
+                    }
+                    if addressSuggestion.last == "," {
+                        addressSuggestion.removeLast()
+                    }
+                    print(addressSuggestion)
+                    print(addressSuggestion.last)
+                    addresses.append(addressSuggestion)
+                }
             }
         }
         dropDown.dataSource = addresses
