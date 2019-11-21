@@ -47,12 +47,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //*Update core data with deleted info
     //*Update core data with updated using updatedAt time stamp
     //*Update fetch properties from core data to take in deleted ids and
+    //*Constraints for all devices
     
     /* MAIN PRIORITIES */
-    //3 Constraints for all devices
+    
+    /* TEST CASES */
+    // Create
+    // Delete
+    // Update
+    // Create x2
+    // Delete x2
+    // Register
+    // Admin Status (Pending label)
+    //
+    
     
     /* IN PROGRESS */
-    // Constraints for all devices
+    // Login admin status
+    // Empty Search controller
     // Send push on deletion
     // Add push capabilities from back4app dashboard
     // Change tableView background of properties to be a gray gradient
