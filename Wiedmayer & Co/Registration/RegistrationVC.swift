@@ -93,8 +93,8 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
         query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
         query.getFirstObjectInBackground { (object, error) in
             if object != nil {
-                if let adminStatus = object!["adminStatus"] {
-                    DataModel.adminStatus = adminStatus as! String
+                if let adminStatus = object!["isAdmin"] {
+                    DataModel.isAdmin = adminStatus as! Bool
                 }
                 self.performSegue(withIdentifier: "showProperties", sender: nil)
             }

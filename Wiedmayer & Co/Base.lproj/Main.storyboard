@@ -382,7 +382,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileAdmin" translatesAutoresizingMaskIntoConstraints="NO" id="1vs-UM-uuJ">
-                                        <rect key="frame" x="38" y="199" width="90" height="45"/>
+                                        <rect key="frame" x="38" y="199" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="tZy-7H-Be3"/>
                                         </constraints>
@@ -981,7 +981,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-w4-0KI">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1079,7 +1079,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-CZ-6jJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1176,7 +1176,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-A2-ov3">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1274,7 +1274,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-sO-BwT">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1381,7 +1381,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Rc9-Ya-lpp">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1466,7 +1466,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-ik-TDV">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
