@@ -67,11 +67,13 @@ class RegistrationVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if PFUser.current() != nil {
+            print("getting here?")
             setupAdminStatus()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("should not see this ")
         if fromLogout {
             fromLogout = false
             self.tabBarController?.tabBar.isHidden = true

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MzX-f2-xav">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MzX-f2-xav">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -585,11 +585,11 @@ Wiedmayer &amp; Co. moves with it.</string>
             <objects>
                 <viewController id="bYC-4e-66K" customClass="PropertyDetailsVC" customModule="Wiedmayer___Co" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hg4-OD-yc9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASW-gD-PB7">
-                                <rect key="frame" x="0.0" y="284" width="375" height="334"/>
+                                <rect key="frame" x="0.0" y="296" width="375" height="351"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.77647058820000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -603,10 +603,10 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="orv-Rq-JCl">
-                                <rect key="frame" x="16" y="338" width="343" height="266"/>
+                                <rect key="frame" x="16" y="350" width="343" height="283"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cki-Tj-4GK">
-                                <rect key="frame" x="0.0" y="553" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="582" width="375" height="65"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="0qa-Yx-NP4"/>
@@ -621,13 +621,13 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ORG-Oc-TwT">
-                                <rect key="frame" x="0.0" y="44" width="375" height="242"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="242"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="pIq-e2-4Jk"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-wc-HdD">
-                                <rect key="frame" x="0.0" y="44" width="375" height="242"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="242"/>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -659,7 +659,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-CT-CI3">
-                                <rect key="frame" x="16" y="242" width="335" height="80"/>
+                                <rect key="frame" x="16" y="254" width="335" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s6F-vM-joD">
                                     <size key="itemSize" width="100" height="80"/>
@@ -704,7 +704,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 </cells>
                             </collectionView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZL-4c-Nfx">
-                                <rect key="frame" x="165" y="84" width="45" height="45"/>
+                                <rect key="frame" x="165" y="96" width="45" height="45"/>
                                 <state key="normal" image="editAddressName"/>
                                 <connections>
                                     <action selector="editNameAddressAction:" destination="bYC-4e-66K" eventType="touchUpInside" id="fgw-IP-o19"/>
@@ -875,7 +875,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVa-oX-8Rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2756" y="-701.19940029985014"/>
+            <point key="canvasLocation" x="2730" y="-701"/>
         </scene>
         <!--Create PropertyVC-->
         <scene sceneID="9Vw-X6-lq4">
@@ -981,7 +981,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-w4-0KI">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1079,7 +1079,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-CZ-6jJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1176,7 +1176,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqF-A2-ov3">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1274,7 +1274,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-sO-BwT">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1381,7 +1381,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Rc9-Ya-lpp">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1466,7 +1466,7 @@ Wiedmayer &amp; Co. moves with it.</string>
                                 <rect key="frame" x="8" y="8" width="359" height="651"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-ik-TDV">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651.00000000000023"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="651"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
@@ -1555,6 +1555,6 @@ Wiedmayer &amp; Co. moves with it.</string>
         <image name="woodBackground" width="1250" height="833.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wwb-Tl-MB2"/>
+        <segue reference="dUF-UH-6P1"/>
     </inferredMetricsTieBreakers>
 </document>
