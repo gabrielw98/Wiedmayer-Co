@@ -29,6 +29,7 @@ class ReportVC: UIViewController {
     func setupUI() {
         
         // Rounded corner
+        print("Yo it's Kunal")
         textView.layer.cornerRadius = 5
         textView.clipsToBounds = true
         
